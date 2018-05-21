@@ -11,5 +11,15 @@
             <RowDefinition></RowDefinition>
             <RowDefinition  Height="0.40*"></RowDefinition>
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <ListView>
+                
+            </ListView>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+
+        </Grid>
     </Grid>
 </Window>
