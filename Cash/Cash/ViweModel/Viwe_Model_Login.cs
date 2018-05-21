@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cash.Presenter
 {
-    class Presenter_Index
+    class Viwe_Model_Login
     {
     }
 }

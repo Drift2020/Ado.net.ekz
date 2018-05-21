@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cash.Presenter
+namespace Cash.Code
 {
-    class Presenter_Login
+    class PasswordBoxAssistant
     {
     }
 }
