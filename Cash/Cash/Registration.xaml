@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-        Title="Registration" Height="300" Width="300">
+         Title="Registration" Height="431.5" Width="295"   WindowStyle="ToolWindow" MinWidth="295" MinHeight="431.5" MaxWidth="295" MaxHeight="431.5">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -36,13 +36,13 @@
         <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"/>
 
         <TextBlock Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="4"   VerticalAlignment="Bottom" HorizontalAlignment="Left">Password</TextBlock>
-        <!--<TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4"></TextBox>-->
-        <PasswordBox  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" x:Name="PasswordBox"  local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <!--<PasswordBox  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" x:Name="PasswordBox"  local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
 
         <TextBlock Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="4"   VerticalAlignment="Bottom" HorizontalAlignment="Left">Password again</TextBlock>
-        <!--<TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4"></TextBox>-->
-        <PasswordBox  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4" x:Name="PasswordBox2"  local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <!--<PasswordBox  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4" x:Name="PasswordBox2"  local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
         <TextBlock Grid.Row="7" Grid.Column="1"   Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Left">About yorself</TextBlock>
 
