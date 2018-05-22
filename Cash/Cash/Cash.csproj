@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViweModel\Viwe_Model_Registration.cs" />
     <Page Include="Index.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
