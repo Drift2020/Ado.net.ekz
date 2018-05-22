@@ -5,21 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="634.959">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.07*"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition  Height="0.40*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Menu Grid.Row="0">
+            <MenuItem Header="Menu">
+                <MenuItem Header="New article..."/>
+                <MenuItem Header="Edit article..."/>
+                <MenuItem Header="Delete article..."/>
+                
+            </MenuItem>
+        </Menu>
+        
+        <Grid Grid.Row="1">
             <ListView>
+                <ListView.View>
+                    
+                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                        
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" Header="Date" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="100">
+                            <GridViewColumnHeader>Total
+                                <GridViewColumnHeader.ContextMenu>
+                                    <ContextMenu Name="LastNameCM">
+                                        <MenuItem Header="Ascending"/>
+                                        <MenuItem Header="Descending"/>
+                                    </ContextMenu>
+                                </GridViewColumnHeader.ContextMenu>
+                            </GridViewColumnHeader>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Product categories" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Name of product" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Description" Width="150"/>
+                    </GridView>
+                </ListView.View>
                 
             </ListView>
         </Grid>
         
-        <Grid Grid.Row="1">
-
-        </Grid>
+       
     </Grid>
 </Window>
