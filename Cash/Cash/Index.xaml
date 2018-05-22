@@ -17,16 +17,30 @@
                 <MenuItem Header="New article..."/>
                 <MenuItem Header="Edit article..."/>
                 <MenuItem Header="Delete article..."/>
+                <Separator />
+                <MenuItem Header="Editor..."/>
+                <Separator />
+                <MenuItem Header="Log out..."/>
+                <Separator />
+                <MenuItem Header="Close app"/>
+            </MenuItem>
+
+            <MenuItem Header="Category filters">
                 
             </MenuItem>
+
+          
         </Menu>
-        
+
         <Grid Grid.Row="1">
-            <ListView>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ListView Margin="0,0,0.001,0">
                 <ListView.View>
-                    
+
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                        
+
                         <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" Header="Date" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="100">
                             <GridViewColumnHeader>Total
@@ -43,10 +57,10 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Description" Width="150"/>
                     </GridView>
                 </ListView.View>
-                
+
             </ListView>
         </Grid>
-        
-       
+
+
     </Grid>
 </Window>
