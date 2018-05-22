@@ -13,5 +13,17 @@ namespace Cash
     /// </summary>
     public partial class App : Application
     {
+        private void OnStartup(object sender, StartupEventArgs e)
+        {
+
+            bool work = true;
+
+            Index view = new Index();
+
+            view.ShowDialog();
+
+
+
+        }
     }
 }

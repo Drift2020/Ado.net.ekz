@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Cash.Code
+namespace Cash
 {
     public static class PasswordBoxAssistant
     {
