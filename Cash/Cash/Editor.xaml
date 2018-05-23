@@ -1,0 +1,77 @@
+﻿<Window x:Class="Cash.Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cash"
+        mc:Ignorable="d"
+        Title="Editor" Height="400.352" Width="388.706">
+    <Grid>
+        <TabControl Name="tabControl1" >
+            <TabItem Header="Product">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ListBox Grid.Column="0" Grid.ColumnSpan="3">
+                      
+                        
+                    </ListBox>
+
+                    <Button Grid.Column="0" Grid.Row="1" Margin="10" Content="Add"/>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="10" Content="Edit"/>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="10" Content="Delete"/>
+                    <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Padding="5" Header="Categories" BorderThickness="1" BorderBrush="Black">
+                       
+                        <WrapPanel >
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+                            <CheckBox>Test</CheckBox>
+
+                        </WrapPanel>
+                    </Expander>
+                </Grid>
+            </TabItem>
+            <TabItem Header="categories">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <ListBox Grid.Column="0" Grid.ColumnSpan="3">
+
+
+                    </ListBox>
+
+                    <Button Grid.Column="0" Grid.Row="1" Margin="10" Content="Add"/>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="10" Content="Edit"/>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="10" Content="Delete"/>
+                   
+                </Grid>
+            </TabItem>
+            
+        </TabControl>
+
+    </Grid>
+</Window>

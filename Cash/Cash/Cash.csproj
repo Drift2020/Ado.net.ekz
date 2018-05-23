@@ -60,8 +60,15 @@
     <Compile Include="Add_Article.xaml.cs">
       <DependentUpon>Add_Article.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editor.xaml.cs">
+      <DependentUpon>Editor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViweModel\Viwe_Model_Registration.cs" />
     <Page Include="Add_Article.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
