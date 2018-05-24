@@ -25,7 +25,7 @@
                 <MenuItem Header="Close app"/>
             </MenuItem>
 
-            <MenuItem Header="Category filters">
+            <MenuItem Header="Filters">
                 
             </MenuItem>
 

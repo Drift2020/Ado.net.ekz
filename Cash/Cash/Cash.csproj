@@ -63,7 +63,14 @@
     <Compile Include="Editor.xaml.cs">
       <DependentUpon>Editor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViweModel\Viwe_Model_Registration.cs" />
+    <Compile Include="Messege.xaml.cs">
+      <DependentUpon>Messege.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViweModel\Messege_View_Model.cs" />
+    <Compile Include="ViweModel\View_Model_Base.cs" />
+    <Compile Include="ViweModel\View_Model_Add_Article.cs" />
+    <Compile Include="ViweModel\VIew_Model_Editor.cs" />
+    <Compile Include="ViweModel\VIew_Model_Registration.cs" />
     <Page Include="Add_Article.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,6 +94,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Messege.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,8 +125,8 @@
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViweModel\Viwe_Model_Index.cs" />
-    <Compile Include="ViweModel\Viwe_Model_Login.cs" />
+    <Compile Include="ViweModel\VIew_Model_Index.cs" />
+    <Compile Include="ViweModel\VIew_Model_Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

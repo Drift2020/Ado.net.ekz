@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-        Title="Add_Article" Height="300" Width="507.111">
+        Title="Add_Article" Height="411.333" Width="684.611">
     <Grid>
-        <Grid Margin="10">
+        <Grid Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -18,12 +18,52 @@
                 <RowDefinition Height="20"/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
             <TextBlock Text="Categories" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            
+            <ListView Grid.Row="1" Grid.RowSpan="3" Margin="5">
+
+            </ListView>
+
+            <TextBlock Text="Product" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
+            <ListView Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Margin="5">
+
+            </ListView>
+
+            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Specification"/>
+            <TextBox Margin="5" Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" TextWrapping="Wrap"
+            VerticalScrollBarVisibility="Visible"
+            AcceptsReturn="True"  VerticalContentAlignment="Top" Height="Auto"   IsUndoEnabled="True">
+
+            </TextBox>
+
+
+            <GroupBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+
+                        <ColumnDefinition Width="1*"/>
+                     
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Text="Price:" Margin="0,13.912"  />
+                    <TextBox Grid.Column="1" Grid.Row="1"></TextBox>
+                    <DatePicker VerticalAlignment="Center" Name="datePicker1" IsDropDownOpen="True" SelectedDateFormat="Short"
+                    SelectedDateChanged="calendar_SelectedDatesChanged"   Grid.Column="0" Grid.ColumnSpan="2" Height="auto"/>
+
+                    <Button Grid.Column="2" VerticalAlignment="Center" Margin="10">Add</Button>
+                    <Button Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="10">Cancel</Button>
+                </Grid>
+            </GroupBox>
         </Grid>
     </Grid>
 </Window>

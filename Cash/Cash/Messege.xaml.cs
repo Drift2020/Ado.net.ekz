@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Cash
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Messege_View_Model.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Messege : Window
     {
-        public Login()
+        public Messege()
         {
             InitializeComponent();
             DefaultStyle();
@@ -27,9 +27,9 @@ namespace Cash
         public void DefaultStyle()
         {
             this.Background = new SolidColorBrush(Colors.DarkGray);
-            var core = new Uri("Resurse\\Core.xaml", UriKind.Relative);
-            var brush = new Uri("Resurse\\Brushes.xaml", UriKind.Relative);
-            var ico = new Uri("Resurse\\Icons.xaml", UriKind.Relative);
+            var core = new Uri("Core.xaml", UriKind.Relative);
+            var brush = new Uri("Brushes.xaml", UriKind.Relative);
+            var ico = new Uri("Icons.xaml", UriKind.Relative);
 
             ResourceDictionary resourceDictionary = Application.LoadComponent(core) as ResourceDictionary;
             ResourceDictionary bru = Application.LoadComponent(brush) as ResourceDictionary;
@@ -41,29 +41,9 @@ namespace Cash
 
         }
 
-        public void None_user()
-        {
-            MessageBox.Show("No user, register a new user.");
-            //  Close();
-        }
-
         public void Ok()
         {
-            MessageBox.Show("Welcome to home.");
-            // Close();
-        }
 
-        public void Visibility_off()
-        {
-            Visibility = Visibility.Hidden;
-        }
-        public void Visibility_on()
-        {
-            Visibility = Visibility.Visible;
-        }
-
-        public void No()
-        {
             Close();
         }
     }

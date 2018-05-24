@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cash.ViweModel
 {
-    class Viwe_Model_Registration
+    class VIew_Model_Editor : View_Model_Base
     {
     }
 }
