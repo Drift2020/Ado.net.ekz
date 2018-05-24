@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-        Title="Add_Article" Height="300" Width="300">
+        Title="Add_Article" Height="300" Width="507.111">
     <Grid>
-        
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Categories" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            
+        </Grid>
     </Grid>
 </Window>
