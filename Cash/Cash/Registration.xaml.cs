@@ -40,5 +40,9 @@ namespace Cash
             Application.Current.Resources.MergedDictionaries.Add(ic);
 
         }
+        public void Ok()
+        {
+            Close();
+        }
     }
 }

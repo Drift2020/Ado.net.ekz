@@ -27,9 +27,9 @@ namespace Cash
         public void DefaultStyle()
         {
             this.Background = new SolidColorBrush(Colors.DarkGray);
-            var core = new Uri("Core.xaml", UriKind.Relative);
-            var brush = new Uri("Brushes.xaml", UriKind.Relative);
-            var ico = new Uri("Icons.xaml", UriKind.Relative);
+            var core = new Uri("Resurse\\Core.xaml", UriKind.Relative);
+            var brush = new Uri("Resurse\\Brushes.xaml", UriKind.Relative);
+            var ico = new Uri("Resurse\\Icons.xaml", UriKind.Relative);
 
             ResourceDictionary resourceDictionary = Application.LoadComponent(core) as ResourceDictionary;
             ResourceDictionary bru = Application.LoadComponent(brush) as ResourceDictionary;

@@ -8,12 +8,10 @@ using System.Windows.Input;
 
 namespace Cash.ViweModel
 {
-    enum Add_mod {Add,Edit};
-    class View_Model_Add_Article : View_Model_Base
+    class View_Model_Edit_Article: View_Model_Base
     {
-
         #region Pole
-        public Action _Add;
+        public Action _Edit;
         public Action _Close;
 
         string _Button_ok;
@@ -51,6 +49,7 @@ namespace Cash.ViweModel
         #endregion Pole
 
         #region Code
+
         #endregion Code
 
 
@@ -70,10 +69,10 @@ namespace Cash.ViweModel
         private void Execute_add(object o)
         {
 
-          
 
 
-           
+
+
 
         }
         private bool CanExecute_add(object o)
@@ -107,6 +106,5 @@ namespace Cash.ViweModel
             return true;
         }
         #endregion Command
-
     }
 }

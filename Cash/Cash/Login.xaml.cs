@@ -44,7 +44,7 @@ namespace Cash
         public void None_user()
         {
             MessageBox.Show("No user, register a new user.");
-            //  Close();
+           
         }
 
         public void Ok()

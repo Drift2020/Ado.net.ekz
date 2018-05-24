@@ -90,11 +90,11 @@ namespace Cash.ViweModel
 
                 Index MainWindows = new Index();
 
-               // Viwe_Model_Index viewModelIndex = new Viwe_Model_Index(autor);
+                Viwe_Model_Index viewModelIndex = new Viwe_Model_Index(/*autor*/);
 
 
 
-             //   MainWindows.DataContext = viewModelIndex;
+                MainWindows.DataContext = viewModelIndex;
 
                 MainWindows.ShowDialog();
                // viewModelIndex.Save();
@@ -110,8 +110,8 @@ namespace Cash.ViweModel
 
                 VIew_Model_Registration View_model_reg = new VIew_Model_Registration();
 
-               // if (View_model_reg._OK == null)
-               //     View_model_reg._OK = new Action(view_registration.Ok);
+                if (View_model_reg._OK == null)
+                   View_model_reg._OK = new Action(view_registration.Ok);
 
                 view_registration.DataContext = View_model_reg;
 
@@ -162,6 +162,11 @@ namespace Cash.ViweModel
             //    }
             //}
 
+            is_ok = true;
+            _OK();
+            Now_Registr(null);
+            return;
+
             if (!is_ok)
             {
                 is_none_user = true;
@@ -197,9 +202,11 @@ namespace Cash.ViweModel
         }
         private void Execute_no(object o)
         {
+            Now_Registr(null);
+            is_ok = true;
+            // is_no = true;
 
-            is_no = true;
-            _NO();
+            // _NO();
         }
         private bool CanExecute_no(object o)
         {

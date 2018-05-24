@@ -14,9 +14,9 @@
 
         <Menu Grid.Row="0">
             <MenuItem Header="Menu">
-                <MenuItem Header="New article..."/>
+                <MenuItem Command="{Binding Button_clik_add}" Header="New article..."/>
                 <MenuItem Header="Edit article..."/>
-                <MenuItem Header="Delete article..."/>
+                <MenuItem Header="Delete article"/>
                 <Separator />
                 <MenuItem Header="Editor..."/>
                 <Separator />
