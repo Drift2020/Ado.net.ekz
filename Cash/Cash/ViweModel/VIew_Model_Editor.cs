@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Cash.ViweModel
 {
-    class VIew_Model_Editor : View_Model_Base
+    class View_Model_Editor : View_Model_Base
     {
         #region Pole
         #endregion Pole

@@ -8,9 +8,9 @@ using System.Windows.Input;
 
 namespace Cash.ViweModel
 {
-    class VIew_Model_Registration : View_Model_Base
+    class View_Model_Registration : View_Model_Base
     {
-        public VIew_Model_Registration()
+        public View_Model_Registration()
         {
            // my_users = new СontainerUser();
          //   my_users.SetSerializer(new XMLSerializer());
@@ -23,7 +23,7 @@ namespace Cash.ViweModel
         void OpenMessege(string s, string title)
         {
             Messege messege = new Messege();
-            Messege_View_Model messege_view_Model = new Messege_View_Model(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
 
             if (messege_view_Model._OK == null)
                 messege_view_Model._OK = new Action(messege.Close);

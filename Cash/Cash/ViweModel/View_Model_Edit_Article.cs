@@ -15,6 +15,7 @@ namespace Cash.ViweModel
         public Action New_category;
         public Action New_product;
 
+        #region button_ok
         string button_ok;
         public string Button_ok
         {
@@ -25,7 +26,9 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Button_ok));
             }
         }
+        #endregion button_ok
 
+        #region price
         string price;
         public string Price
         {
@@ -36,7 +39,9 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Price));
             }
         }
+        #endregion price
 
+        #region date
         string date;
         public string Date
         {
@@ -47,8 +52,9 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Date));
             }
         }
+        #endregion date
 
-
+        #region specification
         string specification;
         public string Specification
         {
@@ -59,7 +65,9 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Specification));
             }
         }
+        #endregion specification
 
+        #region name
         string name;
         public string Name
         {
@@ -70,7 +78,9 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Name));
             }
         }
+        #endregion name
 
+        #region surname
         string surname;
         public string Surname
         {
@@ -81,7 +91,9 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Surname));
             }
         }
+        #endregion surname 
 
+        #region patronymic
         string patronymic;
         public string Patronymic
         {
@@ -92,6 +104,7 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Patronymic));
             }
         }
+        #endregion patronymic
         #endregion
         #region Code
 
