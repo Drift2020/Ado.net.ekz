@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="634.959">
+        Title="MainWindow" Height="511" Width="634.959">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="22"></RowDefinition>
@@ -25,41 +25,107 @@
                 <MenuItem Header="Close app"/>
             </MenuItem>
 
-            <MenuItem Header="Filters">
-                
-            </MenuItem>
-
+            
           
         </Menu>
+        <TabControl Name="tabControl1" Grid.Row="1">
+            <TabItem Header="Product" Padding="0">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ListView >
+                        <ListView.View>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <ListView Margin="0,0,0.001,0">
-                <ListView.View>
+                            <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
 
-                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" Header="Date" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="100">
+                                    <GridViewColumnHeader>Total
+                                        <GridViewColumnHeader.ContextMenu>
+                                            <ContextMenu Name="LastNameCM">
+                                                <MenuItem Header="Ascending"/>
+                                                <MenuItem Header="Descending"/>
+                                            </ContextMenu>
+                                        </GridViewColumnHeader.ContextMenu>
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Product categories" Width="150"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Name of product" Width="150"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Description" Width="150"/>
+                            </GridView>
+                        </ListView.View>
 
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" Header="Date" Width="100"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="100">
-                            <GridViewColumnHeader>Total
-                                <GridViewColumnHeader.ContextMenu>
-                                    <ContextMenu Name="LastNameCM">
-                                        <MenuItem Header="Ascending"/>
-                                        <MenuItem Header="Descending"/>
-                                    </ContextMenu>
-                                </GridViewColumnHeader.ContextMenu>
-                            </GridViewColumnHeader>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Product categories" Width="150"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Name of product" Width="150"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Description" Width="150"/>
-                    </GridView>
-                </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Filters" Padding="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-            </ListView>
-        </Grid>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+
+                        <GroupBox Header="Product">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="40"/>
+                                       
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Category" HorizontalAlignment="Center" Grid.Row="0"/>
+                                    <ListView Grid.Row="1" >
+                                        
+                                    </ListView>
+                                    <Button Content="cansel" Margin="10,0,10,0" Grid.Row="2"/>
+                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="3"/>
+                                    <TextBox Grid.Row="4"/>
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="40"/>
+
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Product" HorizontalAlignment="Center" Grid.Row="0"/>
+                                    <ListView Grid.Row="1" >
+
+                                    </ListView>
+                                    <Button Content="cansel" Margin="10,0,10,0" Grid.Row="2"/>
+                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="3"/>
+                                    <TextBox Grid.Row="4"/>
+                                </Grid>
+                            </Grid>
+                        </GroupBox>
+
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+
+                    </Grid>
+                </Grid>
+                
+            </TabItem>
+        </TabControl>
+      
 
 
     </Grid>
