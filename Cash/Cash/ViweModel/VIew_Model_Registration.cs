@@ -210,5 +210,9 @@ namespace Cash.ViweModel
         public Action _OK { get; set; }
         public Action _NO { get; set; }
 
+
+        #region List
+
+        #endregion
     }
 }

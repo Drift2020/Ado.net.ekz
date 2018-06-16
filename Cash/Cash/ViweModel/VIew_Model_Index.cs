@@ -174,7 +174,11 @@ namespace Cash.ViweModel
         }
         #endregion  Log out
 
-     
+
         #endregion Command
+
+        #region List
+
+        #endregion
     }
 }

@@ -88,7 +88,7 @@
                         <GroupBox Margin="2" >
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
-                                    <CheckBox Checked="" HorizontalAlignment="Center" Content="Product"></CheckBox>
+                                    <CheckBox  HorizontalAlignment="Center" Content="Product"></CheckBox>
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
                             <Grid>

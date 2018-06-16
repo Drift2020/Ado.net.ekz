@@ -174,5 +174,9 @@ namespace Cash.ViweModel
         #endregion category
 
         #endregion Command
+
+        #region List
+
+        #endregion
     }
 }

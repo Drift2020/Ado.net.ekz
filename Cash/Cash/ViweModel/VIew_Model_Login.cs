@@ -108,7 +108,7 @@ namespace Cash.ViweModel
             {
                 Registration view_registration = new Registration();
 
-                VIew_Model_Registration View_model_reg = new VIew_Model_Registration();
+                View_Model_Registration View_model_reg = new View_Model_Registration();
 
                 if (View_model_reg._OK == null)
                    View_model_reg._OK = new Action(view_registration.Ok);
@@ -217,5 +217,9 @@ namespace Cash.ViweModel
         }
 
         #endregion Command
+
+        #region List
+
+        #endregion
     }
 }
