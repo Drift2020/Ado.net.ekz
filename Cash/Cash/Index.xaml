@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="511" Width="634.959">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="126*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="22"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="Menu">
                 <MenuItem Command="{Binding Button_clik_add}" Header="New article..."/>
                 <MenuItem Header="Edit article..."/>
@@ -28,7 +32,7 @@
 
 
         </Menu>
-        <TabControl Name="tabControl1" Grid.Row="1">
+        <TabControl Name="tabControl1" Grid.Row="1" Grid.ColumnSpan="2">
             <TabItem Header="Product" Padding="0">
                 <Grid >
                     <Grid.ColumnDefinitions>
@@ -59,7 +63,7 @@
                     </ListView>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="Filters" Padding="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -76,7 +80,7 @@
                         <GroupBox Margin="2" >
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock HorizontalAlignment="Center" Text="Product"/>
+                                    <CheckBox HorizontalAlignment="Center" Content="Product"></CheckBox>
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
                             <Grid>
@@ -103,6 +107,10 @@
                                 </Grid>
 
                                 <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="13*"/>
+                                        <ColumnDefinition Width="137*"/>
+                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20"/>
                                         <RowDefinition/>
@@ -111,13 +119,13 @@
                                         <RowDefinition Height="40"/>
 
                                     </Grid.RowDefinitions>
-                                    <TextBlock Text="Product" HorizontalAlignment="Center" Grid.Row="0"/>
-                                    <ListView Grid.Row="1" >
+                                    <TextBlock Text="Goods" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="44.883,0,58.142,0"/>
+                                    <ListView Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,-0.001,0" >
 
                                     </ListView>
 
-                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="2"/>
-                                    <TextBox Grid.Row="3"/>
+                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="48.171,0,61.43,0"/>
+                                    <TextBox Grid.Row="3" Grid.ColumnSpan="2" Margin="0,3,-0.001,2.999"/>
                                 </Grid>
                             </Grid>
                         </GroupBox>
@@ -125,16 +133,16 @@
                         <GroupBox Header="Price" Grid.Row="1">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
-                                   
-                                        <CheckBox HorizontalAlignment="Center" Content="Price"></CheckBox>
-                                    
-                                   
+
+                                    <CheckBox HorizontalAlignment="Center" Content="Price"></CheckBox>
+
+
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
 
                             <Grid>
                                 <Grid.RowDefinitions>
-                                 
+
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
@@ -143,10 +151,14 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                
-                                
-                               
-                               <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
+
+
+
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="End:"/>
+                                <TextBox Grid.Column="1" Grid.Row="0" />
+                                <TextBox Grid.Column="1" Grid.Row="1" />
                             </Grid>
                         </GroupBox>
                     </Grid>
@@ -160,9 +172,10 @@
                         <GroupBox Margin="2" Grid.Row="0">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock HorizontalAlignment="Center" Text="Person"/>
+                                    <CheckBox HorizontalAlignment="Center" Content="Person"></CheckBox>
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
+    
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -173,7 +186,7 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20"/>
                                         <RowDefinition/>
-                                        
+
                                         <RowDefinition Height="20"/>
                                         <RowDefinition Height="40"/>
 
@@ -182,7 +195,7 @@
                                     <ListView Grid.Row="1" >
 
                                     </ListView>
-                                 
+
                                     <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="2"/>
                                     <TextBox Grid.Row="3"/>
                                 </Grid>
@@ -223,6 +236,39 @@
                                 </Grid>
                             </Grid>
 
+                        </GroupBox>
+
+                        <GroupBox  Grid.Row="1">
+                            <GroupBox.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center" Content="Date"></CheckBox>
+                                </DataTemplate>
+                            </GroupBox.HeaderTemplate>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+
+
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="End:"/>
+                                <DatePicker VerticalAlignment="Center"  IsDropDownOpen="True" SelectedDateFormat="Short"
+                    SelectedDateChanged="calendar_SelectedDatesChanged"   Grid.Column="1" Grid.Row="0" Height="auto"/>
+
+                                <DatePicker VerticalAlignment="Center" IsDropDownOpen="True" SelectedDateFormat="Short"
+                    SelectedDateChanged="calendar_SelectedDatesChanged"   Grid.Column="1" Grid.Row="1" Height="auto"/>
+
+                            </Grid>
                         </GroupBox>
                     </Grid>
                 </Grid>
