@@ -19,6 +19,7 @@ namespace Cash.ViweModel
 
 
         #region Command
+        #region Add
         private DelegateCommand _Command_add;
         public ICommand Button_clik_add
         {
@@ -57,9 +58,11 @@ namespace Cash.ViweModel
         {
             return true;
         }
+        #endregion Add
 
+        #region Edit
         private DelegateCommand _Command_Edit;
-        public ICommand Button_clik_Edit
+        public ICommand Button_clik_edit
         {
             get
             {
@@ -96,8 +99,82 @@ namespace Cash.ViweModel
         {
             return true;
         }
+        #endregion Edit
+
+        #region delete
+        private DelegateCommand _Command_del;
+        public ICommand Button_clik_del
+        {
+            get
+            {
+                if (_Command_del == null)
+                {
+                    _Command_del = new DelegateCommand(Execute_del, CanExecute_del);
+                }
+                return _Command_del;
+            }
+        }
+        private void Execute_del(object o)
+        {
+
+         
+
+        }
+        private bool CanExecute_del(object o)
+        {
+            return true;
+        }
+        #endregion delete
+
+        #region Editor
+        private DelegateCommand _Command_editor;
+        public ICommand Button_clik_editor
+        {
+            get
+            {
+                if (_Command_editor == null)
+                {
+                    _Command_editor = new DelegateCommand(Execute_editor, CanExecute_editor);
+                }
+                return _Command_editor;
+            }
+        }
+        private void Execute_editor(object o)
+        {
+
+        
+        }
+        private bool CanExecute_editor(object o)
+        {
+            return true;
+        }
+        #endregion Editor
+
+        #region Log out
+        private DelegateCommand _Command_log_out;
+        public ICommand Button_clik_log_out
+        {
+            get
+            {
+                if (_Command_log_out == null)
+                {
+                    _Command_log_out = new DelegateCommand(Execute_log_out, CanExecute_log_out);
+                }
+                return _Command_log_out;
+            }
+        }
+        private void Execute_log_out(object o)
+        {
 
 
+        }
+        private bool CanExecute_log_out(object o)
+        {
+            return true;
+        }
+        #endregion  Log out
+
+     
         #endregion Command
     }
 }

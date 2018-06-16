@@ -81,9 +81,9 @@
                     <DatePicker VerticalAlignment="Center" Name="datePicker1" IsDropDownOpen="True" SelectedDateFormat="Short"
                     SelectedDateChanged="calendar_SelectedDatesChanged"   Grid.Column="1"  Height="auto"/>
 
-                    <Button Command="{Binding Button_clik_add}" Grid.Column="0"   Grid.Row="2"  VerticalAlignment="Center" MaxWidth="100" Content="New category"/>
-                    <Button Command="{Binding Button_clik_cancel}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" MaxWidth="100" Content="New Product" />
-                    <Button Command="{Binding Button_clik_cancel}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" MaxWidth="100" Content="Add" />
+                    <Button Command="{Binding Button_clik_new_category}" Grid.Column="0"   Grid.Row="2"  VerticalAlignment="Center" MaxWidth="100" Content="New category"/>
+                    <Button Command="{Binding Button_clik_new_product}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" MaxWidth="100" Content="New Product" />
+                    <Button Command="{Binding Button_clik_ok}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" MaxWidth="100" Content="Add" />
                 </Grid>
             </GroupBox>
         </Grid>

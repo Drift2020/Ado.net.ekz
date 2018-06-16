@@ -8,31 +8,31 @@
         Title="MainWindow" Height="511" Width="634.959">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="83*"/>
-            <ColumnDefinition Width="126*"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="22"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+        <Menu Grid.Row="0" Grid.ColumnSpan="4">
             <MenuItem Header="Menu">
                 <MenuItem Command="{Binding Button_clik_add}" Header="New article..."/>
-                <MenuItem Header="Edit article..."/>
-                <MenuItem Header="Delete article"/>
+                <MenuItem Command="{Binding Button_clik_edit}" Header="Edit article..."/>
+                <MenuItem Command="{Binding Button_clik_del}" Header="Delete article"/>
                 <Separator />
-                <MenuItem Header="Editor..."/>
+                <MenuItem Command="{Binding Button_clik_editor}" Header="Editor..."/>
                 <Separator />
-                <MenuItem Header="Log out..."/>
-                <Separator />
-                <MenuItem Header="Close app"/>
+                <MenuItem Command="{Binding Button_clik_log_out}" Header="Log out..."/>
+
             </MenuItem>
 
 
 
         </Menu>
-        <TabControl Name="tabControl1" Grid.Row="1" Grid.ColumnSpan="2">
+        <TabControl Name="tabControl1" Grid.Row="1" Grid.ColumnSpan="4">
             <TabItem Header="Product" Padding="0">
                 <Grid >
                     <Grid.RowDefinitions>
@@ -43,10 +43,9 @@
                     <WrapPanel HorizontalAlignment="Center">
                         <TextBlock VerticalAlignment="Center" Text="Family:"/>
                         <ComboBox MinWidth="150"/>
-
                     </WrapPanel>
-                 
-                    
+
+
                     <ListView Grid.Row="1" >
                         <ListView.View>
 
@@ -89,7 +88,7 @@
                         <GroupBox Margin="2" >
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
-                                    <CheckBox HorizontalAlignment="Center" Content="Product"></CheckBox>
+                                    <CheckBox Checked="" HorizontalAlignment="Center" Content="Product"></CheckBox>
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
                             <Grid>
@@ -184,7 +183,7 @@
                                     <CheckBox HorizontalAlignment="Center" Content="Person"></CheckBox>
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
-    
+
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -277,7 +276,7 @@
 
                                 <DatePicker VerticalAlignment="Center" IsDropDownOpen="True" SelectedDateFormat="Short"
                       Grid.Column="1" Grid.Row="1" Height="auto"/>
-                                
+
                                 <CheckBox Content="Incomes" Grid.Column="0" Grid.Row="2"
                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
 

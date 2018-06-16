@@ -117,7 +117,7 @@ namespace Cash.ViweModel
         #region Command
         #region Add
         private DelegateCommand _Command_add;
-        public ICommand Button_clik_add
+        public ICommand Button_clik_ok
         {
             get
             {
