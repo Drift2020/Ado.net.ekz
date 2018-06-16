@@ -1,0 +1,22 @@
+﻿<Window x:Class="Cash.Add_Edit_window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cash"
+        mc:Ignorable="d"
+        Title="Add_Edit_window" Height="158.75" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Name:" VerticalAlignment="Center"/>
+            <TextBox Margin="5" MinWidth="200" />
+        </WrapPanel>
+        
+        <Button Content="OK" Grid.Row="1" MaxHeight="30" MaxWidth="100"/>
+    </Grid>
+</Window>
