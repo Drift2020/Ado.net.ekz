@@ -10,10 +10,10 @@ using System.Windows.Input;
 
 namespace Cash.ViweModel
 {
-    class MessegeViewModel : View_Model_Base
+    class View_Model_Messege : View_Model_Base
     {
 
-        public MessegeViewModel(Visibility Visibility_ok, Visibility Visibility_on, Visibility Visibility_cancel)
+        public View_Model_Messege(Visibility Visibility_ok, Visibility Visibility_on, Visibility Visibility_cancel)
         {
 
 

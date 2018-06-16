@@ -13,41 +13,88 @@ namespace Cash.ViweModel
     {
 
         #region Pole
-        public Action _Add;
-        public Action _Close;
+        public Action Add;
+        public Action New_category;
+        public Action New_product;
 
-        string _Button_ok;
+        string button_ok;
         public string Button_ok
         {
-            get { return _Button_ok; }
+            get { return button_ok; }
             set
             {
-                _Button_ok = value;
+                button_ok = value;
                 OnPropertyChanged(nameof(Button_ok));
             }
         }
 
-        string _Price;
+        string price;
         public string Price
         {
-            get { return _Price; }
+            get { return price; }
             set
             {
-                _Price = value;
+                price = value;
                 OnPropertyChanged(nameof(Price));
             }
         }
 
-        string _Specification;
-        public string Specification
+        string date;
+        public string Date
         {
-            get { return _Specification; }
+            get { return date; }
             set
             {
-                _Specification = value;
+                date = value;
+                OnPropertyChanged(nameof(Date));
+            }
+        }
+
+
+        string specification;
+        public string Specification
+        {
+            get { return specification; }
+            set
+            {
+                specification = value;
                 OnPropertyChanged(nameof(Specification));
             }
         }
+
+        string name;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        string surname;
+        public string Surname
+        {
+            get { return surname; }
+            set
+            {
+                surname = value;
+                OnPropertyChanged(nameof(Surname));
+            }
+        }
+
+        string patronymic;
+        public string Patronymic
+        {
+            get { return patronymic; }
+            set
+            {
+                patronymic = value;
+                OnPropertyChanged(nameof(Patronymic));
+            }
+        }
+
         #endregion Pole
 
         #region Code
@@ -55,6 +102,7 @@ namespace Cash.ViweModel
 
 
         #region Command
+        #region Add
         private DelegateCommand _Command_add;
         public ICommand Button_clik_add
         {
@@ -80,20 +128,21 @@ namespace Cash.ViweModel
         {
             return true;
         }
-
-        private DelegateCommand _Command_cancel;
-        public ICommand Button_clik_cancel
+        #endregion
+        #region new category
+        private DelegateCommand _Command_new_category;
+        public ICommand Button_clik_new_category
         {
             get
             {
-                if (_Command_cancel == null)
+                if (_Command_new_category == null)
                 {
-                    _Command_cancel = new DelegateCommand(Execute_cancel, CanExecute_cancel);
+                    _Command_new_category = new DelegateCommand(Execute_new_category, CanExecute_new_category);
                 }
-                return _Command_cancel;
+                return _Command_new_category;
             }
         }
-        private void Execute_cancel(object o)
+        private void Execute_new_category(object o)
         {
 
 
@@ -102,10 +151,38 @@ namespace Cash.ViweModel
 
 
         }
-        private bool CanExecute_cancel(object o)
+        private bool CanExecute_new_category(object o)
         {
             return true;
         }
+        #endregion
+        #region new product
+        private DelegateCommand _Command_new_product;
+        public ICommand Button_clik_new_product
+        {
+            get
+            {
+                if (_Command_new_product == null)
+                {
+                    _Command_new_product = new DelegateCommand(Execute_new_product, CanExecute_new_product);
+                }
+                return _Command_new_product;
+            }
+        }
+        private void Execute_new_product(object o)
+        {
+
+
+
+
+
+
+        }
+        private bool CanExecute_new_product(object o)
+        {
+            return true;
+        }
+        #endregion
         #endregion Command
 
     }

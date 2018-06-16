@@ -11,62 +11,108 @@ namespace Cash.ViweModel
     class View_Model_Edit_Article: View_Model_Base
     {
         #region Pole
-        public Action _Edit;
-        public Action _Close;
+        public Action Edit;
+        public Action New_category;
+        public Action New_product;
 
-        string _Button_ok;
+        string button_ok;
         public string Button_ok
         {
-            get { return _Button_ok; }
+            get { return button_ok; }
             set
             {
-                _Button_ok = value;
+                button_ok = value;
                 OnPropertyChanged(nameof(Button_ok));
             }
         }
 
-        string _Price;
+        string price;
         public string Price
         {
-            get { return _Price; }
+            get { return price; }
             set
             {
-                _Price = value;
+                price = value;
                 OnPropertyChanged(nameof(Price));
             }
         }
 
-        string _Specification;
-        public string Specification
+        string date;
+        public string Date
         {
-            get { return _Specification; }
+            get { return date; }
             set
             {
-                _Specification = value;
+                date = value;
+                OnPropertyChanged(nameof(Date));
+            }
+        }
+
+
+        string specification;
+        public string Specification
+        {
+            get { return specification; }
+            set
+            {
+                specification = value;
                 OnPropertyChanged(nameof(Specification));
             }
         }
-        #endregion Pole
 
+        string name;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        string surname;
+        public string Surname
+        {
+            get { return surname; }
+            set
+            {
+                surname = value;
+                OnPropertyChanged(nameof(Surname));
+            }
+        }
+
+        string patronymic;
+        public string Patronymic
+        {
+            get { return patronymic; }
+            set
+            {
+                patronymic = value;
+                OnPropertyChanged(nameof(Patronymic));
+            }
+        }
+        #endregion
         #region Code
 
         #endregion Code
 
 
         #region Command
-        private DelegateCommand _Command_add;
-        public ICommand Button_clik_add
+        #region
+        private DelegateCommand Command_edit;
+        public ICommand Button_clik_edit
         {
             get
             {
-                if (_Command_add == null)
+                if (Command_edit == null)
                 {
-                    _Command_add = new DelegateCommand(Execute_add, CanExecute_add);
+                    Command_edit = new DelegateCommand(Execute_edit, CanExecute_edit);
                 }
-                return _Command_add;
+                return Command_edit;
             }
         }
-        private void Execute_add(object o)
+        private void Execute_edit(object o)
         {
 
 
@@ -75,24 +121,25 @@ namespace Cash.ViweModel
 
 
         }
-        private bool CanExecute_add(object o)
+        private bool CanExecute_edit(object o)
         {
             return true;
         }
-
-        private DelegateCommand _Command_cancel;
-        public ICommand Button_clik_cancel
+        #endregion
+        #region new category
+        private DelegateCommand Command_new_category;
+        public ICommand Button_clik_new_category
         {
             get
             {
-                if (_Command_cancel == null)
+                if (Command_new_category == null)
                 {
-                    _Command_cancel = new DelegateCommand(Execute_cancel, CanExecute_cancel);
+                    Command_new_category = new DelegateCommand(Execute_new_category, CanExecute_new_category);
                 }
-                return _Command_cancel;
+                return Command_new_category;
             }
         }
-        private void Execute_cancel(object o)
+        private void Execute_new_category(object o)
         {
 
 
@@ -101,10 +148,38 @@ namespace Cash.ViweModel
 
 
         }
-        private bool CanExecute_cancel(object o)
+        private bool CanExecute_new_category(object o)
         {
             return true;
         }
+        #endregion
+        #region new product
+        private DelegateCommand Command_new_product;
+        public ICommand Button_clik_new_product
+        {
+            get
+            {
+                if (Command_new_product == null)
+                {
+                    Command_new_product = new DelegateCommand(Execute_new_product, CanExecute_new_product);
+                }
+                return Command_new_product;
+            }
+        }
+        private void Execute_new_product(object o)
+        {
+
+
+
+
+
+
+        }
+        private bool CanExecute_new_product(object o)
+        {
+            return true;
+        }
+        #endregion
         #endregion Command
     }
 }

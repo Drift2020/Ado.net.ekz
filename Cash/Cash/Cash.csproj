@@ -67,7 +67,6 @@
     <Compile Include="Messege.xaml.cs">
       <DependentUpon>Messege.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViweModel\Messege_View_Model.cs" />
     <Compile Include="ViweModel\View_Model_Base.cs" />
     <Compile Include="ViweModel\View_Model_Add_Article.cs" />
     <Compile Include="ViweModel\VIew_Model_Editor.cs" />
@@ -156,7 +155,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfese\" />
     <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
