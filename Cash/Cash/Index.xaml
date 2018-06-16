@@ -35,10 +35,19 @@
         <TabControl Name="tabControl1" Grid.Row="1" Grid.ColumnSpan="2">
             <TabItem Header="Product" Padding="0">
                 <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <ListView >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" Text="Family:"/>
+                        <ComboBox MinWidth="150"/>
+
+                    </WrapPanel>
+                 
+                    
+                    <ListView Grid.Row="1" >
                         <ListView.View>
 
                             <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
@@ -102,7 +111,7 @@
 
                                     </ListView>
 
-                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
                                     <TextBox Grid.Row="3"/>
                                 </Grid>
 
@@ -124,13 +133,13 @@
 
                                     </ListView>
 
-                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="48.171,0,61.43,0"/>
+                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="48.171,0,61.43,0"/>
                                     <TextBox Grid.Row="3" Grid.ColumnSpan="2" Margin="0,3,-0.001,2.999"/>
                                 </Grid>
                             </Grid>
                         </GroupBox>
 
-                        <GroupBox Header="Price" Grid.Row="1">
+                        <GroupBox  Margin="2" Header="Price" Grid.Row="1">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
 
@@ -196,7 +205,7 @@
 
                                     </ListView>
 
-                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
                                     <TextBox Grid.Row="3"/>
                                 </Grid>
 
@@ -214,7 +223,7 @@
 
                                     </ListView>
 
-                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
                                     <TextBox Grid.Row="3"/>
                                 </Grid>
                                 <Grid Grid.Column="2">
@@ -231,14 +240,14 @@
 
                                     </ListView>
 
-                                    <TextBlock Text="serch" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
                                     <TextBox Grid.Row="3"/>
                                 </Grid>
                             </Grid>
 
                         </GroupBox>
 
-                        <GroupBox  Grid.Row="1">
+                        <GroupBox Margin="2" Grid.Row="1">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" Content="Date"></CheckBox>
@@ -248,6 +257,7 @@
                             <Grid>
                                 <Grid.RowDefinitions>
 
+                                    <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
@@ -267,6 +277,12 @@
 
                                 <DatePicker VerticalAlignment="Center" IsDropDownOpen="True" SelectedDateFormat="Short"
                     SelectedDateChanged="calendar_SelectedDatesChanged"   Grid.Column="1" Grid.Row="1" Height="auto"/>
+                                
+                                <CheckBox Content="Incomes" Grid.Column="0" Grid.Row="2"
+                                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                <CheckBox Content="Costs" Grid.Column="1" Grid.Row="2"
+                                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                             </Grid>
                         </GroupBox>
