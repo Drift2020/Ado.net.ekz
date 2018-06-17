@@ -12,6 +12,59 @@ namespace Cash.ViweModel
     {
 
         #region Pole
+
+        #region Filter
+
+        #region category
+        string serch_category;
+        public string Serch_category
+        {
+            set
+            {
+                serch_category = value;
+                OnPropertyChanged(nameof(Serch_category));
+            }
+            get
+            {
+                return serch_category;
+            }
+        }
+        #endregion
+
+        #region Goods
+        string serch_goods;
+        public string Serch_goods
+        {
+            set
+            {
+                serch_goods = value;
+                OnPropertyChanged(nameof(Serch_goods));
+            }
+            get
+            {
+                return serch_goods;
+            }
+        }
+        #endregion
+
+        #region Name
+        string serch_name;
+        public string Serch_name
+        {
+            set
+            {
+                serch_name = value;
+                OnPropertyChanged(nameof(Serch_name));
+            }
+            get
+            {
+                return serch_name;
+            }
+        }
+        #endregion
+
+        #endregion
+
         #endregion Pole
 
         #region Code
@@ -40,8 +93,8 @@ namespace Cash.ViweModel
             View_Model_Add_Article my_model_add = new View_Model_Add_Article();
 
 
-            if (my_model_add._Add == null)
-                my_model_add._Add = new Action(my_add.Close);
+            if (my_model_add.Add == null)
+                my_model_add.Add = new Action(my_add.Close);
 
             my_add.DataContext = my_model_add;
 
@@ -81,8 +134,8 @@ namespace Cash.ViweModel
             View_Model_Edit_Article my_model_Edit = new View_Model_Edit_Article();
 
 
-            if (my_model_Edit._Edit == null)
-                my_model_Edit._Edit = new Action(my_add.Close);
+            if (my_model_Edit.Edit == null)
+                my_model_Edit.Edit = new Action(my_add.Close);
 
             my_add.DataContext = my_model_Edit;
 
@@ -142,7 +195,12 @@ namespace Cash.ViweModel
         private void Execute_editor(object o)
         {
 
-        
+            Editor edit_window = new Editor();
+            View_Model_Editor model= new View_Model_Editor();
+            edit_window.DataContext = model;
+
+
+            edit_window.ShowDialog();
         }
         private bool CanExecute_editor(object o)
         {

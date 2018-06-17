@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-        Title="Add_Edit_window" Height="158.75" Width="300">
+        Title="{Binding Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="158.75" Width="300">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -14,9 +15,9 @@
 
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Name:" VerticalAlignment="Center"/>
-            <TextBox Margin="5" MinWidth="200" />
+            <TextBox Text="{Binding Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5" MinWidth="200" />
         </WrapPanel>
-        
-        <Button Content="OK" Grid.Row="1" MaxHeight="30" MaxWidth="100"/>
+
+        <Button Command="{Binding Button_clik_ok}" Content="OK" Grid.Row="1" MaxHeight="30" MaxWidth="100"/>
     </Grid>
 </Window>

@@ -8,16 +8,32 @@ using System.Windows.Input;
 
 namespace Cash.ViweModel
 {
-    class View_Model_add_product_window : View_Model_Base
+    class View_Model_add_edit_window : View_Model_Base
     {
-        public View_Model_add_product_window()
+        public View_Model_add_edit_window()
         {
 
         }
 
         #region pole
+        public Action OK;
 
-      
+        #region title
+        string title;
+        public string Title
+        {
+            set
+            {
+                title = value;
+                OnPropertyChanged(nameof(Title));
+            }
+            get
+            {
+                return title;
+            }
+        }
+        #endregion
+
 
         #region name
         string name;
@@ -42,19 +58,19 @@ namespace Cash.ViweModel
         #region command
 
         #region Ok
-        private DelegateCommand _Command_add;
-        public ICommand Button_clik_add
+        private DelegateCommand _Command_ok;
+        public ICommand Button_clik_ok
         {
             get
             {
-                if (_Command_add == null)
+                if (_Command_ok == null)
                 {
-                    _Command_add = new DelegateCommand(Execute_add, CanExecute_add);
+                    _Command_ok = new DelegateCommand(Execute_ok, CanExecute_ok);
                 }
-                return _Command_add;
+                return _Command_ok;
             }
         }
-        private void Execute_add(object o)
+        private void Execute_ok(object o)
         {
 
 
@@ -63,7 +79,7 @@ namespace Cash.ViweModel
 
 
         }
-        private bool CanExecute_add(object o)
+        private bool CanExecute_ok(object o)
         {
             return true;
         }

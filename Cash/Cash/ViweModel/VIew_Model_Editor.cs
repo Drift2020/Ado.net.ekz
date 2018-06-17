@@ -36,7 +36,12 @@ namespace Cash.ViweModel
         private void Execute_add_product(object o)
         {
 
-         
+            Add_Edit_window product_window = new Add_Edit_window();
+            View_Model_add_edit_window model = new View_Model_add_edit_window();
+
+            product_window.DataContext = model;
+
+            product_window.ShowDialog();
 
         }
         private bool CanExecute_add_product(object o)
@@ -61,7 +66,12 @@ namespace Cash.ViweModel
         private void Execute_edit_product(object o)
         {
 
+            Add_Edit_window product_window = new Add_Edit_window();
+            View_Model_add_edit_window model = new View_Model_add_edit_window();
 
+            product_window.DataContext = model;
+
+            product_window.ShowDialog();
 
         }
         private bool CanExecute_edit_product(object o)
@@ -113,7 +123,12 @@ namespace Cash.ViweModel
         private void Execute_add_category(object o)
         {
 
+            Add_Edit_window category_window = new Add_Edit_window();
+            View_Model_add_edit_window model = new View_Model_add_edit_window();
 
+            category_window.DataContext = model;
+
+            category_window.ShowDialog();
 
         }
         private bool CanExecute_add_category(object o)
@@ -138,7 +153,12 @@ namespace Cash.ViweModel
         private void Execute_edit_category(object o)
         {
 
+            Add_Edit_window category_window = new Add_Edit_window();
+            View_Model_add_edit_window model = new View_Model_add_edit_window();
 
+            category_window.DataContext = model;
+
+            category_window.ShowDialog();
 
         }
         private bool CanExecute_edit_category(object o)
