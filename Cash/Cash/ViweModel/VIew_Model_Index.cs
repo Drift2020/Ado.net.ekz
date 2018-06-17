@@ -259,6 +259,24 @@ namespace Cash.ViweModel
 
         #endregion
 
+        #region Date costs
+
+        bool costs;
+        public bool Costs
+        {
+            set
+            {
+                costs = value;
+                OnPropertyChanged(nameof(Costs));
+            }
+            get
+            {
+                return costs;
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #endregion Pole
