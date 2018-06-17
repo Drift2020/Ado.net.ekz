@@ -234,7 +234,7 @@
                                         <RowDefinition Height="40"/>
 
                                     </Grid.RowDefinitions>
-                                    <TextBlock Text="Othectvo" HorizontalAlignment="Center" Grid.Row="0"/>
+                                    <TextBlock Text="Patronymic" HorizontalAlignment="Center" Grid.Row="0"/>
                                     <ListView Grid.Row="1" >
 
                                     </ListView>
