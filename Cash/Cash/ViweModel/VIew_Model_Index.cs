@@ -149,6 +149,116 @@ namespace Cash.ViweModel
 
         #endregion
 
+        #region price start
+
+        string price_start;
+        public string Price_start
+        {
+            set
+            {
+                price_start = value;
+                OnPropertyChanged(nameof(Price_start));
+            }
+            get
+            {
+                return price_start;
+            }
+        }
+
+        #endregion
+
+        #region price end
+
+        string price_end;
+        public string Price_end
+        {
+            set
+            {
+                price_end = value;
+                OnPropertyChanged(nameof(Price_end));
+            }
+            get
+            {
+                return price_start;
+            }
+        }
+
+        #endregion
+
+        #region Date
+
+        bool date;
+        public bool Date
+        {
+            set
+            {
+                date = value;
+                OnPropertyChanged(nameof(Date));
+            }
+            get
+            {
+                return date;
+            }
+        }
+
+        #endregion
+
+        #region Date start
+
+        string date_start;
+
+        public string Date_start
+        {
+            set
+            {
+                date_start = value;
+                OnPropertyChanged(nameof(Date_start));
+            }
+            get
+            {
+                return date_start;
+            }
+        }
+
+        #endregion
+
+        #region Date end
+
+        string date_end;
+
+        public string Date_end
+        {
+            set
+            {
+                date_end = value;
+                OnPropertyChanged(nameof(Date_end));
+            }
+            get
+            {
+                return date_end;
+            }
+        }
+
+        #endregion
+
+        #region Date incomes
+
+        bool incomes;
+        public bool Incomes
+        {
+            set
+            {
+                incomes = value;
+                OnPropertyChanged(nameof(Incomes));
+            }
+            get
+            {
+                return incomes;
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #endregion Pole
