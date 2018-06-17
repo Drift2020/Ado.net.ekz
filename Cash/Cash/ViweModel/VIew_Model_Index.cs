@@ -138,7 +138,12 @@ namespace Cash.ViweModel
         {
             set
             {
-                price=
+                price = value;
+                OnPropertyChanged(nameof(Price));
+            }
+            get
+            {
+                return price;
             }
         }
 
