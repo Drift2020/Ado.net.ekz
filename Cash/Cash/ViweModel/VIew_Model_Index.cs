@@ -15,6 +15,24 @@ namespace Cash.ViweModel
 
         #region Filter
 
+        #region Product
+
+        bool product;
+        public bool Product
+        {
+            set
+            {
+                product = value;
+                OnPropertyChanged(nameof(Product));
+            }
+            get
+            {
+                return product;
+            }
+        }
+
+        #endregion Product
+
         #region category
         string serch_category;
         public string Serch_category
@@ -47,6 +65,24 @@ namespace Cash.ViweModel
         }
         #endregion
 
+        #region Person
+
+        bool person;
+        public bool Person
+        {
+            set
+            {
+                person = value;
+                OnPropertyChanged(nameof(Person));
+            }
+            get
+            {
+                return person;
+            }
+        }
+
+        #endregion
+
         #region Name
         string serch_name;
         public string Serch_name
@@ -61,6 +97,51 @@ namespace Cash.ViweModel
                 return serch_name;
             }
         }
+        #endregion
+
+        #region Surname
+        string serch_surname;
+        public string Serch_surname
+        {
+            set
+            {
+                serch_surname = value;
+                OnPropertyChanged(nameof(Serch_surname));
+            }
+            get
+            {
+                return serch_surname;
+            }
+        }
+        #endregion
+
+        #region Patronymic
+        string serch_patronymic;
+        public string Serch_patronymic
+        {
+            set
+            {
+                serch_patronymic = value;
+                OnPropertyChanged(nameof(Serch_patronymic));
+            }
+            get
+            {
+                return serch_patronymic;
+            }
+        }
+        #endregion
+
+        #region Price
+
+        bool price;
+        public bool Price
+        {
+            set
+            {
+                price=
+            }
+        }
+
         #endregion
 
         #endregion
