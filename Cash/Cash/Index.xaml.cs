@@ -41,5 +41,10 @@ namespace Cash
             Application.Current.Resources.MergedDictionaries.Add(ic);
 
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
