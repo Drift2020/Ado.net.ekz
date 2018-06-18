@@ -249,7 +249,9 @@
                         <GroupBox Margin="2" Grid.Row="1">
                             <GroupBox.HeaderTemplate>
                                 <DataTemplate>
-                                    <CheckBox HorizontalAlignment="Center" Content="Date"></CheckBox>
+                                   
+                                    <CheckBox HorizontalAlignment="Center" Content="Date" ></CheckBox>
+                                    
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
 
