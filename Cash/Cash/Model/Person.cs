@@ -12,6 +12,7 @@ namespace Cash.Model
         public Person()
         {
             Link_Final = new HashSet<Link_Final>();
+            Families = new HashSet<Family>();
         }
 
         public int Id { get; set; }
@@ -36,9 +37,14 @@ namespace Cash.Model
         [StringLength(50)]
         public string patronymic { get; set; }
 
-        public int rights { get; set; }
+        public int RightsID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Link_Final> Link_Final { get; set; }
+
+        public virtual Right Right { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Family> Families { get; set; }
     }
 }

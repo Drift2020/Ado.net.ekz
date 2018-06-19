@@ -5,8 +5,8 @@
     [name]       NVARCHAR (50) NOT NULL,
     [surname]    NVARCHAR (50) NOT NULL,
     [patronymic] NVARCHAR (50) NOT NULL,
-    [rights] INT NOT NULL, 
+    [RightsID]     INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC), 
-    CONSTRAINT [CK_People_Column] CHECK (rights < 3)
+    CONSTRAINT [FK_People_ToRights] FOREIGN KEY ([RightsID]) REFERENCES [Rights]([Id])
 );
 

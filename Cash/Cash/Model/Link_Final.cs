@@ -22,6 +22,9 @@ namespace Cash.Model
         [Required]
         public string Specification { get; set; }
 
+        [Column("Type _of_purchase")]
+        public bool Type__of_purchase { get; set; }
+
         public virtual Person Person { get; set; }
 
         public virtual Product Product { get; set; }

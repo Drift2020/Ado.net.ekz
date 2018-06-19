@@ -13,7 +13,7 @@ namespace Cash.Model
         public Product()
         {
             Link_Final = new HashSet<Link_Final>();
-            Link_Product_Category = new HashSet<Link_Product_Category>();
+            Categories = new HashSet<Category>();
         }
 
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace Cash.Model
         public virtual ICollection<Link_Final> Link_Final { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Link_Product_Category> Link_Product_Category { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

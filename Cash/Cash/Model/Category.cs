@@ -15,6 +15,6 @@ namespace Cash.Model
         [StringLength(50)]
         public string name { get; set; }
 
-        public virtual Link_Product_Category Link_Product_Category { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

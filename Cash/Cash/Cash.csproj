@@ -109,9 +109,9 @@
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Family.cs" />
     <Compile Include="Model\Link_Final.cs" />
-    <Compile Include="Model\Link_Product_Category.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Right.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="ViweModel\View_Model_add_edit_window.cs" />
@@ -228,6 +228,7 @@
       <DependentUpon>CashAppDateV2.mdf</DependentUpon>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

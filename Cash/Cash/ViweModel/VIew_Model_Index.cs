@@ -13,7 +13,10 @@ namespace Cash.ViweModel
     {
 
         #region Pole
-        CashDB myDB=new CashDB();
+       public CashDB myDB=new CashDB();
+
+
+        
         public Viwe_Model_Index()
         {
             Link_final = myDB.Link_Final.ToList();
@@ -472,16 +475,17 @@ namespace Cash.ViweModel
             }
         }
 
-        Link_Final select_item_element_final=null;
-        public Link_Final Select_item_element_final {
+        Link_Final select_item_final = null;
+        public Link_Final Select_item_final
+        {
             set
             {
-                select_item_element_final = value;
-                OnPropertyChanged(nameof(Select_item_element_final));
+                select_item_final = value;
+                OnPropertyChanged(nameof(Select_item_final));
             }
             get
             {
-                return select_item_element_final;
+                return select_item_final;
             }
         }
 
