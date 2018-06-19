@@ -40,7 +40,32 @@
                         <TextBlock HorizontalAlignment="Center" Text="Product"></TextBlock>
                     </DataTemplate>
                 </GroupBox.HeaderTemplate>
-                <ListView >
+                <ListView   SelectedItem="{Binding Select_item_firm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   ItemsSource="{Binding List_firm ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  ScrollViewer.HorizontalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
+                    <ListView.View >
+                        <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="Employee Information" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Name , UpdateSourceTrigger=PropertyChanged}" Header="Name" Width="100"/>
+
+                            <GridViewColumn  Header="Category" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ListView  ItemsSource="{Binding Countries}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}" />
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            
+
+                        </GridView>
+                    </ListView.View>
+
 
                 </ListView>
             </GroupBox>

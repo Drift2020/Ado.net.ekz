@@ -1,4 +1,5 @@
 ﻿using Cash.Command;
+using Cash.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace Cash.ViweModel
     {
 
         #region Pole
+        CashDB myDB=new CashDB();
+        public Viwe_Model_Index()
+        {
+            Link_final = myDB.Link_Final.ToList();
+        }
 
         #region Filter
 
@@ -450,6 +456,36 @@ namespace Cash.ViweModel
         #endregion Command
 
         #region List
+
+        #region list final
+        List<Link_Final> link_final = null;
+        public List<Link_Final> Link_final
+        {
+            set
+            {
+                link_final = value;
+                OnPropertyChanged(nameof(Link_final));
+            }
+            get
+            {
+                return link_final;
+            }
+        }
+
+        Link_Final select_item_element_final=null;
+        public Link_Final Select_item_element_final {
+            set
+            {
+                select_item_element_final = value;
+                OnPropertyChanged(nameof(Select_item_element_final));
+            }
+            get
+            {
+                return select_item_element_final;
+            }
+        }
+
+        #endregion 
 
         #endregion
     }
