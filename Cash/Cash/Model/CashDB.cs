@@ -21,6 +21,11 @@ namespace Cash.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>()
+                .HasMany(e => e.Products)
+                .WithMany(e => e.Categories)
+                .Map(m => m.ToTable("Link_Product_Category").MapLeftKey("CategoryID").MapRightKey("ProductID"));
+
             modelBuilder.Entity<Family>()
                 .HasMany(e => e.People)
                 .WithMany(e => e.Families)

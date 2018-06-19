@@ -46,21 +46,21 @@
                     </WrapPanel>
 
 
-                    <ListView   SelectedItem="{Binding Select_item_final, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <ListView SelectedItem="{Binding Select_item_final, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                    ItemsSource="{Binding Link_final ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  ScrollViewer.HorizontalScrollBarVisibility="Visible" 
                                 Grid.Row="1">
                         <ListView.View >
                             <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="Employee Information" ScrollViewer.HorizontalScrollBarVisibility="Visible">
 
-                                <GridViewColumn DisplayMemberBinding="{Binding Name ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Name" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Product ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Name" Width="100"/>
 
                                 <GridViewColumn  Header="Category" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ListView  ItemsSource="{Binding Countries}">
+                                            <ListView  ItemsSource="{Binding Category_my}" >
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Name ,UpdateSourceTrigger=PropertyChanged}" />
+                                                        <TextBlock Text="{Binding name}" />
                                                     </DataTemplate>
                                                 </ListView.ItemTemplate>
                                             </ListView>
@@ -68,15 +68,15 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn DisplayMemberBinding="{Binding Name ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FIO" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding FIO ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FIO" Width="100"/>
 
-                                <GridViewColumn DisplayMemberBinding="{Binding Name ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Date" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Date ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Date" Width="100"/>
 
-                                <GridViewColumn DisplayMemberBinding="{Binding Name ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Money" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Money ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Money" Width="100"/>
 
-                                <GridViewColumn DisplayMemberBinding="{Binding Name ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Type" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Type_of_purchase , UpdateSourceTrigger=PropertyChanged}" Header="Type" Width="100"/>
 
-                                <GridViewColumn DisplayMemberBinding="{Binding Name ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Specific" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Specification ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Specific" Width="100"/>
 
                             </GridView>
                         </ListView.View>

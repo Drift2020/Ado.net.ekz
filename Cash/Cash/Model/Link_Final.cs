@@ -19,7 +19,6 @@ namespace Cash.Model
         [Column(TypeName = "money")]
         public decimal Money { get; set; }
 
-        [Required]
         public string Specification { get; set; }
 
         [Column("Type _of_purchase")]

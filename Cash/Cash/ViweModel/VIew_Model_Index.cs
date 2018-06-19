@@ -1,4 +1,5 @@
-﻿using Cash.Command;
+﻿using Cash.Code;
+using Cash.Command;
 using Cash.Model;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,17 @@ namespace Cash.ViweModel
 {
     class Viwe_Model_Index: View_Model_Base
     {
-
-        #region Pole
-       public CashDB myDB=new CashDB();
+        public CashDB myDB = new CashDB();
 
 
-        
+
         public Viwe_Model_Index()
         {
-            Link_final = myDB.Link_Final.ToList();
+            foreach(var i in myDB.Link_Final.ToList())
+            Link_final.Add(new List_view_final_my(i));
         }
+        #region Pole
+
 
         #region Filter
 
@@ -461,8 +463,8 @@ namespace Cash.ViweModel
         #region List
 
         #region list final
-        List<Link_Final> link_final = null;
-        public List<Link_Final> Link_final
+        List<List_view_final_my> link_final = new List<List_view_final_my>();
+        public List<List_view_final_my> Link_final
         {
             set
             {
@@ -475,8 +477,8 @@ namespace Cash.ViweModel
             }
         }
 
-        Link_Final select_item_final = null;
-        public Link_Final Select_item_final
+        List_view_final_my select_item_final = null;
+        public List_view_final_my Select_item_final
         {
             set
             {

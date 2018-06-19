@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Cash.Code;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +17,11 @@ namespace Cash
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            PresentationTraceSources.DataBindingSource.Listeners.Add(new BindingErrorTraceListener());
+            PresentationTraceSources.DataBindingSource.Switch.Level = SourceLevels.Error;
+        }
         private void OnStartup(object sender, StartupEventArgs e)
         {
 
