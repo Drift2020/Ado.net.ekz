@@ -16,6 +16,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -70,6 +70,8 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Controls.Theming.BubbleCreme">
       <HintPath>..\..\..\WPF\Gallery\Gallery\bin\Debug\System.Windows.Controls.Theming.BubbleCreme.dll</HintPath>
     </Reference>
@@ -103,6 +105,13 @@
     <Compile Include="Messege.xaml.cs">
       <DependentUpon>Messege.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\CashDB.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Family.cs" />
+    <Compile Include="Model\Link_Final.cs" />
+    <Compile Include="Model\Link_Product_Category.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Product.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="ViweModel\View_Model_add_edit_window.cs" />
@@ -211,12 +220,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\CashAppData.mdf">
+    <Content Include="CashAppDateV2.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Model\CashAppData_log.ldf">
+    <Content Include="CashAppDateV2_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>CashAppData.mdf</DependentUpon>
+      <DependentUpon>CashAppDateV2.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
