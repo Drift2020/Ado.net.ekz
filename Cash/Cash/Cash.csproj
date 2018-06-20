@@ -107,13 +107,6 @@
     <Compile Include="Messege.xaml.cs">
       <DependentUpon>Messege.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CashDB.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Family.cs" />
-    <Compile Include="Model\Link_Final.cs" />
-    <Compile Include="Model\Person.cs" />
-    <Compile Include="Model\Product.cs" />
-    <Compile Include="Model\Right.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="ViweModel\View_Model_add_edit_window.cs" />
@@ -221,14 +214,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="CashAppDateV2.mdf">
+    <Content Include="Model\Model2\CashAppDateV2.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CashAppDateV2_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>CashAppDateV2.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
