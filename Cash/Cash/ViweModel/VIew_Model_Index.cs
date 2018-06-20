@@ -18,7 +18,7 @@ namespace Cash.ViweModel
 
         public Viwe_Model_Index()
         {
-            foreach(var i in myDB.Link_Final.ToList())
+            foreach(var i in myDB.Finals.ToList())
             Link_final.Add(new List_view_final_my(i));
         }
         #region Pole
@@ -463,6 +463,12 @@ namespace Cash.ViweModel
         #region List
 
         #region list final
+
+
+
+
+
+
         List<List_view_final_my> link_final = new List<List_view_final_my>();
         public List<List_view_final_my> Link_final
         {

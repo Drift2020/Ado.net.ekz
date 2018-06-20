@@ -107,6 +107,13 @@
     <Compile Include="Messege.xaml.cs">
       <DependentUpon>Messege.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\CashDB.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Family.cs" />
+    <Compile Include="Model\Final.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Right.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="ViweModel\View_Model_add_edit_window.cs" />
@@ -200,7 +207,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -215,7 +224,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Model2\CashAppDateV2.mdf">
+    <Content Include="Model\Cash_DB_v3.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Model\Cash_DB_v3_log.ldf">
+      <DependentUpon>Cash_DB_v3.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

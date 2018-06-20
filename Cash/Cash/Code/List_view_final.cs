@@ -8,15 +8,15 @@ using Cash.ViweModel;
 
 namespace Cash.Code
 {
-    class List_view_final_my: View_Model_Base
+    class List_view_final_my : View_Model_Base
     {
 
-        Link_Final final =null;
-        
-        public List_view_final_my(Link_Final _final)
+        Final final = null;
+
+        public List_view_final_my(Final _final)
         {
             final = _final;
-          
+            category_my = final.Product.Categories.ToList();
 
         }
 
@@ -33,7 +33,7 @@ namespace Cash.Code
             }
         }
 
-     
+
         public DateTime Date
         {
             get
@@ -47,7 +47,7 @@ namespace Cash.Code
             }
         }
 
-       
+
         public decimal Money
         {
             get
@@ -59,32 +59,32 @@ namespace Cash.Code
                 final.Money = value;
                 OnPropertyChanged(nameof(Money));
             }
-          }
+        }
 
         public string Specification
         {
             get
             {
-                return final.Specification;
+                return final.Specific;
             }
             set
             {
-                final.Specification = value;
+                final.Specific = value;
                 OnPropertyChanged(nameof(Specification));
             }
         }
 
-      
-        public string Type_of_purchase
+
+        public string Type
         {
             get
             {
-                return final.Type__of_purchase == true ? "+" : "-";
+                return final.Type == true ? "+" : "-";
             }
             set
             {
-                final.Type__of_purchase = value == "+" ? true : false;
-                OnPropertyChanged(nameof(Type_of_purchase));
+                final.Type = value == "+" ? true : false;
+                OnPropertyChanged(nameof(Type));
             }
         }
 
@@ -93,7 +93,7 @@ namespace Cash.Code
         {
             get
             {
-                return final.Person.surname + " " + final.Person.name + " " + final.Person.patronymic;
+                return final.Person.Surname + " " + final.Person.Name + " " + final.Person.Patronymic;
             }
             set
             {
@@ -105,32 +105,32 @@ namespace Cash.Code
         {
             get
             {
-                return final.Product.name;
+                return final.Product.Name;
             }
             set
             {
-                final.Product.name = value;
+                final.Product.Name = value;
                 OnPropertyChanged(nameof(Product));
             }
         }
 
-     
 
 
+        List<Category> category_my = new List<Category>();
         public ICollection<Category> Category_my
         {
             get
             {
-                return final.Product.Categories.ToList();
+                return category_my;
 
             }
             set
             {
-                final.Product.Categories = value;
+                category_my = value.ToList();
                 OnPropertyChanged(nameof(Category_my));
             }
         }
 
-       
+
     }
 }

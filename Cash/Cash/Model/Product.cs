@@ -12,18 +12,18 @@ namespace Cash.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            Link_Final = new HashSet<Link_Final>();
+            Finals = new HashSet<Final>();
             Categories = new HashSet<Category>();
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Link_Final> Link_Final { get; set; }
+        public virtual ICollection<Final> Finals { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Category> Categories { get; set; }

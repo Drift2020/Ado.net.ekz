@@ -14,9 +14,11 @@ namespace Cash.Model
             People = new HashSet<Person>();
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
 
-        public int Level { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Level { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
