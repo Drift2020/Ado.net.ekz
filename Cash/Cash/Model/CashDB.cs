@@ -28,8 +28,8 @@ namespace Cash.Model
 
             modelBuilder.Entity<Family>()
                 .HasMany(e => e.People)
-                .WithMany(e => e.Families)
-                .Map(m => m.ToTable("Family_Link_Person").MapLeftKey("FamilyID").MapRightKey("PersonID"));
+                .WithRequired(e => e.Family)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Final>()
                 .Property(e => e.Money)

@@ -50,7 +50,7 @@ namespace Cash
         public void Ok()
         {
             MessageBox.Show("Welcome to home.");
-            // Close();
+        
         }
 
         public void Visibility_off()
@@ -64,7 +64,7 @@ namespace Cash
 
         public void No()
         {
-            Close();
+            //Close();
         }
     }
 }

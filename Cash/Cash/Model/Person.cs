@@ -13,7 +13,6 @@ namespace Cash.Model
         public Person()
         {
             Finals = new HashSet<Final>();
-            Families = new HashSet<Family>();
         }
 
         public int ID { get; set; }
@@ -40,12 +39,13 @@ namespace Cash.Model
 
         public int RightsID { get; set; }
 
+        public int FamilyID { get; set; }
+
+        public virtual Family Family { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Final> Finals { get; set; }
 
         public virtual Right Right { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Family> Families { get; set; }
     }
 }

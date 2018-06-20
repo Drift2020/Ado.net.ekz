@@ -10,16 +10,17 @@ using System.Windows.Input;
 
 namespace Cash.ViweModel
 {
-    class Viwe_Model_Index: View_Model_Base
+    class Viwe_Model_Index : View_Model_Base
     {
         public CashDB myDB = new CashDB();
 
+        Person my_profile=new Person();
 
-
-        public Viwe_Model_Index()
+        public Viwe_Model_Index(Person _my_profile)
         {
-            foreach(var i in myDB.Finals.ToList())
-            Link_final.Add(new List_view_final_my(i));
+            my_profile = _my_profile;
+            foreach (var i in myDB.Finals.ToList())
+                Link_final.Add(new List_view_final_my(i));
         }
         #region Pole
 
@@ -323,7 +324,7 @@ namespace Cash.ViweModel
 
             my_add.DataContext = my_model_add;
 
-         //   my_model_add.Autor = _i_autor;
+            //   my_model_add.Autor = _i_autor;
 
             my_add.ShowDialog();
             //if (my_model_add.is_add)
@@ -395,7 +396,7 @@ namespace Cash.ViweModel
         private void Execute_del(object o)
         {
 
-         
+
 
         }
         private bool CanExecute_del(object o)
@@ -421,7 +422,7 @@ namespace Cash.ViweModel
         {
 
             Editor edit_window = new Editor();
-            View_Model_Editor model= new View_Model_Editor();
+            View_Model_Editor model = new View_Model_Editor();
             edit_window.DataContext = model;
 
 
@@ -497,7 +498,21 @@ namespace Cash.ViweModel
             }
         }
 
-        #endregion 
+        #endregion
+
+        #region list family
+
+        List<Family> my_family = new List<Family>();
+        List<Family> My_family
+        {
+            set
+            {
+                my_family = value;
+            }
+        }
+
+
+        #endregion
 
         #endregion
     }

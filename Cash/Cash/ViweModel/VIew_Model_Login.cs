@@ -1,4 +1,5 @@
 ﻿using Cash.Command;
+using Cash.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,13 @@ namespace Cash.ViweModel
     class Viwe_Model_Login : View_Model_Base
     {
         #region Pole
-        //СontainerUser my_users;
-
+        Person my_users;
+        CashDB myDB = new CashDB();
         public Viwe_Model_Login()
         {
-          //  my_users = new СontainerUser();
-         //   my_users.SetSerializer(new XMLSerializer());
-          //  my_users.Load("user");
+
+           my_users = new Person();
+        
         }
 
 
@@ -78,7 +79,7 @@ namespace Cash.ViweModel
         public Action _NO { get; set; }
         public Action _NONE_USER { get; set; }
 
-        void Now_Registr(string autor)
+        void Now_Registr(Person autor)
         {
             _Visibility_off();
             Login = "";
@@ -90,7 +91,7 @@ namespace Cash.ViweModel
 
                 Index MainWindows = new Index();
 
-                Viwe_Model_Index viewModelIndex = new Viwe_Model_Index(/*autor*/);
+                Viwe_Model_Index viewModelIndex = new Viwe_Model_Index(autor);
 
 
 
@@ -142,38 +143,24 @@ namespace Cash.ViweModel
         }
         private void Execute_ok(object o)
         {
-            //for (int i = 0; i < my_users.Count(); i++)
-            //{
-            //    if (password.IndexOf(':') != -1 && password.IndexOf(' ') != -1 && password.IndexOf('-') != -1 && login.IndexOf(' ') != -1)
-            //        return;
-
-            //    if (my_users.Element(i).login == login && my_users.Element(i).password == password)
-            //    {
-
-            //        is_ok = true;
-            //        _OK();
-            //        Now_Registr(my_users.Element(i).name);
-            //        return;
-            //    }
-            //    else if (my_users.Element(i).login == login && my_users.Element(i).password != password)
-            //    {
-            //        OpenMessege("Password or login is not correct.", "Error");
-            //        return;
-            //    }
-            //}
-
-            is_ok = true;
-            _OK();
-            Now_Registr(null);
-            return;
-
-            if (!is_ok)
+            
+            foreach(var i in myDB.People)
             {
-                is_none_user = true;
-                _NONE_USER();
-            }
+                if(i.Login==login && i.Password==password)
+                {
+                    is_ok = true;
+                    _OK();
+                    Now_Registr(i);
+                    return;
 
-            Now_Registr(null);
+                }
+                else if (i.Login == login && i.Password != password)
+                {
+                    OpenMessege("Password or login is not correct.", "Error");
+                    return;
+                }
+            }
+ 
         }
         private bool CanExecute_ok(object o)
         {
@@ -202,11 +189,12 @@ namespace Cash.ViweModel
         }
         private void Execute_no(object o)
         {
-            Now_Registr(null);
-            is_ok = true;
-            // is_no = true;
 
-            // _NO();
+
+            is_none_user = true;
+
+             _NO();
+            Now_Registr(null);
         }
         private bool CanExecute_no(object o)
         {

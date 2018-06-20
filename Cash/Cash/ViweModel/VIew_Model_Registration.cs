@@ -1,4 +1,5 @@
 ﻿using Cash.Command;
+using Cash.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,18 @@ namespace Cash.ViweModel
 {
     class View_Model_Registration : View_Model_Base
     {
+        CashDB myDB;
         public View_Model_Registration()
         {
-           // my_users = new СontainerUser();
-         //   my_users.SetSerializer(new XMLSerializer());
-          //  my_users.Load("user");
+            myDB = new CashDB();
+            // my_users = new СontainerUser();
+            //   my_users.SetSerializer(new XMLSerializer());
+            //  my_users.Load("user");
 
-
-
+            Family_ = myDB.Families.ToList();
+            
         }
-
+       
         void OpenMessege(string s, string title)
         {
             Messege messege = new Messege();
@@ -35,10 +38,10 @@ namespace Cash.ViweModel
             messege.ShowDialog();
         }
         #region Pole 
-       // СontainerUser my_users;
+        // СontainerUser my_users;
 
 
-
+        #region name
         string name;
         public string Name
         {
@@ -52,8 +55,8 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Name));
             }
         }
-
-
+        #endregion name
+        #region surname
         string surname;
         public string Surname
         {
@@ -67,8 +70,26 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Surname));
             }
         }
+        #endregion
+        #region Patronymic
 
+        string patronymic;
+        public string Patronymic
+        {
+            set
+            {
+                patronymic = value;
+                OnPropertyChanged(nameof(patronymic));
+            }
+            get
+            {
+                return patronymic;
+            }
+        }
 
+        #endregion
+
+        #region login
         string login;
         public string Login
         {
@@ -82,7 +103,8 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Login));
             }
         }
-
+        #endregion
+        #region password
         string password;
         public string Password
         {
@@ -96,7 +118,8 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Password));
             }
         }
-
+        #endregion
+        #region password2
         string password2;
         public string Password2
         {
@@ -110,7 +133,7 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Password2));
             }
         }
-
+        #endregion
         #endregion Pole 
 
 
@@ -211,7 +234,49 @@ namespace Cash.ViweModel
         public Action _NO { get; set; }
 
 
+
         #region List
+
+        #region Family
+        List<Family> family=new List<Family>();
+        public ICollection<Family> Family_
+        {
+            set
+            {
+                family=value.ToList();
+                OnPropertyChanged(nameof(Family_));
+            }
+            get
+            {
+                if (family != null)
+                    return family;
+                else
+                    return (new List<Family>());
+
+            }
+        }
+        #endregion
+
+        #region My Family
+        List<Family> my_family = new List<Family>();
+        public ICollection<Family> My_family
+        {
+            set
+            {
+                my_family = value.ToList();
+                OnPropertyChanged(nameof(My_family));
+            }
+            get
+            {
+                if (my_family != null)
+                    return my_family;
+                else
+                    return (new List<Family>());
+
+            }
+        }
+        #endregion
+
 
         #endregion
     }
