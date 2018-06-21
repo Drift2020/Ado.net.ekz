@@ -24,6 +24,17 @@ namespace Cash.ViweModel
             foreach (var i in myDB.Finals.ToList())
                 if(my_profile.FamilyID==i.Person.FamilyID)
                     Link_final.Add(new List_view_final_my(i));
+
+
+            category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
+            foreach (var i in myDB.Categories)
+            {
+                SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
+                temp.Item = i;
+                category_list.Add(temp);
+            }
+
+
         }
         #region Pole
 
@@ -154,12 +165,12 @@ namespace Cash.ViweModel
         #region Price
 
         bool price;
-        public bool Price
+        public bool Price_box
         {
             set
             {
                 price = value;
-                OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(Price_box));
             }
             get
             {
@@ -213,13 +224,15 @@ namespace Cash.ViweModel
             set
             {
                 date = value;
-                OnPropertyChanged(nameof(Date));
+                OnPropertyChanged(nameof(Date_box));
             }
             get
             {
                 return date;
             }
         }
+
+
 
         #endregion
 
@@ -473,11 +486,6 @@ namespace Cash.ViweModel
 
         #region list final
 
-
-
-
-
-
         List<List_view_final_my> link_final = new List<List_view_final_my>();
         public List<List_view_final_my> Link_final
         {
@@ -525,17 +533,78 @@ namespace Cash.ViweModel
 
         #region Category
 
-       public ICollection<Category> Category_list
+        ObservableCollection<SelectableItemWrapper<Category>> category_list;
+        public ObservableCollection<SelectableItemWrapper<Category>> Category_list
         {
             get
-            {
-                return myDB.Categories.ToList();
+           {
+               return category_list;
             }
-        }
-        public ObservableCollection<Category> SomeListViewList { get; set; }
+        }  
 
+        public ObservableCollection<Category> GetSelectedCategory()
+        {
+            var selected = Category_list
+                .Where(p => p.IsSelected)
+                .Select(p => p.Item)
+                .ToList();
+            return new ObservableCollection<Category>(selected);
+        }
 
         #endregion
+
+        int vmSelectedTabIndex;
+        public int VMSelectedTabIndex
+        {
+            set
+            {
+                vmSelectedTabIndex = value;
+
+                ObservableCollection<Category> temp=null;
+
+
+                Link_final.Clear();
+
+
+                if (Product_box)
+                    temp = GetSelectedCategory();
+
+                foreach (var i in myDB.Finals.ToList())
+                {
+                    if (my_profile.FamilyID == i.Person.FamilyID)
+                    {
+                        if(Product_box)
+                        {                          
+                            foreach(var i_category in temp)
+                            {
+                                foreach (var i_product_category in i.Product.Categories)
+                                {
+                                    if (i_category.ID == i_product_category.ID &&
+                                        Link_final.ToList().Find(x=>x.ID ==i.ID) == null)
+                                    {
+                                        Link_final.Add(new List_view_final_my(i));
+                                    }
+                                }
+                            }                         
+                        }                                           
+                    }
+                }
+
+                if (!Product_box|| temp.Count==0)
+                {
+                    foreach (var iF in myDB.Finals.ToList())
+                        if (my_profile.FamilyID == iF.Person.FamilyID)
+                            Link_final.Add(new List_view_final_my(iF));
+                }
+
+                OnPropertyChanged(nameof(Link_final));
+                OnPropertyChanged(nameof(VMSelectedTabIndex));
+            }
+            get
+            {
+                return vmSelectedTabIndex;
+            }
+        }
 
         #endregion
     }
