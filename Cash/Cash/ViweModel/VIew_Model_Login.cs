@@ -130,6 +130,7 @@ namespace Cash.ViweModel
                 MainWindows.DataContext = viewModelIndex;
 
                 MainWindows.ShowDialog();
+                is_ok = false;
                // viewModelIndex.Save();
 
             }
@@ -150,6 +151,7 @@ namespace Cash.ViweModel
 
                 view_registration.ShowDialog();
                 myDB = new CashDB();
+                is_none_user = false;
             }
            // my_users.Load("user");
 

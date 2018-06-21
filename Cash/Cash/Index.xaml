@@ -157,11 +157,7 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Category" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1" />
                                     <ListView ItemsSource="{Binding Category_list}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="2">
-                                        <!--<ListView.Resources>
-                                            <Style TargetType="{x:Type ListViewItem}">
-                                                <Setter Property="IsSelected" Value="{Binding SomeItemSelected, Mode=TwoWay}" />
-                                            </Style>
-                                        </ListView.Resources>-->
+                                    
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -170,8 +166,8 @@
                                         </ListView.ItemTemplate>
                                     </ListView>
 
-                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
-                                    <TextBox Text="{Binding Serch_category,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"  VerticalAlignment="Center" MinWidth="120" HorizontalAlignment="Center" Grid.ColumnSpan="2" />
+                                    <TextBlock Text="Search" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                                    <TextBox Text="{Binding Search_category,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"  VerticalAlignment="Center" MinWidth="120" HorizontalAlignment="Center" Grid.ColumnSpan="2" />
                                 </Grid>
 
                                 <Grid Grid.Column="1">
@@ -185,12 +181,18 @@
 
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Goods" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
-                                    <ListView Grid.Row="1" Grid.ColumnSpan="2"  Margin="2">
+                                    <ListView ItemsSource="{Binding Goods_list}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="2">
 
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
                                     </ListView>
 
-                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
-                                    <TextBox Text="{Binding Serch_goods,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                    <TextBlock Text="Search" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                                    <TextBox Text="{Binding Search_goods,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                              Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center"
                                              MinWidth="120" HorizontalAlignment="Center"/>
                                 </Grid>
@@ -255,22 +257,29 @@
                                     <TextBlock Text="FIO" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                                Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="0"/>
 
-                                    <ListView Grid.Row="1"  Margin="2" Grid.Column="0" Grid.ColumnSpan="3">
+                                        <ListView ItemsSource="{Binding Goods_list}" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Margin="2">
 
-                                    </ListView>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                  
 
-                                    <TextBlock Grid.Column="0" Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
-                                    <TextBox Grid.Column="0" Text="{Binding Serch_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    <TextBlock Grid.Column="0" Text="Search" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="0" Text="{Binding Search_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                              Grid.Row="3" VerticalAlignment="Center"
                                              MinWidth="90" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Grid.Column="1" Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
-                                    <TextBox Grid.Column="1" Text="{Binding Serch_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    <TextBlock Grid.Column="1" Text="Search" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="1" Text="{Binding Search_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                               Grid.Row="3" VerticalAlignment="Center"
                                              MinWidth="90" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Grid.Column="2" Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
-                                    <TextBox Grid.Column="2" Text="{Binding Serch_patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    <TextBlock Grid.Column="2" Text="Search" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="2" Text="{Binding Search_patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                              Grid.Row="3" VerticalAlignment="Center"
                                              MinWidth="90" HorizontalAlignment="Center"/>
                                 </Grid>

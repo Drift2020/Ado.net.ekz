@@ -34,6 +34,14 @@ namespace Cash.ViweModel
                 category_list.Add(temp);
             }
 
+            goods_list = new ObservableCollection<SelectableItemWrapper<Product>>();
+            foreach (var i in myDB.Products)
+            {
+                SelectableItemWrapper<Product> temp = new SelectableItemWrapper<Product>();
+                temp.Item = i;
+                goods_list.Add(temp);
+            }
+
 
         }
         #region Pole
@@ -553,6 +561,55 @@ namespace Cash.ViweModel
 
         #endregion
 
+
+        #region Goods
+
+        ObservableCollection<SelectableItemWrapper<Product>> goods_list;
+        public ObservableCollection<SelectableItemWrapper<Product>> Goods_list
+        {
+            get
+            {
+                return goods_list;
+            }
+        }
+
+        public ObservableCollection<Product> GetSelectedGoods()
+        {
+            var selected = Goods_list
+                .Where(p => p.IsSelected)
+                .Select(p => p.Item)
+                .ToList();
+            return new ObservableCollection<Product>(selected);
+        }
+
+        #endregion
+
+
+        #region People
+
+       
+
+
+        ObservableCollection<SelectableItemWrapper<List_view_person>> people_list;
+        public ObservableCollection<SelectableItemWrapper<List_view_person>> People_list
+        {
+            get
+            {
+                return people_list;
+            }
+        }
+
+        public ObservableCollection<List_view_person> GetSelectedPeople()
+        {
+            var selected = People_list
+                .Where(p => p.IsSelected)
+                .Select(p => p.Item)
+                .ToList();
+            return new ObservableCollection<List_view_person>(selected);
+        }
+
+        #endregion
+
         int vmSelectedTabIndex;
         public int VMSelectedTabIndex
         {
@@ -561,16 +618,22 @@ namespace Cash.ViweModel
                 vmSelectedTabIndex = value;
 
                 ObservableCollection<Category> temp=null;
+                ObservableCollection<Product> temp_product = null;
 
 
                 Link_final.Clear();
 
 
                 if (Product_box)
+                {
                     temp = GetSelectedCategory();
+                    temp_product = GetSelectedGoods();
+                }
 
                 foreach (var i in myDB.Finals.ToList())
                 {
+                    List_view_final_my temp_elem = new List_view_final_my(i);
+
                     if (my_profile.FamilyID == i.Person.FamilyID)
                     {
                         if(Product_box)
@@ -580,17 +643,37 @@ namespace Cash.ViweModel
                                 foreach (var i_product_category in i.Product.Categories)
                                 {
                                     if (i_category.ID == i_product_category.ID &&
-                                        Link_final.ToList().Find(x=>x.ID ==i.ID) == null)
+                                        Link_final.ToList().Find(x=>x.ID ==i.ID) == null
+
+                                        )
                                     {
-                                        Link_final.Add(new List_view_final_my(i));
+                                        Link_final.Add(temp_elem);
                                     }
                                 }
-                            }                         
-                        }                                           
+                            }
+
+                          
+                            foreach (var i_goods in temp_product)
+                            {
+                                if (i_goods.ID == i.Product.ID)
+                                {
+                                    if (Link_final.ToList().Find(x => x.ID == i.ID) == null)
+                                    {
+                                        Link_final.Add(temp_elem);
+                                    }
+                                }
+                            }
+                          
+                        }      
+                        
+                        if(Person_box)
+                        {
+
+                        }
                     }
                 }
 
-                if (!Product_box|| temp.Count==0)
+                if (!Product_box|| (temp.Count==0&& temp_product.Count==0))
                 {
                     foreach (var iF in myDB.Finals.ToList())
                         if (my_profile.FamilyID == iF.Person.FamilyID)
