@@ -75,13 +75,15 @@ namespace Cash.ViweModel
 
 
 
-
+            OK();
 
 
         }
         private bool CanExecute_ok(object o)
         {
+            if(name.Length>0)
             return true;
+            return false;
         }
         #endregion Ok
 

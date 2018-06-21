@@ -21,6 +21,8 @@ namespace Cash.ViweModel
 
             Family_ = myDB.Families.ToList();
             
+          
+
         }
        
         void OpenMessege(string s, string title)
@@ -140,6 +142,7 @@ namespace Cash.ViweModel
 
         #region Command_button
 
+        #region OK
         private DelegateCommand _Command_ok;
         public ICommand Button_clik_ok
         {
@@ -190,41 +193,51 @@ namespace Cash.ViweModel
             return false;
 
         }
+        #endregion
 
 
 
-
-
-        private DelegateCommand _Command_no;
-        public ICommand Button_clik_no
+        #region New family
+        private DelegateCommand _Command_new;
+        public ICommand Button_clik_new
         {
             get
             {
-                if (_Command_no == null)
+                if (_Command_new == null)
                 {
-                    _Command_no = new DelegateCommand(Execute_no, CanExecute_no);
+                    _Command_new = new DelegateCommand(Execute_new, CanExecute_new);
                 }
-                return _Command_no;
+                return _Command_new;
             }
         }
-        private void Execute_no(object o)
+        private void Execute_new(object o)
         {
+            Add_Edit_window window = new Add_Edit_window();
+            View_Model_add_edit_window view= new View_Model_add_edit_window();
 
-            is_no = true;
-            _OK();
+            window.DataContext = view;
+            view.OK = window.Close;
+            window.ShowDialog();
+
+            Family temp = new Family();
+            temp.Name = view.Name;
+            family.Add(temp);
+
         }
-        private bool CanExecute_no(object o)
+        private bool CanExecute_new(object o)
         {
-
+         
             return true;
-
+           
 
         }
-
+        #endregion add family
+    
 
         #endregion Command_button
 
 
+        #region Action
         public bool is_ok;
 
         public bool is_no;
@@ -232,7 +245,7 @@ namespace Cash.ViweModel
 
         public Action _OK { get; set; }
         public Action _NO { get; set; }
-
+        #endregion
 
 
         #region List
@@ -255,28 +268,37 @@ namespace Cash.ViweModel
 
             }
         }
-        #endregion
 
-        #region My Family
-        List<Family> my_family = new List<Family>();
-        public ICollection<Family> My_family
+        Family select_item_family = null;
+        public Family Select_item_family
         {
             set
             {
-                my_family = value.ToList();
-                OnPropertyChanged(nameof(My_family));
+                select_item_family = value;
+                OnPropertyChanged(nameof(Select_item_family));
             }
             get
             {
-                if (my_family != null)
-                    return my_family;
-                else
-                    return (new List<Family>());
+                
+                return select_item_family;
+            }
+        }
 
+        #endregion
+
+     
+
+        #region level
+     
+        public ICollection<Right> Right_in_family
+        {
+           
+            get
+            {
+                return myDB.Rights.ToList();
             }
         }
         #endregion
-
 
         #endregion
     }

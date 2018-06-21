@@ -28,6 +28,7 @@
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
 
 
 
@@ -58,8 +59,8 @@
         <TextBlock Grid.Row="5" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,18,0,0" Width="39">Patronymic</TextBlock>
         <TextBox Text="{Binding Patronymic,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="6" Grid.Column="3" ></TextBox>
 
-        <TextBlock Grid.Row="9" Grid.Column="3"  VerticalAlignment="Bottom" HorizontalAlignment="Left">User rights</TextBlock>
-        <ComboBox ItemsSource="{Binding Family_}" Grid.Row="10" Grid.Column="3" >
+        <TextBlock Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3"  VerticalAlignment="Bottom" HorizontalAlignment="Center">User rights</TextBlock>
+        <ComboBox ItemsSource="{Binding Right_in_family}" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" MinWidth="200" >
             <ComboBox.ItemTemplate>
                 <ItemContainerTemplate>
                     <TextBlock Text="{Binding Name}"/>
@@ -67,39 +68,31 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <GroupBox  Grid.Row="8" Grid.Column="1" >
+        <GroupBox  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock  HorizontalAlignment="Center" Text="Family" ></TextBlock>
                 </DataTemplate>
             </GroupBox.HeaderTemplate>
 
-            <ListBox ItemsSource="{Binding Family_ ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ListBox.ItemTemplate>
+            <ListView ItemsSource="{Binding Family_ ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Select_item_family,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            
+            
         </GroupBox>
 
-        <GroupBox  Grid.Row="8" Grid.Column="3" >
-            <GroupBox.HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock  HorizontalAlignment="Center" Text="My family" ></TextBlock>
-                </DataTemplate>
-            </GroupBox.HeaderTemplate>
-            <ListBox ItemsSource="{Binding My_family ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </GroupBox>
 
-        <Button Grid.Column="1" Grid.Row="9" Margin="5" MaxWidth="100" Content="New family"/>
-        <Button Grid.Column="1" Grid.Row="10" Margin="5" MaxWidth="100" Content="Add family"/>
+
+        <Button Command="{Binding Button_clik_new}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Margin="5" MinWidth="100" Content="New family" HorizontalAlignment="Center"/>
+        
+      
         <Button Grid.Row="18" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="3" Margin="5" MinWidth="100" Command="{Binding Button_clik_ok}">Ok</Button>
 
     </Grid>

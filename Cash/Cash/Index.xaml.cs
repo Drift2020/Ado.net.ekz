@@ -23,7 +23,7 @@ namespace Cash
         public Index()
         {
             InitializeComponent();
-            DefaultStyle();
+            //DefaultStyle();
         }
         public void DefaultStyle()
         {

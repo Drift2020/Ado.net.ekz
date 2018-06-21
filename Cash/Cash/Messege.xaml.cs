@@ -22,7 +22,7 @@ namespace Cash
         public Messege()
         {
             InitializeComponent();
-            DefaultStyle();
+          //  DefaultStyle();
         }
         public void DefaultStyle()
         {

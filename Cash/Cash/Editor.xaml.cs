@@ -22,7 +22,7 @@ namespace Cash
         public Editor()
         {
             InitializeComponent();
-            DefaultStyle();
+            //DefaultStyle();
         }
         public void DefaultStyle()
         {

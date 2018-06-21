@@ -22,7 +22,7 @@ namespace Cash
         public Registration()
         {
             InitializeComponent();
-            DefaultStyle();
+          //  DefaultStyle();
         }
         public void DefaultStyle()
         {

@@ -22,7 +22,7 @@ namespace Cash
         public Add_Article()
         {
             InitializeComponent();
-            DefaultStyle();
+          //  DefaultStyle();
         }
         public void DefaultStyle()
         {
