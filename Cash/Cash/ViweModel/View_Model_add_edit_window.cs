@@ -81,7 +81,7 @@ namespace Cash.ViweModel
         }
         private bool CanExecute_ok(object o)
         {
-            if(name.Length>0)
+            if(name!=null&&name.Length>0)
             return true;
             return false;
         }

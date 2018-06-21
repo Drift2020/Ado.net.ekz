@@ -223,13 +223,14 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Model\Cash_DB_v3.mdf">
+    <Content Include="Cash_DB_v3.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Model\Cash_DB_v3_log.ldf">
-      <DependentUpon>Cash_DB_v3.mdf</DependentUpon>
+    <Content Include="Cash_DB_v3_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Cash_DB_v3.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

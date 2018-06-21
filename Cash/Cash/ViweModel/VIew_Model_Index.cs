@@ -3,9 +3,11 @@ using Cash.Command;
 using Cash.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Cash.ViweModel
@@ -20,7 +22,8 @@ namespace Cash.ViweModel
         {
             my_profile = _my_profile;
             foreach (var i in myDB.Finals.ToList())
-                Link_final.Add(new List_view_final_my(i));
+                if(my_profile.FamilyID==i.Person.FamilyID)
+                    Link_final.Add(new List_view_final_my(i));
         }
         #region Pole
 
@@ -29,13 +32,13 @@ namespace Cash.ViweModel
 
         #region Product
 
-        bool product;
-        public bool Product
+        bool product=false;
+        public bool Product_box
         {
             set
             {
                 product = value;
-                OnPropertyChanged(nameof(Product));
+                OnPropertyChanged(nameof(Product_box));
             }
             get
             {
@@ -43,6 +46,8 @@ namespace Cash.ViweModel
             }
         }
 
+
+      
         #endregion Product
 
         #region category
@@ -59,6 +64,8 @@ namespace Cash.ViweModel
                 return serch_category;
             }
         }
+
+      
         #endregion
 
         #region Goods
@@ -80,12 +87,12 @@ namespace Cash.ViweModel
         #region Person
 
         bool person;
-        public bool Person
+        public bool Person_box
         {
             set
             {
                 person = value;
-                OnPropertyChanged(nameof(Person));
+                OnPropertyChanged(nameof(Person_box));
             }
             get
             {
@@ -93,6 +100,7 @@ namespace Cash.ViweModel
             }
         }
 
+     
         #endregion
 
         #region Name
@@ -200,7 +208,7 @@ namespace Cash.ViweModel
         #region Date
 
         bool date;
-        public bool Date
+        public bool Date_box
         {
             set
             {
@@ -510,6 +518,21 @@ namespace Cash.ViweModel
                 my_family = value;
             }
         }
+
+
+        #endregion
+
+
+        #region Category
+
+       public ICollection<Category> Category_list
+        {
+            get
+            {
+                return myDB.Categories.ToList();
+            }
+        }
+        public ObservableCollection<Category> SomeListViewList { get; set; }
 
 
         #endregion

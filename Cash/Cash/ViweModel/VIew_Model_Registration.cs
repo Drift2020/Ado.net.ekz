@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Cash.ViweModel
@@ -162,21 +163,62 @@ namespace Cash.ViweModel
                 OpenMessege("Passwords do not match, the minimum length is 4 characters.", "Error");
                 return;
             }
+            foreach(var i in myDB.People)
+            {
+                if(i.Login==login)
+                {
+                    OpenMessege("This login is already in use.", "Error");
+                    return;
+                }
+            }
 
-            //for (int i = 0; i < my_users.Count(); i++)
-            //{
-            //    if (my_users.Element(i).login == login)
-            //    {
 
-            //        OpenMessege("This login is already in use.", "Error");
-            //        break;
-            //    }
-            //}
+            foreach (var i in myDB.People)
+            {
+                if(select_item_right.Level!=3 &&
+                    i.Right.Level == select_item_right.Level &&
+                    i.Family==select_item_family)
+                {
+                    Login window = new Login();
+                    Viwe_Model_Login view = new Viwe_Model_Login(Visibility.Hidden, select_item_right.Level, select_item_family);
 
-            //my_users.Add(new Users(name, surname, login, password));
+                    if (view._OK == null)
+                        view._OK = new Action(window.Ok);
+
+                    view._Close= new Action(window.Close);
+
+                    window.DataContext = view;
+                    window.ShowDialog();
+
+                    if(view.is_ok==false)
+                    {
+
+                        return;
+                    }
+
+                }
+            }
+
+
+
+            Person temp = new Person();
+            temp.Name = name;
+            temp.Surname = surname;
+            temp.Patronymic = patronymic;
+
+            temp.Login = login;
+            temp.Password = password;
+            temp.Family = select_item_family;
+            temp.FamilyID = select_item_family.ID;
+            temp.RightsID = select_item_right.ID;
+            temp.Right = select_item_right;
+
+            myDB.People.Add(temp);
+            myDB.SaveChanges();
+            
             is_ok = true;
 
-            //my_users.Save("user");
+         
             _OK();
 
 
@@ -188,7 +230,11 @@ namespace Cash.ViweModel
                 (password != null && password != "") &&
                 (password2 != null && password2 != "") &&
                 (name != null && name != "") &&
-                (surname != null && surname != ""))
+                (surname != null && surname != "")&&
+                patronymic!=null && patronymic.Length>0 &&
+                select_item_family != null &&
+                select_item_right != null
+                )
                 return true;
             return false;
 
@@ -215,14 +261,28 @@ namespace Cash.ViweModel
             Add_Edit_window window = new Add_Edit_window();
             View_Model_add_edit_window view= new View_Model_add_edit_window();
 
-            window.DataContext = view;
+           
             view.OK = window.Close;
+            window.DataContext = view;
             window.ShowDialog();
 
             Family temp = new Family();
             temp.Name = view.Name;
-            family.Add(temp);
 
+            if (myDB.Families.ToList().Find(x => x.Name == temp.Name) == null)
+            {
+                Family_.Add(temp);
+                OnPropertyChanged(nameof(Family_));
+
+                myDB.Families.Add(temp);
+                myDB.SaveChanges();
+
+                OpenMessege("Family successfully added", "Successful operation");
+            }
+            else
+            {
+                OpenMessege("Family is not added, there is already such a family.", "Operation error");
+            }
         }
         private bool CanExecute_new(object o)
         {
@@ -256,7 +316,7 @@ namespace Cash.ViweModel
         {
             set
             {
-                family=value.ToList();
+                family=value.ToList();               
                 OnPropertyChanged(nameof(Family_));
             }
             get
@@ -265,6 +325,8 @@ namespace Cash.ViweModel
                     return family;
                 else
                     return (new List<Family>());
+
+               
 
             }
         }
@@ -290,12 +352,28 @@ namespace Cash.ViweModel
 
         #region level
      
+
+
         public ICollection<Right> Right_in_family
         {
            
             get
             {
                 return myDB.Rights.ToList();
+            }
+        }
+
+        Right select_item_right=null;
+        public Right Select_item_right
+        {
+            set
+            {
+                select_item_right = value;
+                OnPropertyChanged(nameof(Select_item_right));
+            }
+            get
+            {
+                return select_item_right;
             }
         }
         #endregion

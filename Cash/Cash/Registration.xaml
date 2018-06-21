@@ -60,7 +60,8 @@
         <TextBox Text="{Binding Patronymic,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="6" Grid.Column="3" ></TextBox>
 
         <TextBlock Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3"  VerticalAlignment="Bottom" HorizontalAlignment="Center">User rights</TextBlock>
-        <ComboBox ItemsSource="{Binding Right_in_family}" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" MinWidth="200" >
+        <ComboBox ItemsSource="{Binding Right_in_family}" SelectedItem="{Binding Select_item_right,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" MinWidth="200" >
             <ComboBox.ItemTemplate>
                 <ItemContainerTemplate>
                     <TextBlock Text="{Binding Name}"/>

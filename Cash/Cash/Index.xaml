@@ -6,11 +6,38 @@
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
         Title="MainWindow" Height="511" Width="634.959">
+    <Window.Resources>
+       
+        <DataTemplate x:Key="groupboxTemplate">
+            <CheckBox Content="Product" 
+                           IsChecked="{Binding Product_box, Mode=TwoWay}" 
+                         />
+        </DataTemplate>
+
+        <DataTemplate x:Key="groupboxTemplatePerson">
+            <CheckBox Content="Person" 
+                           IsChecked="{Binding Person_box, Mode=TwoWay}" 
+                         />
+        </DataTemplate>
+
+        <DataTemplate x:Key="groupboxTemplatePrice">
+            <CheckBox Content="Price" 
+                           IsChecked="{Binding Price_box, Mode=TwoWay}" 
+                         />
+        </DataTemplate>
+
+        <DataTemplate x:Key="groupboxTemplateDate">
+            <CheckBox Content="Date" 
+                           IsChecked="{Binding Date_box, Mode=TwoWay}" 
+                         />
+        </DataTemplate>
+
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
-            
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="22"></RowDefinition>
@@ -105,39 +132,17 @@
                             <RowDefinition Height="0.5*"/>
                         </Grid.RowDefinitions>
 
-                        <GroupBox Margin="2" >
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox  HorizontalAlignment="Center" Content="Product" ></CheckBox>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
+                        <GroupBox Margin="2" Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplate}">
+                           
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition/>
-
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition Height="40"/>
-
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="Category" HorizontalAlignment="Center" Grid.Row="0"/>
-                                    <ListView Grid.Row="1" >
-
-                                    </ListView>
-
-                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
-                                    <TextBox Text="{Binding Serch_category,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"/>
-                                </Grid>
-
-                                <Grid Grid.Column="1">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="13*"/>
-                                        <ColumnDefinition Width="137*"/>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="107*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20"/>
@@ -147,26 +152,54 @@
                                         <RowDefinition Height="40"/>
 
                                     </Grid.RowDefinitions>
-                                    <TextBlock Text="Goods" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="44.883,0,58.142,0"/>
-                                    <ListView Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,-0.001,0" >
+                                    <TextBlock Text="Category" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="10,0,49,0"/>
+                                    <ListView ItemsSource="{Binding Category_list  }" Grid.Row="1" Grid.ColumnSpan="2">
+
+                                        <!--<ListView.Resources>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="IsSelected" Value="{Binding SomeItemSelected, Mode=TwoWay}" />
+                                            </Style>
+                                        </ListView.Resources>-->
+
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+
+                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="19,0,58,0"/>
+                                    <TextBox Text="{Binding Serch_category,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"  VerticalAlignment="Center" MinWidth="120" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="14,11,13,11"/>
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="13*"/>
+                                        <ColumnDefinition Width="137*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="183"/>
+
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="40"/>
+
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Goods" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
+                                    <ListView Grid.Row="1" Grid.ColumnSpan="2"  Margin="2">
 
                                     </ListView>
 
-                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="48.171,0,61.43,0"/>
-                                    <TextBox Text="{Binding Serch_goods,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,3,-0.001,2.999"/>
+                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                                    <TextBox Text="{Binding Serch_goods,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                             Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                                             MinWidth="120" HorizontalAlignment="Center"/>
                                 </Grid>
                             </Grid>
                         </GroupBox>
 
-                        <GroupBox  Margin="2" Header="Price" Grid.Row="1">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-
-                                    <CheckBox HorizontalAlignment="Center" Content="Price"></CheckBox>
-
-
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
+                        <GroupBox  Margin="2"  Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplatePrice}" Grid.Row="1">
+                            
 
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -185,8 +218,11 @@
 
                                 <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
                                 <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="End:"/>
-                                <TextBox Text="{Binding Price_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" />
-                                <TextBox Text="{Binding Price_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" />
+                                <TextBox Text="{Binding Price_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                         Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
+                                             MinWidth="120" HorizontalAlignment="Center"/>
+                                <TextBox Text="{Binding Price_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
+                                             MinWidth="120" HorizontalAlignment="Center"/>
                             </Grid>
                         </GroupBox>
                     </Grid>
@@ -197,20 +233,17 @@
                             <RowDefinition Height="0.5*"/>
                         </Grid.RowDefinitions>
 
-                        <GroupBox Margin="2" Grid.Row="0">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox HorizontalAlignment="Center" Content="Person"></CheckBox>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
+                        <GroupBox Margin="2" Grid.Row="0"  Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplatePerson}">
+                            
 
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
+
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20"/>
                                         <RowDefinition/>
@@ -219,61 +252,38 @@
                                         <RowDefinition Height="40"/>
 
                                     </Grid.RowDefinitions>
-                                    <TextBlock Text="Name" HorizontalAlignment="Center" Grid.Row="0"/>
-                                    <ListView Grid.Row="1" >
+
+                                    <TextBlock Text="FIO" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="0"/>
+
+                                    <ListView Grid.Row="1"  Margin="2" Grid.Column="0" Grid.ColumnSpan="3">
 
                                     </ListView>
 
-                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
-                                    <TextBox Text="{Binding Serch_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"/>
+                                    <TextBlock Grid.Column="0" Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="0" Text="{Binding Serch_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                             Grid.Row="3" VerticalAlignment="Center"
+                                             MinWidth="90" HorizontalAlignment="Center"/>
+
+                                    <TextBlock Grid.Column="1" Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="1" Text="{Binding Serch_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                              Grid.Row="3" VerticalAlignment="Center"
+                                             MinWidth="90" HorizontalAlignment="Center"/>
+
+                                    <TextBlock Grid.Column="2" Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="2" Text="{Binding Serch_patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                             Grid.Row="3" VerticalAlignment="Center"
+                                             MinWidth="90" HorizontalAlignment="Center"/>
                                 </Grid>
 
-                                <Grid Grid.Column="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition/>
 
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition Height="40"/>
 
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="Surname" HorizontalAlignment="Center" Grid.Row="0"/>
-                                    <ListView Grid.Row="1" >
-
-                                    </ListView>
-
-                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
-                                    <TextBox  Text="{Binding Serch_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"/>
-                                </Grid>
-                                <Grid Grid.Column="2">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition/>
-
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition Height="40"/>
-
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="Patronymic" HorizontalAlignment="Center" Grid.Row="0"/>
-                                    <ListView Grid.Row="1" >
-
-                                    </ListView>
-
-                                    <TextBlock Text="Serch" HorizontalAlignment="Center" Grid.Row="2"/>
-                                    <TextBox Text="{Binding Serch_patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"/>
-                                </Grid>
                             </Grid>
 
                         </GroupBox>
 
-                        <GroupBox Margin="2" Grid.Row="1">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                   
-                                    <CheckBox HorizontalAlignment="Center" Content="Date" ></CheckBox>
-                                    
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
+                        <GroupBox Margin="2" Grid.Row="1"  Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplateDate}">
+                           
 
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -288,16 +298,13 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-
-
-
                                 <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
                                 <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="End:"/>
                                 <DatePicker VerticalAlignment="Center"  IsDropDownOpen="True" SelectedDateFormat="Short"
-                    Grid.Column="1" Grid.Row="0" Height="auto"/>
+                                Grid.Column="1" Grid.Row="0" Height="auto"/>
 
                                 <DatePicker VerticalAlignment="Center" IsDropDownOpen="True" SelectedDateFormat="Short"
-                      Grid.Column="1" Grid.Row="1" Height="auto"/>
+                                Grid.Column="1" Grid.Row="1" Height="auto"/>
 
                                 <CheckBox Content="Incomes" Grid.Column="0" Grid.Row="2"
                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>

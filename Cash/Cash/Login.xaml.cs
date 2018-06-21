@@ -49,7 +49,7 @@ namespace Cash
 
         public void Ok()
         {
-            MessageBox.Show("Welcome to home.");
+            MessageBox.Show("Signed in.");
         
         }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Cash.ViweModel
@@ -13,15 +14,43 @@ namespace Cash.ViweModel
     {
         #region Pole
         Person my_users;
-        CashDB myDB = new CashDB();
+        CashDB myDB;
+        Family Family;
+
+
         public Viwe_Model_Login()
         {
-
+            myDB = new CashDB();
            my_users = new Person();
         
         }
 
+        public Viwe_Model_Login(Visibility Visibility_reg, int level,Family family)
+        {
+            visibility_reg = Visibility_reg;
+            myDB = new CashDB();
+            my_users = new Person();
+            LEVEL = level;
+            Family = family;
+            is_ok = false;
+        }
 
+        int LEVEL;
+
+        #region visibility_reg
+        Visibility visibility_reg = Visibility.Visible;
+        public Visibility Visibility_reg
+        {
+            get { return visibility_reg; }
+            set
+            {
+                visibility_reg = value;
+                OnPropertyChanged(nameof(Visibility_reg));
+            }
+        }
+        #endregion
+
+        #region login
         string login;
         public string Login
         {
@@ -35,7 +64,8 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Login));
             }
         }
-
+        #endregion
+        #region password
         string password;
         public string Password
         {
@@ -49,6 +79,7 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Password));
             }
         }
+        #endregion
         #endregion Pole
 
         #region Code
@@ -75,10 +106,11 @@ namespace Cash.ViweModel
         public Action _Visibility_on { get; set; }
         public Action _Visibility_off { get; set; }
 
+      
         public Action _OK { get; set; }
         public Action _NO { get; set; }
         public Action _NONE_USER { get; set; }
-
+        public Action _Close { get; set; }
         void Now_Registr(Person autor)
         {
             _Visibility_off();
@@ -117,7 +149,7 @@ namespace Cash.ViweModel
                 view_registration.DataContext = View_model_reg;
 
                 view_registration.ShowDialog();
-
+                myDB = new CashDB();
             }
            // my_users.Load("user");
 
@@ -143,8 +175,9 @@ namespace Cash.ViweModel
         }
         private void Execute_ok(object o)
         {
-            
-            foreach(var i in myDB.People)
+            myDB = new CashDB();
+           if(visibility_reg==Visibility.Visible)
+            foreach (var i in myDB.People)
             {
                 if(i.Login==login && i.Password==password)
                 {
@@ -154,13 +187,29 @@ namespace Cash.ViweModel
                     return;
 
                 }
-                else if (i.Login == login && i.Password != password)
-                {
-                    OpenMessege("Password or login is not correct.", "Error");
-                    return;
-                }
+              
             }
- 
+            else
+            {
+                foreach (var i in myDB.People)
+                {
+                    if (Family.ID == i.Family.ID && 
+                        i.Login == login &&
+                        i.Password == password &&
+                        LEVEL>= i.Right.Level)
+                    {                                            
+                        is_ok = true;
+                        _OK();
+                        _Close();
+                        return;
+
+                    }                    
+                }
+            
+            }
+            OpenMessege("Password or login is not correct.", "Error");
+            return;
+
         }
         private bool CanExecute_ok(object o)
         {
