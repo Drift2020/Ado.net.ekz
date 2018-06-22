@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -42,12 +43,25 @@ namespace Cash.ViweModel
                 goods_list.Add(temp);
             }
 
+            people_list = new ObservableCollection<SelectableItemWrapper<List_view_person>>();
+            foreach (var i in myDB.People)
+            {
+                SelectableItemWrapper<List_view_person> temp = new SelectableItemWrapper<List_view_person>();
+                temp.Item =new List_view_person(i);
+                if(i.FamilyID== my_profile.FamilyID)
+                people_list.Add(temp);
+            }
 
+
+            
+            
         }
         #region Pole
 
 
         #region Filter
+
+        Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
 
         #region Product
 
@@ -195,7 +209,10 @@ namespace Cash.ViweModel
         {
             set
             {
-                price_start = value;
+                bool is_ok = regex_price.IsMatch(value);
+
+                if (is_ok || value == "")
+                    price_start = value;
                 OnPropertyChanged(nameof(Price_start));
             }
             get
@@ -208,17 +225,22 @@ namespace Cash.ViweModel
 
         #region price end
 
-        string price_end;
+        string price_end="";
         public string Price_end
         {
             set
             {
-                price_end = value;
+               
+                bool is_ok = regex_price.IsMatch(value);
+
+                if (is_ok|| value=="")
+                    price_end = value;
+
                 OnPropertyChanged(nameof(Price_end));
             }
             get
             {
-                return price_start;
+                return price_end;
             }
         }
 
@@ -619,6 +641,8 @@ namespace Cash.ViweModel
 
                 ObservableCollection<Category> temp=null;
                 ObservableCollection<Product> temp_product = null;
+                ObservableCollection<List_view_person> temp_people = null;
+               
 
                 IEnumerable<List_view_final_my> List_final2 = null;
 
@@ -650,13 +674,44 @@ namespace Cash.ViweModel
                         Link_final = List_final2.ToList();
                     }
                 }
-               
-         
 
-              
+                if (Person_box)
+                {
+                    temp_people = GetSelectedPeople();
 
-                
+                    if (temp_people.Count != 0)
+                    {
+                        List_final2 = from i in Link_final
+                                      where temp_people.ToList().Find(x=>x.ID == i.FIO_ID) != null
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
 
+                }
+
+                if(Price_box)
+                {
+                    if (price_start!=null&&price_start.Length>0)
+                    {
+
+                    
+
+                        List_final2 = from i in Link_final
+                                      where i.Money >= Convert.ToDecimal(price_start)
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
+                    if (price_end != null && price_end.Length > 0)
+                    {
+
+
+
+                        List_final2 = from i in Link_final
+                                      where i.Money <= Convert.ToDecimal(price_end)
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
+                }
                 OnPropertyChanged(nameof(Link_final));
                 OnPropertyChanged(nameof(VMSelectedTabIndex));
             }

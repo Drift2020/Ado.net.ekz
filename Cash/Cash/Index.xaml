@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="511" Width="634.959"
        >
@@ -106,6 +107,17 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                
+                                <!--<GridViewColumn>
+                                    <GridViewColumnHeader>Total
+                                    <GridViewColumnHeader.ContextMenu>
+                                        <ContextMenu Name="LastNameCM">
+                                            <MenuItem Header="Ascending"/>
+                                            <MenuItem Header="Descending"/>
+                                        </ContextMenu>
+                                    </GridViewColumnHeader.ContextMenu>
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>-->
 
                                 <GridViewColumn DisplayMemberBinding="{Binding FIO ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FIO" Width="100"/>
 
@@ -222,6 +234,8 @@
                                 <TextBox Text="{Binding Price_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                          Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
                                              MinWidth="120" HorizontalAlignment="Center"/>
+                                <!--<local:MyMaskedTextBox x:Name="MaskedDemo" Mask="0000"  Grid.Column="1" Grid.Row="0" MinWidth="120" HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center" StayInFocusUntilValid="True" IgnoreSpace="True"/>-->
                                 <TextBox Text="{Binding Price_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
                                              MinWidth="120" HorizontalAlignment="Center"/>
                             </Grid>
@@ -257,11 +271,11 @@
                                     <TextBlock Text="FIO" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                                Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="0"/>
 
-                                        <ListView ItemsSource="{Binding Goods_list}" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Margin="2">
+                                    <ListView ItemsSource="{Binding People_list}" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Margin="2">
 
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    <CheckBox Content="{Binding Item.FIO}"
                                                           IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>

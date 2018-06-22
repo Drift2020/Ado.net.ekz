@@ -101,6 +101,18 @@ namespace Cash.Code
             }
         }
 
+        public int FIO_ID
+        {
+            get
+            {
+                return final.PersonID;
+            }
+            set
+            {
+
+            }
+        }
+
         public string Product
         {
             get
