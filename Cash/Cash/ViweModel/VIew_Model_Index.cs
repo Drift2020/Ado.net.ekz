@@ -134,7 +134,7 @@ namespace Cash.ViweModel
         }
 
      
-        #endregion
+      
 
         #region Name
         string serch_name;
@@ -183,6 +183,7 @@ namespace Cash.ViweModel
             }
         }
         #endregion
+        #endregion
 
         #region Price
 
@@ -200,7 +201,7 @@ namespace Cash.ViweModel
             }
         }
 
-        #endregion
+       
 
         #region price start
 
@@ -246,6 +247,23 @@ namespace Cash.ViweModel
 
         #endregion
 
+        bool price_box_type=false;
+        public bool Price_box_type
+        {
+            set
+            {
+                price_box_type = value;
+                OnPropertyChanged(nameof(Price_box_type));
+            }
+            get
+            {
+                return price_box_type;
+            }
+        }
+        
+
+        #endregion
+
         #region Date
 
         bool date;
@@ -264,7 +282,7 @@ namespace Cash.ViweModel
 
 
 
-        #endregion
+      
 
         #region Date start
 
@@ -274,7 +292,7 @@ namespace Cash.ViweModel
         {
             set
             {
-                date_start = value;
+                date_start = value.ToString();
                 OnPropertyChanged(nameof(Date_start));
             }
             get
@@ -338,6 +356,7 @@ namespace Cash.ViweModel
             }
         }
 
+        #endregion
         #endregion
 
         #endregion
@@ -651,7 +670,7 @@ namespace Cash.ViweModel
                     if (my_profile.FamilyID == iF.Person.FamilyID)
                         Link_final.Add(new List_view_final_my(iF));
 
-                if (Product_box)
+                if (product)
                 {
                     temp = GetSelectedCategory();
                     temp_product = GetSelectedGoods();
@@ -675,7 +694,7 @@ namespace Cash.ViweModel
                     }
                 }
 
-                if (Person_box)
+                if (person)
                 {
                     temp_people = GetSelectedPeople();
 
@@ -689,26 +708,52 @@ namespace Cash.ViweModel
 
                 }
 
-                if(Price_box)
+                if(price)
                 {
                     if (price_start!=null&&price_start.Length>0)
                     {
 
                     
-
+                        if(!price_box_type)
                         List_final2 = from i in Link_final
-                                      where i.Money >= Convert.ToDecimal(price_start)
+                                      where i.Money >= Convert.ToDecimal(price_start) &&
+                                           i.Type == "+"
                                       select i;
+                        else
+                             List_final2 = from i in Link_final
+                                           where i.Money >= Convert.ToDecimal(price_start) &&
+                                           i.Type=="-"
+                                           select i;
+
                         Link_final = List_final2.ToList();
                     }
                     if (price_end != null && price_end.Length > 0)
                     {
 
 
+                        if (!price_box_type)
+                            List_final2 = from i in Link_final
+                                      where i.Money <= Convert.ToDecimal(price_end) &&
+                                           i.Type == "+"
+                                          select i;
+                        else
+                            List_final2 = from i in Link_final
+                                          where i.Money <= Convert.ToDecimal(price_end) &&
+                                           i.Type == "-"
+                                          select i;
 
+                        Link_final = List_final2.ToList();
+                    }
+                }
+
+                if(date)
+                {
+                    if(date_start!=null&&date_start.Length>0 )
+                    {
                         List_final2 = from i in Link_final
-                                      where i.Money <= Convert.ToDecimal(price_end)
+                                      where Convert.ToDateTime(date_start) >= Convert.ToDateTime(i.Date)  
                                       select i;
+
                         Link_final = List_final2.ToList();
                     }
                 }

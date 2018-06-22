@@ -219,6 +219,7 @@
 
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition Height="20"/>
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
@@ -238,6 +239,9 @@
                                                     VerticalAlignment="Center" StayInFocusUntilValid="True" IgnoreSpace="True"/>-->
                                 <TextBox Text="{Binding Price_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
                                              MinWidth="120" HorizontalAlignment="Center"/>
+                                <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                                          VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Content="Income/Costs"  IsChecked="{Binding Price_box_type, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </GroupBox>
                     </Grid>
@@ -323,10 +327,11 @@
                                 <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
                                 <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="End:"/>
                                 <DatePicker VerticalAlignment="Center"  IsDropDownOpen="True" SelectedDateFormat="Short"
-                                Grid.Column="1" Grid.Row="0" Height="auto"/>
+                                Grid.Column="1" Grid.Row="0" Height="auto" Text="{Binding Date_start, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <DatePicker VerticalAlignment="Center" IsDropDownOpen="True" SelectedDateFormat="Short"
-                                Grid.Column="1" Grid.Row="1" Height="auto"/>
+                                Grid.Column="1" Grid.Row="1" Height="auto"
+                                             Text="{Binding Date_end, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <CheckBox Content="Incomes" Grid.Column="0" Grid.Row="2"
                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
