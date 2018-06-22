@@ -113,7 +113,18 @@ namespace Cash.Code
                 OnPropertyChanged(nameof(Product));
             }
         }
-
+        public int ProductID
+        {
+            get
+            {
+                return final.Product.ID;
+            }
+            set
+            {
+                final.Product.ID = value;
+                OnPropertyChanged(nameof(ProductID));
+            }
+        }
 
 
         List<Category> category_my = new List<Category>();

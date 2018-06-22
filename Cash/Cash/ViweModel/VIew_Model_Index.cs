@@ -620,65 +620,42 @@ namespace Cash.ViweModel
                 ObservableCollection<Category> temp=null;
                 ObservableCollection<Product> temp_product = null;
 
+                IEnumerable<List_view_final_my> List_final2 = null;
 
                 Link_final.Clear();
-
+                foreach (var iF in myDB.Finals.ToList())
+                    if (my_profile.FamilyID == iF.Person.FamilyID)
+                        Link_final.Add(new List_view_final_my(iF));
 
                 if (Product_box)
                 {
                     temp = GetSelectedCategory();
                     temp_product = GetSelectedGoods();
-                }
 
-                foreach (var i in myDB.Finals.ToList())
-                {
-                    List_view_final_my temp_elem = new List_view_final_my(i);
 
-                    if (my_profile.FamilyID == i.Person.FamilyID)
+                    if (temp.Count != 0)
                     {
-                        if(Product_box)
-                        {                          
-                            foreach(var i_category in temp)
-                            {
-                                foreach (var i_product_category in i.Product.Categories)
-                                {
-                                    if (i_category.ID == i_product_category.ID &&
-                                        Link_final.ToList().Find(x=>x.ID ==i.ID) == null
+                        List_final2 = from i in Link_final
+                                      from categ in i.Category_my
+                                      where temp.ToList().Find(x => x.ID == categ.ID) != null
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
 
-                                        )
-                                    {
-                                        Link_final.Add(temp_elem);
-                                    }
-                                }
-                            }
-
-                          
-                            foreach (var i_goods in temp_product)
-                            {
-                                if (i_goods.ID == i.Product.ID)
-                                {
-                                    if (Link_final.ToList().Find(x => x.ID == i.ID) == null)
-                                    {
-                                        Link_final.Add(temp_elem);
-                                    }
-                                }
-                            }
-                          
-                        }      
-                        
-                        if(Person_box)
-                        {
-
-                        }
+                    if (temp_product.Count != 0)
+                    {
+                        List_final2 = from i in Link_final
+                                      where temp_product.ToList().Find(x => x.ID == i.ProductID) != null
+                                      select i;
+                        Link_final = List_final2.ToList();
                     }
                 }
+               
+         
 
-                if (!Product_box|| (temp.Count==0&& temp_product.Count==0))
-                {
-                    foreach (var iF in myDB.Finals.ToList())
-                        if (my_profile.FamilyID == iF.Person.FamilyID)
-                            Link_final.Add(new List_view_final_my(iF));
-                }
+              
+
+                
 
                 OnPropertyChanged(nameof(Link_final));
                 OnPropertyChanged(nameof(VMSelectedTabIndex));
