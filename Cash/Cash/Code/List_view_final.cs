@@ -100,6 +100,40 @@ namespace Cash.Code
 
             }
         }
+        public string Patronymic_person
+        {
+            get
+            {
+                return final.Person.Patronymic;
+            }
+            set
+            {
+
+            }
+        }
+        public string Name_person
+        {
+            get
+            {
+                return  final.Person.Name;
+            }
+            set
+            {
+
+            }
+        }
+
+        public string Surname_person
+        {
+            get
+            {
+                return final.Person.Surname;
+            }
+            set
+            {
+
+            }
+        }
 
         public int FIO_ID
         {

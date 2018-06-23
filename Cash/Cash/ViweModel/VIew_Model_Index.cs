@@ -724,10 +724,32 @@ namespace Cash.ViweModel
                                       select i;
                         Link_final = List_final2.ToList();
                     }
+                    if (search_name != null && search_name.Length>0)
+                    {
+                        List_final2 = from i in Link_final
+                                      where i.Name_person.Contains(search_name)
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
+                    if (search_surname != null && search_surname.Length > 0)
+                    {
+                        List_final2 = from i in Link_final
+                                      where i.Surname_person.Contains(search_surname)
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
+                    if (search_patronymic != null && search_patronymic.Length > 0)
+                    {
+                        List_final2 = from i in Link_final
+                                      where i.Patronymic_person.Contains(search_patronymic)
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
+
 
                 }
 
-                if(price)
+                if (price)
                 {
                     if (price_start!=null&&price_start.Length>0)
                     {

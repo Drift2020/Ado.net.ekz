@@ -306,17 +306,17 @@
                                         </ListView>
                                   
 
-                                    <TextBlock Grid.Column="0" Text="Search" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBlock Grid.Column="0" Text="Search name" HorizontalAlignment="Center" Grid.Row="2"/>
                                     <TextBox Grid.Column="0" Text="{Binding Search_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                              Grid.Row="3" VerticalAlignment="Center"
                                              MinWidth="90" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Grid.Column="1" Text="Search" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBlock Grid.Column="1" Text="Search surname" HorizontalAlignment="Center" Grid.Row="2"/>
                                     <TextBox Grid.Column="1" Text="{Binding Search_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                               Grid.Row="3" VerticalAlignment="Center"
                                              MinWidth="90" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Grid.Column="2" Text="Search" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBlock Grid.Column="2" Text="Search patronymic" HorizontalAlignment="Center" Grid.Row="2"/>
                                     <TextBox Grid.Column="2" Text="{Binding Search_patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                              Grid.Row="3" VerticalAlignment="Center"
                                              MinWidth="90" HorizontalAlignment="Center"/>
