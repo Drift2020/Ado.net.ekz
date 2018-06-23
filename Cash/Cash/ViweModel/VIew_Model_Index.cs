@@ -84,17 +84,17 @@ namespace Cash.ViweModel
         #endregion Product
 
         #region category
-        string serch_category;
-        public string Serch_category
+        string search_category;
+        public string Search_category
         {
             set
             {
-                serch_category = value;
-                OnPropertyChanged(nameof(Serch_category));
+                search_category = value;
+                OnPropertyChanged(nameof(Search_category));
             }
             get
             {
-                return serch_category;
+                return search_category;
             }
         }
 
@@ -102,17 +102,17 @@ namespace Cash.ViweModel
         #endregion
 
         #region Goods
-        string serch_goods;
-        public string Serch_goods
+        string search_goods;
+        public string Search_goods
         {
             set
             {
-                serch_goods = value;
-                OnPropertyChanged(nameof(Serch_goods));
+                search_goods = value;
+                OnPropertyChanged(nameof(Search_goods));
             }
             get
             {
-                return serch_goods;
+                return search_goods;
             }
         }
         #endregion
@@ -137,49 +137,49 @@ namespace Cash.ViweModel
       
 
         #region Name
-        string serch_name;
-        public string Serch_name
+        string search_name;
+        public string Search_name
         {
             set
             {
-                serch_name = value;
-                OnPropertyChanged(nameof(Serch_name));
+                search_name = value;
+                OnPropertyChanged(nameof(Search_name));
             }
             get
             {
-                return serch_name;
+                return search_name;
             }
         }
         #endregion
 
         #region Surname
-        string serch_surname;
-        public string Serch_surname
+        string search_surname;
+        public string Search_surname
         {
             set
             {
-                serch_surname = value;
-                OnPropertyChanged(nameof(Serch_surname));
+                search_surname = value;
+                OnPropertyChanged(nameof(Search_surname));
             }
             get
             {
-                return serch_surname;
+                return search_surname;
             }
         }
         #endregion
 
         #region Patronymic
-        string serch_patronymic;
-        public string Serch_patronymic
+        string search_patronymic;
+        public string Search_patronymic
         {
             set
             {
-                serch_patronymic = value;
-                OnPropertyChanged(nameof(Serch_patronymic));
+                search_patronymic = value;
+                OnPropertyChanged(nameof(Search_patronymic));
             }
             get
             {
-                return serch_patronymic;
+                return search_patronymic;
             }
         }
         #endregion
@@ -247,20 +247,7 @@ namespace Cash.ViweModel
 
         #endregion
 
-        bool price_box_type=false;
-        public bool Price_box_type
-        {
-            set
-            {
-                price_box_type = value;
-                OnPropertyChanged(nameof(Price_box_type));
-            }
-            get
-            {
-                return price_box_type;
-            }
-        }
-        
+    
 
         #endregion
 
@@ -322,40 +309,54 @@ namespace Cash.ViweModel
 
         #endregion
 
-        #region Date incomes
-
-        bool incomes;
-        public bool Incomes
-        {
-            set
-            {
-                incomes = value;
-                OnPropertyChanged(nameof(Incomes));
-            }
-            get
-            {
-                return incomes;
-            }
-        }
 
         #endregion
 
-        #region Date costs
-
-        bool costs;
-        public bool Costs
+        #region Type
+        #region box
+        bool type = false;
+        public bool Type_box
         {
             set
             {
-                costs = value;
-                OnPropertyChanged(nameof(Costs));
+                type = value;
+                OnPropertyChanged(nameof(Type_box));
             }
             get
             {
-                return costs;
+                return type;
             }
         }
-
+        #endregion
+        #region box_in
+        bool type_Income = false;
+        public bool Type_Income
+        {
+            set
+            {
+                type_Income = value;
+                OnPropertyChanged(nameof(Type_Income));
+            }
+            get
+            {
+                return type_Income;
+            }
+        }
+        #endregion
+        #region box cos
+        bool type_Costs = false;
+        public bool Type_Costs
+        {
+            set
+            {
+                type_Costs = value;
+                OnPropertyChanged(nameof(Type_Costs));
+            }
+            get
+            {
+                return type_Costs;
+            }
+        }
         #endregion
         #endregion
 
@@ -676,6 +677,7 @@ namespace Cash.ViweModel
                     temp_product = GetSelectedGoods();
 
 
+                    
                     if (temp.Count != 0)
                     {
                         List_final2 = from i in Link_final
@@ -684,6 +686,15 @@ namespace Cash.ViweModel
                                       select i;
                         Link_final = List_final2.ToList();
                     }
+                    if (search_category != null && search_category.Length > 0)
+                    {
+                        List_final2 = from i in Link_final
+                                      from categ in i.Category_my
+                                      where categ.Name.Contains(search_category)
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
+
 
                     if (temp_product.Count != 0)
                     {
@@ -692,6 +703,14 @@ namespace Cash.ViweModel
                                       select i;
                         Link_final = List_final2.ToList();
                     }
+                    if (search_goods != null && search_goods.Length > 0)
+                    {
+                        List_final2 = from i in Link_final                             
+                                      where i.Product.Contains(search_goods)
+                                      select i;
+                        Link_final = List_final2.ToList();
+                    }
+
                 }
 
                 if (person)
@@ -713,34 +732,23 @@ namespace Cash.ViweModel
                     if (price_start!=null&&price_start.Length>0)
                     {
 
-                    
-                        if(!price_box_type)
-                        List_final2 = from i in Link_final
-                                      where i.Money >= Convert.ToDecimal(price_start) &&
-                                           i.Type == "+"
-                                      select i;
-                        else
-                             List_final2 = from i in Link_final
-                                           where i.Money >= Convert.ToDecimal(price_start) &&
-                                           i.Type=="-"
-                                           select i;
+                       
+                            List_final2 = from i in Link_final
+                                          where i.Money >= Convert.ToDecimal(price_start)
+                                          select i;
+                      
+                       
 
                         Link_final = List_final2.ToList();
                     }
                     if (price_end != null && price_end.Length > 0)
                     {
 
-
-                        if (!price_box_type)
+                        
                             List_final2 = from i in Link_final
-                                      where i.Money <= Convert.ToDecimal(price_end) &&
-                                           i.Type == "+"
+                                          where i.Money <= Convert.ToDecimal(price_end)
                                           select i;
-                        else
-                            List_final2 = from i in Link_final
-                                          where i.Money <= Convert.ToDecimal(price_end) &&
-                                           i.Type == "-"
-                                          select i;
+                     
 
                         Link_final = List_final2.ToList();
                     }
@@ -751,12 +759,55 @@ namespace Cash.ViweModel
                     if(date_start!=null&&date_start.Length>0 )
                     {
                         List_final2 = from i in Link_final
-                                      where Convert.ToDateTime(date_start) >= Convert.ToDateTime(i.Date)  
+                                      where Convert.ToDateTime(i.Date) >= Convert.ToDateTime(date_start)
                                       select i;
+
+
+
+
+                        Link_final = List_final2.ToList();
+                    }
+                    if (date_end != null && date_end.Length > 0)
+                    {
+                        List_final2 = from i in Link_final
+                                      where Convert.ToDateTime(i.Date) <= Convert.ToDateTime(date_end)
+                                      select i;
+
+
+
 
                         Link_final = List_final2.ToList();
                     }
                 }
+
+                if (type)
+                {
+
+
+                    if (type_Income&&!type_Costs)
+                    {
+                        List_final2 = from i in Link_final
+                                      where i.Type=="-"
+                                      select i;
+
+
+
+
+                        Link_final = List_final2.ToList();
+                    }
+                    else if (type_Costs&&!type_Income)
+                    {
+                        List_final2 = from i in Link_final
+                                      where i.Type == "+"
+                                      select i;
+
+
+
+
+                        Link_final = List_final2.ToList();
+                    }
+                }
+
                 OnPropertyChanged(nameof(Link_final));
                 OnPropertyChanged(nameof(VMSelectedTabIndex));
             }

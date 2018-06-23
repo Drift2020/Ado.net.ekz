@@ -22,6 +22,12 @@
                          />
         </DataTemplate>
 
+        <DataTemplate x:Key="groupboxTemplateType">
+            <CheckBox Content="Type" 
+                           IsChecked="{Binding Type_box, Mode=TwoWay}" 
+                         />
+        </DataTemplate>
+
         <DataTemplate x:Key="groupboxTemplatePrice">
             <CheckBox Content="Price" 
                            IsChecked="{Binding Price_box, Mode=TwoWay}" 
@@ -148,6 +154,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.2*"/>
                         </Grid.RowDefinitions>
 
                         <GroupBox Margin="2" Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplate}">
@@ -186,7 +193,7 @@
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20"/>
-                                        <RowDefinition Height="183"/>
+                                        <RowDefinition/>
 
                                         <RowDefinition Height="20"/>
                                         <RowDefinition Height="40"/>
@@ -219,7 +226,7 @@
 
                                     <RowDefinition/>
                                     <RowDefinition/>
-                                    <RowDefinition Height="20"/>
+                                   
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
@@ -239,11 +246,24 @@
                                                     VerticalAlignment="Center" StayInFocusUntilValid="True" IgnoreSpace="True"/>-->
                                 <TextBox Text="{Binding Price_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
                                              MinWidth="120" HorizontalAlignment="Center"/>
-                                <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
-                                          VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Content="Income/Costs"  IsChecked="{Binding Price_box_type, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                               
                             </Grid>
                         </GroupBox>
+                        <GroupBox Margin="2"  Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplateType}" Grid.Row="2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox  Grid.Column="0" 
+                                          VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Content="Income"  IsChecked="{Binding Type_Income, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                <CheckBox  Grid.Column="1"
+                                          VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Content="Costs"  IsChecked="{Binding Type_Costs, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </GroupBox>
+                      
                     </Grid>
 
                     <Grid Grid.Column="1">
@@ -316,7 +336,7 @@
 
                                     <RowDefinition/>
                                     <RowDefinition/>
-                                    <RowDefinition/>
+                                   
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
@@ -333,12 +353,7 @@
                                 Grid.Column="1" Grid.Row="1" Height="auto"
                                              Text="{Binding Date_end, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <CheckBox Content="Incomes" Grid.Column="0" Grid.Row="2"
-                                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-                                <CheckBox Content="Costs" Grid.Column="1" Grid.Row="2"
-                                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
+                                
                             </Grid>
                         </GroupBox>
                     </Grid>
