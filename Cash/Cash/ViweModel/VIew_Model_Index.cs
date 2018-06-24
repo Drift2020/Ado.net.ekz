@@ -22,13 +22,45 @@ namespace Cash.ViweModel
         public CashDB myDB = new CashDB();
         Person my_profile = new Person();
         Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
+
+        #region Costs
+        string costs;
+        public string Costs
+        {
+            set
+            {
+                costs = value;
+                OnPropertyChanged(nameof(Costs));
+            }
+            get
+            {
+                return costs;
+            }
+        }
+        #endregion Costs
+        #region Income
+        string income;
+        public string Income
+        {
+            set
+            {
+                income = value;
+                OnPropertyChanged(nameof(Income));
+            }
+            get
+            {
+                return income;
+            }
+        }
+        #endregion Income
+
         #region Filter
 
 
 
         #region Product
 
-        bool product=false;
+        bool product =false;
         public bool Product_box
         {
             set
@@ -362,8 +394,8 @@ namespace Cash.ViweModel
             }
 
 
-
-
+            SetCosts();
+            SetIncome();
         }
         void Set_new_items()
         {
@@ -390,9 +422,46 @@ namespace Cash.ViweModel
                 goods_list.Add(temp);
             }
             OnPropertyChanged(nameof(Goods_list));
+
+           
+        }
+        bool Levels()
+        {
+            if (select_item_final != null)
+            {
+                var i = myDB.People.ToList().Find(x => x.ID == select_item_final.FIO_ID);
+                if (my_profile.Right.Level < i.Right.Level|| my_profile.ID==i.ID)
+                    return true;
+            }
+            return false;
         }
 
+        void SetCosts()
+        {
+           
+           var temp = from i in link_final
+                      where i.Type=="+"
+                          select (i.Money);
+            if (temp.Count() > 0)
+                Costs = temp.ToList().Sum().ToString();
+             else
+                Costs = "";
+        }
+
+        void SetIncome()
+        {
+
+            var temp = from i in link_final
+                       where i.Type == "-"
+                       select (i.Money);
+            if (temp.Count() > 0)
+                Income = temp.ToList().Sum().ToString();
+            else
+                Income = "";
+        }
         #endregion Code
+
+
 
 
         #region Command
@@ -422,13 +491,10 @@ namespace Cash.ViweModel
 
             my_add.DataContext = my_model_add;
 
-            //   my_model_add.Autor = _i_autor;
+           
 
             my_add.ShowDialog();
-            //if (my_model_add.is_add)
-            //{
-            //    my_photo.Add(new PhotoViewModel(my_model_add.Temp.Clone() as Photos));
-            //}
+            Set_new_items();
 
         }
         private bool CanExecute_add(object o)
@@ -493,13 +559,34 @@ namespace Cash.ViweModel
         }
         private void Execute_del(object o)
         {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+            if (messege_view_Model._NO == null)
+                messege_view_Model._NO = new Action(messege.Close);
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = "Are you sure you want to delete this entry?";
+            messege_view_Model.Messeg_Titel = "deleting entry";
+            messege.ShowDialog();
 
+            if (messege_view_Model.is_ok)
+            {
+                link_final.Remove(select_item_final);
+                myDB.Finals.Remove(select_item_final.final);
+                myDB.SaveChanges();
+
+                Set_new_items();
+
+            }
 
         }
         private bool CanExecute_del(object o)
         {
+            if(select_item_final!=null && Levels())
             return true;
+            return false;
         }
         #endregion delete
 
@@ -697,10 +784,7 @@ namespace Cash.ViweModel
 
                 IEnumerable<List_view_final_my> List_final2 = null;
 
-                Link_final.Clear();
-                foreach (var iF in myDB.Finals.ToList())
-                    if (my_profile.FamilyID == iF.Person.FamilyID)
-                        Link_final.Add(new List_view_final_my(iF));
+                Set_new_items();
 
                 if (product)
                 {
@@ -863,6 +947,8 @@ namespace Cash.ViweModel
 
                 OnPropertyChanged(nameof(Link_final));
                 OnPropertyChanged(nameof(VMSelectedTabIndex));
+                SetIncome();
+                SetCosts();
             }
             get
             {

@@ -11,7 +11,7 @@ namespace Cash.Code
     class List_view_final_my : View_Model_Base
     {
 
-        Final final = null;
+        public Final final = null;
 
         public List_view_final_my(Final _final)
         {
