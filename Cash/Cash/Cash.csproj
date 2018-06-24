@@ -96,9 +96,7 @@
     <Compile Include="Add_Article.xaml.cs">
       <DependentUpon>Add_Article.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Add_Edit_window.xaml.cs">
-      <DependentUpon>Add_Edit_window.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Add_Edit_window.xaml.cs" />
     <Compile Include="Code\BindingErrorTraceListener.cs" />
     <Compile Include="Code\List_view_final.cs" />
     <Compile Include="Code\List_view_person.cs" />
@@ -131,8 +129,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Add_Edit_window.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Editor.xaml">
       <SubType>Designer</SubType>

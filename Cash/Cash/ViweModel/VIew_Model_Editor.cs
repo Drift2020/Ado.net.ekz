@@ -1,7 +1,9 @@
-﻿using Cash.Command;
+﻿using Cash.Code;
+using Cash.Command;
 using Cash.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,36 @@ namespace Cash.ViweModel
 
         CashDB myDB = new CashDB();
 
+        #region name category
+        string name_category;
+        public string Name_category {
+            set
+            {
+                name_category = value;
+                OnPropertyChanged(nameof(Name_category));
+            }
+            get
+            {
+
+                return name_category;
+            }
+        }
+        #endregion
+        #region name product
+        string name_product;
+        public string Name_product
+        {
+            set
+            {
+                name_product = value;
+                OnPropertyChanged(nameof(Name_product));
+            }
+            get
+            {
+                return name_product;
+            }
+        }
+        #endregion
         #endregion Pole
 
         #region Code
@@ -26,6 +58,14 @@ namespace Cash.ViweModel
         {
             list_category = myDB.Categories.ToList();
             list_product = myDB.Products.ToList();
+
+            category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
+            foreach (var i in myDB.Categories)
+            {
+                SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
+                temp.Item = i;
+                category_list.Add(temp);
+            }
         }
 
 
@@ -65,17 +105,37 @@ namespace Cash.ViweModel
         private void Execute_add_product(object o)
         {
 
-            Add_Edit_window product_window = new Add_Edit_window();
-            View_Model_add_edit_window model = new View_Model_add_edit_window();
+            Product temp = new Product();
+            temp.Name = Name_product;
 
-            product_window.DataContext = model;
 
-            product_window.ShowDialog();
+            var List_final = from i in Category_list
+                             where i.IsSelected==true
+                             select i;
+            foreach (var i in List_final)
+                temp.Categories.Add(i.Item);
 
+            myDB.Products.Add(temp);
+            myDB.SaveChanges();
+
+            list_product.Clear();
+            List_product = myDB.Products.ToList();
+            SetNull();
         }
         private bool CanExecute_add_product(object o)
         {
-            return true;
+            if (name_product != null && name_product.Length > 0)
+            {
+                var List_final2 = from i in myDB.Products
+                                  where i.Name == name_product
+                                  select i;
+                if (List_final2.Count() == 0)
+                    return true;
+               
+
+            }
+
+            return false;
         }
         #endregion
 
@@ -94,18 +154,54 @@ namespace Cash.ViweModel
         }
         private void Execute_edit_product(object o)
         {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
-            Add_Edit_window product_window = new Add_Edit_window();
-            View_Model_add_edit_window model = new View_Model_add_edit_window();
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+            if (messege_view_Model._NO == null)
+                messege_view_Model._NO = new Action(messege.Close);
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = "Do you really want to change this product?";
+            messege_view_Model.Messeg_Titel = "Change product";
+            messege.ShowDialog();
 
-            product_window.DataContext = model;
+            if (messege_view_Model.is_ok)
+            {
 
-            product_window.ShowDialog();
+                Select_item_product.Name = name_product;
 
+                Select_item_product.Categories.Clear();
+
+                var List_final = from i in Category_list
+                                 where i.IsSelected == true
+                                 select i;
+                foreach (var i in List_final)
+                    Select_item_product.Categories.Add(i.Item);
+
+                Select_item_product = null;
+
+                myDB.SaveChanges();
+
+                list_product.Clear();
+                List_product = myDB.Products.ToList();
+                SetNull();
+            }
         }
         private bool CanExecute_edit_product(object o)
         {
-            return true;
+            if (name_product != null && name_product.Length > 0 && select_item_product!=null)
+            {
+                var List_final2 = from i in myDB.Products
+                                  where i.Name == name_product && i.ID!= select_item_product.ID
+                                  select i;
+                if (List_final2.Count() == 0)
+                    return true;
+
+
+            }
+
+            return false;
         }
         #endregion
 
@@ -124,13 +220,53 @@ namespace Cash.ViweModel
         }
         private void Execute_delete_product(object o)
         {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
+
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+            if (messege_view_Model._NO == null)
+                messege_view_Model._NO = new Action(messege.Close);
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = "Are you sure you want to delete this product?";
+            messege_view_Model.Messeg_Titel = "Deleting product";
+            messege.ShowDialog();
+
+            if (messege_view_Model.is_ok)
+            {
+                Name_product = null;
+                list_product.Remove(select_item_product);
+                myDB.Products.Remove(select_item_product);
+                Select_item_product = null;
+                try
+                {
+                    myDB.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                     messege = new Messege();
+                     messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
+
+                    if (messege_view_Model._OK == null)
+                        messege_view_Model._OK = new Action(messege.Close);
+                  
+                    messege.DataContext = messege_view_Model;
+                    messege_view_Model.Messege = "With this product there is a connection of records with users.\nRemoval is not possible.";
+                    messege_view_Model.Messeg_Titel = "Error";
+                    messege.ShowDialog();
+                }
+
+                list_product = myDB.Products.ToList();
+                OnPropertyChanged(nameof(List_product));
+            }
 
 
-
-        }
+            }
         private bool CanExecute_delete_product(object o)
         {
+            if ( select_item_product != null)                     
             return true;
+            return false;
         }
         #endregion
         #endregion product
@@ -152,39 +288,39 @@ namespace Cash.ViweModel
         private void Execute_add_category(object o)
         {
            
-                Add_Edit_window category_window = new Add_Edit_window();
-                View_Model_add_edit_window model = new View_Model_add_edit_window();
-                model.OK = new Action(category_window.Close);
+              
 
-                category_window.DataContext = model;
-                category_window.Title = "Add category";
-                category_window.ShowDialog();
-
-                var List_final2 = from i in myDB.Categories
-                                  where i.Name == model.Name
-                                  select i;
-
-                if (List_final2.Count() <= 0)
-                {
+             
                     Category temp = new Category();
-                    temp.Name = model.Name;
+                    temp.Name = name_category;
                     myDB.Categories.Add(temp);
                     myDB.SaveChanges();
 
                     list_category.Clear();
                     List_category = myDB.Categories.ToList();
              
-                }
-                else
-                {
-                    OpenMessege("This category already exists.", "Error");
-                }
+               
+             
             
 
         }
         private bool CanExecute_add_category(object o)
         {
-            return true;
+           
+
+            if (name_category!=null && name_category.Length>0 )
+            {
+                var List_final2 = from i in myDB.Categories
+                                  where i.Name == name_category
+                                  select i;
+                if (List_final2.Count() == 0)               
+                    return true;
+                           
+                   
+                
+            }
+         
+            return false;
         }
         #endregion
 
@@ -204,36 +340,45 @@ namespace Cash.ViweModel
         private void Execute_edit_category(object o)
         {
 
-            Add_Edit_window category_window = new Add_Edit_window();
-            View_Model_add_edit_window model = new View_Model_add_edit_window();
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
-            model.OK = new Action(category_window.Close);
-            model.Name = select_item_category.Name;
-            model.Title = "Edit category";
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+            if (messege_view_Model._NO == null)
+                messege_view_Model._NO = new Action(messege.Close);
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = "Do you really want to change this category?";
+            messege_view_Model.Messeg_Titel = "Change category";
+            messege.ShowDialog();
 
-            category_window.DataContext = model;          
-            category_window.ShowDialog();
-
-
-
-            if(model.Name.Length>0)
+            if (messege_view_Model.is_ok)
             {
-                var List_final2 = from i in myDB.Categories
-                                  where i.Name == model.Name
-                                  select i;
-                if(List_final2.Count() <= 0)
-                {
-                    Select_item_category.Name = model.Name;                   
-                    myDB.SaveChanges();
-                    list_category = myDB.Categories.ToList();
-                    OnPropertyChanged(nameof(List_category));
-                }
+
+                Select_item_category.Name = name_category;
+                myDB.SaveChanges();
+                list_category = myDB.Categories.ToList();
+                OnPropertyChanged(nameof(List_category));
+                OnPropertyChanged(nameof(List_product));
+
             }
         }
         private bool CanExecute_edit_category(object o)
         {
-            if(select_item_category!=null)
-            return true;
+          
+            if (select_item_category != null&&
+                name_category != null && 
+                name_category.Length > 0)
+            {
+                var List_final2 = from i in myDB.Categories
+                                  where i.Name == name_category && select_item_category.ID != i.ID
+                                  select i;
+                if (List_final2.Count() == 0)
+                    return true;
+               
+
+            }
+
             return false;
         }
         #endregion
@@ -253,13 +398,30 @@ namespace Cash.ViweModel
         }
         private void Execute_delete_category(object o)
         {
-            list_category.Remove(select_item_category);
-            myDB.Categories.Remove(select_item_category);
-            Select_item_category = null;
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
-            myDB.SaveChanges();
-            list_category = myDB.Categories.ToList();
-            OnPropertyChanged(nameof(List_category));
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+            if (messege_view_Model._NO == null)
+                messege_view_Model._NO = new Action(messege.Close);
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = "Are you sure you want to delete this category?";
+            messege_view_Model.Messeg_Titel = "Deleting category";
+            messege.ShowDialog();
+
+            if (messege_view_Model.is_ok)
+            {
+                Name_category = null;
+                list_category.Remove(select_item_category);
+                myDB.Categories.Remove(select_item_category);
+                Select_item_category = null;
+              
+                myDB.SaveChanges();
+
+                list_category = myDB.Categories.ToList();
+                OnPropertyChanged(nameof(List_category));
+            }
 
         }
         private bool CanExecute_delete_category(object o)
@@ -296,6 +458,8 @@ namespace Cash.ViweModel
             set
             {
                 select_item_category = value;
+                if(select_item_category!=null)
+                Name_category = select_item_category.Name;
                 OnPropertyChanged(nameof(Select_item_category));
             }
             get
@@ -325,7 +489,32 @@ namespace Cash.ViweModel
         {
             set
             {
+                SetNull();
                 select_item_product = value;
+                if (select_item_product != null)
+                {
+
+                    Name_product = select_item_product.Name;
+
+                   
+
+                    foreach (var i in category_list)
+                    {
+                        foreach (var x in select_item_product.Categories)
+                        {
+                            if(i.Item.ID==x.ID)
+                            {
+                                i.IsSelected = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+
+                    Name_product = null;
+                    
+                }
                 OnPropertyChanged(nameof(Select_item_product));
             }
             get
@@ -333,6 +522,43 @@ namespace Cash.ViweModel
                 return select_item_product;
             }
         }
+
+
+        ObservableCollection<SelectableItemWrapper<Category>> category_list;
+        public ObservableCollection<SelectableItemWrapper<Category>> Category_list
+        {
+            get
+            {
+                return category_list;
+            }
+        }
+
+        public ObservableCollection<Category> GetSelectedCategory()
+        {
+            var selected = Category_list
+                .Where(p => p.IsSelected)
+                .Select(p => p.Item)
+                .ToList();
+            return new ObservableCollection<Category>(selected);
+        }
+
+        void SetNull()
+        {
+            if(category_list!=null)
+            foreach (var i in category_list)
+            {
+                i.IsSelected = false;
+            }
+        }
+
+        //category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
+        //foreach (var i in myDB.Categories)
+        //{
+        //        SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
+        //temp.Item = i;
+        //        category_list.Add(temp);
+        //}
+
         #endregion Product
         #endregion
 

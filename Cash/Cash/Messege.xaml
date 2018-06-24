@@ -21,9 +21,9 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Messege}"></TextBlock>
-        <Button Grid.Row="3" Grid.Column="1" Margin="3" Content="{Binding OK}" Visibility="{Binding Visibility_ok}" Command="{Binding Button_clik_ok}"></Button>
-        <Button Grid.Row="3" Grid.Column="2" Margin="3" Content="{Binding NO}" Visibility="{Binding Visibility_no}" Command="{Binding Button_clik_no}"></Button>
-        <Button Grid.Row="3" Grid.Column="3" Margin="3" Content="{Binding CANCEL}" Visibility="{Binding Visibility_cancel}" Command="{Binding Button_clik_cancel}"></Button>
+        <TextBlock Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Messege}" TextWrapping="Wrap"></TextBlock>
+        <Button Grid.Row="3" Grid.Column="1" Margin="2" Content="{Binding OK}" Visibility="{Binding Visibility_ok}" Command="{Binding Button_clik_ok}"></Button>
+        <Button Grid.Row="3" Grid.Column="2" Margin="2" Content="{Binding NO}" Visibility="{Binding Visibility_no}" Command="{Binding Button_clik_no}"></Button>
+        <Button Grid.Row="3" Grid.Column="3" Margin="2" Content="{Binding CANCEL}" Visibility="{Binding Visibility_cancel}" Command="{Binding Button_clik_cancel}"></Button>
     </Grid>
 </Window>
