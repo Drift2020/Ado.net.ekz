@@ -346,10 +346,10 @@
 
                                 <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
                                 <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="End:"/>
-                                <DatePicker VerticalAlignment="Center"  IsDropDownOpen="True" SelectedDateFormat="Short"
+                                <DatePicker VerticalAlignment="Center"   SelectedDateFormat="Short"
                                 Grid.Column="1" Grid.Row="0" Height="auto" Text="{Binding Date_start, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <DatePicker VerticalAlignment="Center" IsDropDownOpen="True" SelectedDateFormat="Short"
+                                <DatePicker VerticalAlignment="Center" SelectedDateFormat="Short"
                                 Grid.Column="1" Grid.Row="1" Height="auto"
                                              Text="{Binding Date_end, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 

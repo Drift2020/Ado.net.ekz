@@ -1,8 +1,10 @@
 ﻿using Cash.Command;
+using Cash.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -12,10 +14,19 @@ namespace Cash.ViweModel
     class View_Model_Add_Article : View_Model_Base
     {
 
+        public View_Model_Add_Article(Person per)
+        {
+          
+            myDB = new CashDB();
+            myProfile = myDB.People.ToList().Find(x=>x.ID==per.ID);
+            List_product = myDB.Products.ToList();
+        }
+
         #region Pole
+        Person myProfile;
         public Action Add;
-        public Action New_category;
-        public Action New_product;
+        CashDB myDB;
+        Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
 
         #region button_ok
         string button_ok;
@@ -34,11 +45,17 @@ namespace Cash.ViweModel
         string price;
         public string Price
         {
-            get { return price; }
             set
             {
-                price = value;
+                bool is_ok = regex_price.IsMatch(value);
+
+                if (is_ok || value == "")
+                    price = value;
                 OnPropertyChanged(nameof(Price));
+            }
+            get
+            {
+                return price;
             }
         }
         #endregion
@@ -69,48 +86,25 @@ namespace Cash.ViweModel
         }
         #endregion specification
 
-        #region name
-        string name;
-        public string Name
+        #region type
+        bool type=false;
+        public bool Type
         {
-            get { return name; }
+            get { return type; }
             set
             {
-                name = value;
-                OnPropertyChanged(nameof(Name));
+                type = value;
+                OnPropertyChanged(nameof(Type));
             }
         }
         #endregion name
 
-        #region surname
-        string surname;
-        public string Surname
-        {
-            get { return surname; }
-            set
-            {
-                surname = value;
-                OnPropertyChanged(nameof(Surname));
-            }
-        }
-        #endregion
-
-        #region patronymic
-        string patronymic;
-        public string Patronymic
-        {
-            get { return patronymic; }
-            set
-            {
-                patronymic = value;
-                OnPropertyChanged(nameof(Patronymic));
-            }
-        }
-        #endregion
+      
 
         #endregion Pole
 
         #region Code
+
         #endregion Code
 
 
@@ -131,74 +125,100 @@ namespace Cash.ViweModel
         private void Execute_add(object o)
         {
 
-          
 
 
-           
+            Final temp = new Final();
+            temp.Date = Convert.ToDateTime(date);
+            temp.Money = Convert.ToInt32(price);
+            temp.Product = select_item_product;
+            temp.ProductID = select_item_product.ID;
+            temp.Specific = specification;
+            temp.Person = myProfile;
+            temp.PersonID = myProfile.ID;
+            temp.Type = type;
+            myDB.Finals.Add(temp);
+            myDB.SaveChanges();
+
+            Add();
+
+
 
         }
         private bool CanExecute_add(object o)
         {
+            if(price!=null&& price.Length>0&&
+                date!=null && date.Length>0 &&
+                select_item_product!=null)
             return true;
+            return false;
         }
         #endregion
-        #region new category
-        private DelegateCommand _Command_new_category;
-        public ICommand Button_clik_new_category
+        #region editor
+        private DelegateCommand _Command_editor;
+        public ICommand Button_clik_editor
         {
             get
             {
-                if (_Command_new_category == null)
+                if (_Command_editor == null)
                 {
-                    _Command_new_category = new DelegateCommand(Execute_new_category, CanExecute_new_category);
+                    _Command_editor = new DelegateCommand(Execute_editor, CanExecute_editor);
                 }
-                return _Command_new_category;
+                return _Command_editor;
             }
         }
-        private void Execute_new_category(object o)
+        private void Execute_editor(object o)
         {
 
 
+            Editor edit_window = new Editor();
+            View_Model_Editor model = new View_Model_Editor();
+            edit_window.DataContext = model;
 
 
+            edit_window.ShowDialog();
+            myDB = new CashDB();
+            List_product = myDB.Products.ToList();
+            OnPropertyChanged(nameof(List_product));
 
 
         }
-        private bool CanExecute_new_category(object o)
+        private bool CanExecute_editor(object o)
         {
             return true;
         }
         #endregion
-        #region new product
-        private DelegateCommand _Command_new_product;
-        public ICommand Button_clik_new_product
-        {
-            get
-            {
-                if (_Command_new_product == null)
-                {
-                    _Command_new_product = new DelegateCommand(Execute_new_product, CanExecute_new_product);
-                }
-                return _Command_new_product;
-            }
-        }
-        private void Execute_new_product(object o)
-        {
 
-
-
-
-
-
-        }
-        private bool CanExecute_new_product(object o)
-        {
-            return true;
-        }
-        #endregion
         #endregion Command
 
         #region List
+        List<Product> list_product;
+        public List<Product> List_product
+        {
+            get
+            {
+                return list_product;
+            }
+            set
+            {
+                list_product = value;
+                OnPropertyChanged(nameof(List_product));
+            }
+        }
+
+        Product select_item_product;
+        public Product Select_item_product
+        {
+            set
+            {
+                select_item_product = value;
+                OnPropertyChanged(nameof(Select_item_product));
+            }
+            get
+            {
+                return select_item_product;
+            }
+        }
+
 
         #endregion
 

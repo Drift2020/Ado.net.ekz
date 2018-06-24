@@ -15,53 +15,16 @@ namespace Cash.ViweModel
 {
     class Viwe_Model_Index : View_Model_Base
     {
-        public CashDB myDB = new CashDB();
+     
 
-        Person my_profile=new Person();
-
-        public Viwe_Model_Index(Person _my_profile)
-        {
-            my_profile = _my_profile;
-            foreach (var i in myDB.Finals.ToList())
-                if(my_profile.FamilyID==i.Person.FamilyID)
-                    Link_final.Add(new List_view_final_my(i));
-
-
-            category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
-            foreach (var i in myDB.Categories)
-            {
-                SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
-                temp.Item = i;
-                category_list.Add(temp);
-            }
-
-            goods_list = new ObservableCollection<SelectableItemWrapper<Product>>();
-            foreach (var i in myDB.Products)
-            {
-                SelectableItemWrapper<Product> temp = new SelectableItemWrapper<Product>();
-                temp.Item = i;
-                goods_list.Add(temp);
-            }
-
-            people_list = new ObservableCollection<SelectableItemWrapper<List_view_person>>();
-            foreach (var i in myDB.People)
-            {
-                SelectableItemWrapper<List_view_person> temp = new SelectableItemWrapper<List_view_person>();
-                temp.Item =new List_view_person(i);
-                if(i.FamilyID== my_profile.FamilyID)
-                people_list.Add(temp);
-            }
-
-
-            
-            
-        }
+      
         #region Pole
-
-
+        public CashDB myDB = new CashDB();
+        Person my_profile = new Person();
+        Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
         #region Filter
 
-        Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
+
 
         #region Product
 
@@ -365,13 +328,50 @@ namespace Cash.ViweModel
         #endregion Pole
 
         #region Code
+        public Viwe_Model_Index(Person _my_profile)
+        {
+            my_profile = _my_profile;
+            foreach (var i in myDB.Finals.ToList())
+                if (my_profile.FamilyID == i.Person.FamilyID)
+                    Link_final.Add(new List_view_final_my(i));
 
+
+            category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
+            foreach (var i in myDB.Categories)
+            {
+                SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
+                temp.Item = i;
+                category_list.Add(temp);
+            }
+
+            goods_list = new ObservableCollection<SelectableItemWrapper<Product>>();
+            foreach (var i in myDB.Products)
+            {
+                SelectableItemWrapper<Product> temp = new SelectableItemWrapper<Product>();
+                temp.Item = i;
+                goods_list.Add(temp);
+            }
+
+            people_list = new ObservableCollection<SelectableItemWrapper<List_view_person>>();
+            foreach (var i in myDB.People)
+            {
+                SelectableItemWrapper<List_view_person> temp = new SelectableItemWrapper<List_view_person>();
+                temp.Item = new List_view_person(i);
+                if (i.FamilyID == my_profile.FamilyID)
+                    people_list.Add(temp);
+            }
+
+
+
+
+        }
         void Set_new_items()
         {
             Link_final.Clear();
             foreach (var i in myDB.Finals.ToList())
                 if (my_profile.FamilyID == i.Person.FamilyID)
                     Link_final.Add(new List_view_final_my(i));
+            OnPropertyChanged(nameof(Link_final));
 
             category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
             foreach (var i in myDB.Categories)
@@ -414,7 +414,7 @@ namespace Cash.ViweModel
 
             Add_Article my_add = new Add_Article();
 
-            View_Model_Add_Article my_model_add = new View_Model_Add_Article();
+            View_Model_Add_Article my_model_add = new View_Model_Add_Article(my_profile);
 
 
             if (my_model_add.Add == null)
