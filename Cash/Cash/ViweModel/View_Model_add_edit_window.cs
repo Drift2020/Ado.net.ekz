@@ -73,11 +73,7 @@ namespace Cash.ViweModel
         private void Execute_ok(object o)
         {
 
-
-
             OK();
-
-
         }
         private bool CanExecute_ok(object o)
         {
@@ -89,8 +85,5 @@ namespace Cash.ViweModel
 
         #endregion command
 
-        #region List
-
-        #endregion
     }
 }

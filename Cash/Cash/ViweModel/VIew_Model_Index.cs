@@ -365,6 +365,33 @@ namespace Cash.ViweModel
         #endregion Pole
 
         #region Code
+
+        void Set_new_items()
+        {
+            Link_final.Clear();
+            foreach (var i in myDB.Finals.ToList())
+                if (my_profile.FamilyID == i.Person.FamilyID)
+                    Link_final.Add(new List_view_final_my(i));
+
+            category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
+            foreach (var i in myDB.Categories)
+            {
+                SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
+                temp.Item = i;
+                category_list.Add(temp);
+            }
+            OnPropertyChanged(nameof(Category_list));
+
+            goods_list = new ObservableCollection<SelectableItemWrapper<Product>>();
+            foreach (var i in myDB.Products)
+            {
+                SelectableItemWrapper<Product> temp = new SelectableItemWrapper<Product>();
+                temp.Item = i;
+                goods_list.Add(temp);
+            }
+            OnPropertyChanged(nameof(Goods_list));
+        }
+
         #endregion Code
 
 
@@ -480,6 +507,7 @@ namespace Cash.ViweModel
         private DelegateCommand _Command_editor;
         public ICommand Button_clik_editor
         {
+            
             get
             {
                 if (_Command_editor == null)
@@ -498,6 +526,9 @@ namespace Cash.ViweModel
 
 
             edit_window.ShowDialog();
+            myDB = new CashDB();
+            Set_new_items();
+
         }
         private bool CanExecute_editor(object o)
         {

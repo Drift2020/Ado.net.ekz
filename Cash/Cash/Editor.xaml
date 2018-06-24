@@ -11,9 +11,10 @@
             <TabItem Header="Product">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                       
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>
@@ -21,15 +22,43 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
-                    <ListBox Grid.Column="0" Grid.ColumnSpan="3">
-                      
-                        
-                    </ListBox>
+                    <ListView   SelectedItem="{Binding Select_item_product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   ItemsSource="{Binding List_product ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                ScrollViewer.HorizontalScrollBarVisibility="Visible" Grid.Column="0" Grid.ColumnSpan="3">
+                        <ListView.View >
+                            <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="Employee Information" ScrollViewer.HorizontalScrollBarVisibility="Visible">
 
-                    <Button Command="{Binding Button_clik_add_product}" Grid.Column="0" Grid.Row="1" Margin="10" Content="Add"/>
-                    <Button Command="{Binding Button_clik_edit_product}" Grid.Column="1" Grid.Row="1" Margin="10" Content="Edit"/>
-                    <Button Command="{Binding Button_clik_delete_product}" Grid.Column="2" Grid.Row="1" Margin="10" Content="Delete"/>
-                   
+                                <GridViewColumn DisplayMemberBinding="{Binding Name , UpdateSourceTrigger=PropertyChanged}" Header="Name" Width="100"/>
+
+                                <GridViewColumn  Header="Category" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ListView  ItemsSource="{Binding Categories}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Name}" />
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+
+
+                            </GridView>
+                        </ListView.View>
+
+
+                    </ListView>
+
+                    <Button Command="{Binding Button_clik_add_product}" Grid.Column="0" Grid.Row="1" Content="Add" 
+                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100"/>
+                    <Button Command="{Binding Button_clik_edit_product}" Grid.Column="1" Grid.Row="1" Content="Edit"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100"/>
+                    <Button Command="{Binding Button_clik_delete_product}" Grid.Column="2" Grid.Row="1" Content="Delete"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100"/>
+
                 </Grid>
             </TabItem>
             <TabItem Header="categories">
@@ -44,18 +73,24 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
-                    <ListBox Grid.Column="0" Grid.ColumnSpan="3">
+                    <ListView ItemsSource="{Binding List_category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              SelectedItem="{Binding Select_item_category,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                              Grid.Row="0" Grid.ColumnSpan="4" Margin="2,2,2,2.333" SelectionMode="Single">
 
-
-                    </ListBox>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
                     <Button Command="{Binding Button_clik_add_category}" Grid.Column="0" Grid.Row="1" Margin="10" Content="Add"/>
                     <Button Command="{Binding Button_clik_edit_category}" Grid.Column="1" Grid.Row="1" Margin="10" Content="Edit"/>
                     <Button Command="{Binding Button_clik_delete_category}" Grid.Column="2" Grid.Row="1" Margin="10" Content="Delete"/>
-                   
+
                 </Grid>
             </TabItem>
-            
+
         </TabControl>
 
     </Grid>
