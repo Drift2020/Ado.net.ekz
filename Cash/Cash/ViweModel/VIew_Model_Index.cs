@@ -362,7 +362,7 @@ namespace Cash.ViweModel
 
         #region Month Comparison
 
-        Regex regex_year = new Regex(@"^[1-9][0-9]{3}$");
+        Regex regex_year = new Regex(@"^\s*(\+|-)?((\d+?))\s*$$");
 
         #region Month start
 
@@ -409,7 +409,7 @@ namespace Cash.ViweModel
             {
                 bool is_ok = regex_year.IsMatch(value);
 
-                if (is_ok || value == "")
+                if (is_ok&& value.Length<5 || value == "")
                     year_start = value;
                 OnPropertyChanged(nameof(Year_start));
             }
@@ -431,7 +431,7 @@ namespace Cash.ViweModel
             {
                 bool is_ok = regex_year.IsMatch(value);
 
-                if (is_ok || value == "")
+                if (is_ok && value.Length < 5 || value == "")
                     year_end = value;
                 OnPropertyChanged(nameof(Year_end));
             }
@@ -658,7 +658,7 @@ namespace Cash.ViweModel
                 goods_list.Add(temp);
             }
             OnPropertyChanged(nameof(Goods_list));
-            VMSelectedTabIndex = 0;
+           
 
 
         }
@@ -701,6 +701,208 @@ namespace Cash.ViweModel
 
         void Month_Comparison()
         {
+            decimal c_s, c_e, i_s, i_e, end_c,end_i;
+
+
+            var Temp1 = from i in Link_final                       
+                        where i.Date.Month == select_item_month_viwe_start.id &&
+                              i.Date.Year == Convert.ToInt32(year_start)
+                        select i;
+
+            var Temp2 = from i in Link_final
+                        where i.Date.Month == select_item_month_viwe_end.id &&
+                              i.Date.Year == Convert.ToInt32(year_end)
+                        select i;
+
+
+            var temp_costs1 = from i in Temp1
+                              where i.Type == "+"
+                       select (i.Money);
+            var temp_costs2 = from i in Temp2
+                              where i.Type == "+"
+                              select (i.Money);
+            var temp_income1 = from i in Temp1
+                               where i.Type == "-"
+                               select (i.Money);
+            var temp_income2 = from i in Temp2
+                               where i.Type == "-"
+                               select (i.Money);
+
+            if (temp_costs1.Count() > 0)
+            {
+                c_s = temp_costs1.ToList().Sum();
+               
+            }
+            else
+            {
+                c_s = 0;
+               
+            }
+
+
+            if (temp_costs2.Count() > 0)
+            {
+                c_e = temp_costs2.ToList().Sum();
+              
+            }
+            else
+            {
+                c_e = 0;
+               
+            }
+
+
+            if (temp_income1.Count() > 0)
+            {
+                i_s = temp_income1.ToList().Sum();
+               
+            }
+            else
+            {
+                i_s = 0;
+               
+            }
+
+
+            if (temp_income2.Count() > 0)
+            {
+                i_e = temp_income2.ToList().Sum();             
+            }
+            else
+            {
+                i_e = 0;              
+            }
+
+
+
+            if (c_s > c_e)
+            {
+                Costs_is = ">";
+            }
+            else if (c_s < c_e)
+            {
+                Costs_is = "<";
+            }
+            else
+            {
+                Costs_is = "=";
+            }
+
+
+            if (i_s > i_e)
+            {
+                Income_is = ">";
+            }
+            else if (i_s < i_e)
+            {
+                Income_is = "<";
+            }
+            else
+            {
+                Income_is = "=";
+            }
+
+
+
+
+            if (temp_costs1.Count() > 0)
+            {
+                string proz = (100 * c_s / (c_s + i_s)).ToString();
+                if(proz.IndexOf(",")==-1)
+                    Costs_start = c_s.ToString() + " / " + proz; 
+                else if(proz.IndexOf(",")+3== proz.Length)
+                    Costs_start = c_s.ToString() + " / " + proz;
+                else
+                    Costs_start = c_s.ToString() + " / " + proz.Substring(0, proz.IndexOf(",") + 3);
+                Costs_start += "%";
+            }
+            else
+            {
+                
+                Costs_start = "0 / 0%";
+            }
+         
+           
+            if (temp_costs2.Count() > 0)
+            {
+                string proz = (100 * c_e / (c_e + i_e)).ToString();
+                if (proz.IndexOf(",") == -1)
+                    Costs_end = c_e.ToString() + " / " + proz;
+                else if (proz.IndexOf(",") + 3 == proz.Length)
+                    Costs_end = c_e.ToString() + " / " + proz;
+                else
+                    Costs_end = c_e.ToString() + " / " + proz.Substring(0, proz.IndexOf(",") + 3);
+                Costs_end += "%";
+            }
+            else
+            {
+                
+                Costs_end = "0 / 0%";
+            }
+
+            
+            if (temp_income1.Count() > 0)
+            {
+                string proz = (100 * i_s / (c_s + i_s)).ToString();
+                if (proz.IndexOf(",") == -1)
+                    Income_start = i_s.ToString() + " / " + proz;
+                else if (proz.IndexOf(",") + 3 == proz.Length)
+                    Income_start = i_s.ToString() + " / " + proz;
+                else
+                    Income_start = i_s.ToString() + " / " + proz.Substring(0, proz.IndexOf(",") + 3);
+                Income_start += "%";
+            }
+            else
+            {
+                
+                Income_start = "0 / 0%";
+            }
+
+           
+            if (temp_income2.Count() > 0)
+            {
+                string proz = (100 * i_e / (c_e + i_e)).ToString();
+                if (proz.IndexOf(",") == -1)
+                    Income_end = i_e.ToString() + " / " + proz;
+                else if (proz.IndexOf(",") + 3 == proz.Length)
+                    Income_end = i_e.ToString() + " / " + proz;
+                else
+                    Income_end = i_e.ToString() + " / " + proz.Substring(0, proz.IndexOf(",") + 3);
+                Income_end += "%";
+            }
+            else
+            {
+               
+                Income_end = "0 / 0%";
+            }
+
+
+
+            end_c  = (c_s - c_e);
+            end_i = (i_s-i_e);
+
+
+            string proz_d_c = (100 * end_c / (end_c + end_i)).ToString();
+            string proz_d_i = (100 * end_i / (end_c + end_i)).ToString();
+
+            if (proz_d_i.IndexOf(",") == -1)
+                Income_d = end_i.ToString() + " / " + proz_d_c;
+            else if (proz_d_i.IndexOf(",") + 3 == proz_d_i.Length)
+                Income_d = end_i.ToString() + " / " + proz_d_i;
+            else
+                Income_d = end_i.ToString() + " / " + proz_d_i.Substring(0, proz_d_i.IndexOf(",") + 3);
+
+
+            if (proz_d_c.IndexOf(",") == -1)
+                Costs_d = end_c.ToString() + " / " + proz_d_c;
+            else if (proz_d_c.IndexOf(",") + 3 == proz_d_c.Length)
+                Costs_d = end_c.ToString() + " / " + proz_d_c;
+            else
+                Costs_d = end_c.ToString() + " / " + proz_d_c.Substring(0, proz_d_c.IndexOf(",") + 3);
+
+            Costs_d += "%";
+            Income_d += "%";
+
 
         }
         #endregion Code
@@ -890,7 +1092,37 @@ namespace Cash.ViweModel
         }
         #endregion  Log out
 
+        #region Add
+        private DelegateCommand _Command_Check;
+        public ICommand Button_clik_Check
+        {
+            get
+            {
+                if (_Command_Check == null)
+                {
+                    _Command_Check = new DelegateCommand(Execute_Check, CanExecute_Check);
+                }
+                return _Command_Check;
+            }
+        }
+        private void Execute_Check(object o)
+        {
 
+            Month_Comparison();
+
+        }
+        private bool CanExecute_Check(object o)
+        {
+            if (select_item_month_viwe_start != null &&
+                select_item_month_viwe_end != null &&
+                year_start!=null &&
+                year_start.Length > 0&&
+                 year_end != null &&
+                year_end.Length > 0)
+            return true;
+            return false;
+        }
+        #endregion Add
         #endregion Command
 
         #region List
@@ -1072,7 +1304,7 @@ namespace Cash.ViweModel
 
                 IEnumerable<List_view_final_my> List_final2 = null;
 
-                Set_new_items();
+               // Set_new_items();
 
                 if (product)
                 {
