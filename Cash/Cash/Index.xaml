@@ -357,6 +357,19 @@
                 </Grid>
 
             </TabItem>
+
+            <TabItem Header="Month Comparison" Padding="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                  
+                   
+                </Grid>
+
+            </TabItem>
         </TabControl>
 
 

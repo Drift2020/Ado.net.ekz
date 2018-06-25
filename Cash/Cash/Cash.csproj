@@ -115,6 +115,9 @@
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Right.cs" />
+    <Compile Include="My_account.xaml.cs">
+      <DependentUpon>My_account.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="ViweModel\View_Model_add_edit_window.cs" />
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Messege.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="My_account.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
