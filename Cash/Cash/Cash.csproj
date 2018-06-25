@@ -100,6 +100,7 @@
     <Compile Include="Code\BindingErrorTraceListener.cs" />
     <Compile Include="Code\List_view_final.cs" />
     <Compile Include="Code\List_view_person.cs" />
+    <Compile Include="Code\Month_Viwe.cs" />
     <Compile Include="Code\MyMaskedTextBox.cs" />
     <Compile Include="Code\SelectableItemWrapper.cs" />
     <Compile Include="Editor.xaml.cs">

@@ -119,8 +119,8 @@
                               Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
 
                     <Button Command="{Binding Button_clik_editor}" Grid.Column="0"   Grid.Row="3"  VerticalAlignment="Center" MaxWidth="100" Content="Editor"/>
-                 
-                    <Button Command="{Binding Button_clik_ok}" Grid.Column="1"  Grid.Row="3" VerticalAlignment="Center" MaxWidth="100" Content="Add" />
+
+                    <Button Command="{Binding Button_clik_ok}" Grid.Column="1"  Grid.Row="3" VerticalAlignment="Center" MaxWidth="100" Content="{Binding Button_ok,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
         </Grid>

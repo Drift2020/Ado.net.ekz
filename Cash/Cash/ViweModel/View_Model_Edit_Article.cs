@@ -1,8 +1,10 @@
 ﻿using Cash.Command;
+using Cash.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -12,8 +14,14 @@ namespace Cash.ViweModel
     {
         #region Pole
         public Action Edit;
-        public Action New_category;
-        public Action New_product;
+     
+
+      
+      
+        CashDB myDB = new CashDB();
+        Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
+
+        Final my_z=new Final();
 
         #region button_ok
         string button_ok;
@@ -26,20 +34,30 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Button_ok));
             }
         }
+
+        public bool is_ok;
         #endregion button_ok
 
         #region price
-        string price;
+        string price="";
         public string Price
         {
-            get { return price; }
             set
             {
-                price = value;
+
+                value = value.Substring(0, value.Length-2);
+                bool is_ok = regex_price.IsMatch(value);
+
+                if (is_ok || value == "")
+                    price = value;
                 OnPropertyChanged(nameof(Price));
             }
+            get
+            {
+                return price;
+            }
         }
-        #endregion price
+        #endregion
 
         #region date
         string date;
@@ -52,7 +70,7 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(Date));
             }
         }
-        #endregion date
+        #endregion
 
         #region specification
         string specification;
@@ -67,52 +85,46 @@ namespace Cash.ViweModel
         }
         #endregion specification
 
-        #region name
-        string name;
-        public string Name
+        #region type
+        bool type = false;
+        public bool Type
         {
-            get { return name; }
+            get { return type; }
             set
             {
-                name = value;
-                OnPropertyChanged(nameof(Name));
+                type = value;
+                OnPropertyChanged(nameof(Type));
             }
         }
         #endregion name
 
-        #region surname
-        string surname;
-        public string Surname
-        {
-            get { return surname; }
-            set
-            {
-                surname = value;
-                OnPropertyChanged(nameof(Surname));
-            }
-        }
-        #endregion surname 
 
-        #region patronymic
-        string patronymic;
-        public string Patronymic
-        {
-            get { return patronymic; }
-            set
-            {
-                patronymic = value;
-                OnPropertyChanged(nameof(Patronymic));
-            }
-        }
-        #endregion patronymic
+
         #endregion
+
+
+
         #region Code
+
+        public View_Model_Edit_Article(Final temp)
+        {
+            List_product = myDB.Products.ToList();
+            my_z = temp;
+            Date = temp.Date.ToString();
+            Price = temp.Money.ToString();
+            Type = temp.Type;
+            Specification = temp.Specific;
+
+            Select_item_product = List_product.Find(x=>x.ID==my_z.Product.ID);
+           
+        }
 
         #endregion Code
 
 
         #region Command
-        #region
+
+        #region edit
         private DelegateCommand Command_edit;
         public ICommand Button_clik_ok
         {
@@ -127,76 +139,103 @@ namespace Cash.ViweModel
         }
         private void Execute_edit(object o)
         {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+            if (messege_view_Model._NO == null)
+                messege_view_Model._NO = new Action(messege.Close);
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = "Are you sure you want to change this entry?";
+            messege_view_Model.Messeg_Titel = "Edit entry";
+            messege.ShowDialog();
 
+            if (messege_view_Model.is_ok)
+            {
 
+                my_z.Specific = specification;
+                my_z.Date = Convert.ToDateTime( date);
+                my_z.Money = Convert.ToDecimal(price);
+                my_z.Type = type;
+                my_z.Product = select_item_product;
+                my_z.ProductID = select_item_product.ID;
+                is_ok = true;
+                Edit();
 
-
-
+            }
         }
         private bool CanExecute_edit(object o)
         {
             return true;
         }
-        #endregion
-        #region new category
-        private DelegateCommand Command_new_category;
-        public ICommand Button_clik_new_category
+        #endregion edit
+
+        #region editor
+        private DelegateCommand _Command_editor;
+        public ICommand Button_clik_editor
         {
             get
             {
-                if (Command_new_category == null)
+                if (_Command_editor == null)
                 {
-                    Command_new_category = new DelegateCommand(Execute_new_category, CanExecute_new_category);
+                    _Command_editor = new DelegateCommand(Execute_editor, CanExecute_editor);
                 }
-                return Command_new_category;
+                return _Command_editor;
             }
         }
-        private void Execute_new_category(object o)
+        private void Execute_editor(object o)
         {
 
 
+            Editor edit_window = new Editor();
+            View_Model_Editor model = new View_Model_Editor();
+            edit_window.DataContext = model;
 
 
+            edit_window.ShowDialog();
+            myDB = new CashDB();
+            List_product = myDB.Products.ToList();
+            OnPropertyChanged(nameof(List_product));
 
 
         }
-        private bool CanExecute_new_category(object o)
+        private bool CanExecute_editor(object o)
         {
             return true;
         }
         #endregion
-        #region new product
-        private DelegateCommand Command_new_product;
-        public ICommand Button_clik_new_product
-        {
-            get
-            {
-                if (Command_new_product == null)
-                {
-                    Command_new_product = new DelegateCommand(Execute_new_product, CanExecute_new_product);
-                }
-                return Command_new_product;
-            }
-        }
-        private void Execute_new_product(object o)
-        {
 
-
-
-
-
-
-        }
-        private bool CanExecute_new_product(object o)
-        {
-            return true;
-        }
-        #endregion
         #endregion Command
 
         #region List
+        List<Product> list_product;
+        public List<Product> List_product
+        {
+            get
+            {
+                return list_product;
+            }
+            set
+            {
+                list_product = value;
+                OnPropertyChanged(nameof(List_product));
+            }
+        }
 
-        #endregion
+        Product select_item_product;
+        public Product Select_item_product
+        {
+            set
+            {
+                select_item_product = value;
+                OnPropertyChanged(nameof(Select_item_product));
+            }
+            get
+            {
+                return select_item_product;
+            }
+        }
+        #endregion List
     }
 }

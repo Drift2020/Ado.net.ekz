@@ -14,13 +14,7 @@ namespace Cash.ViweModel
     class View_Model_Add_Article : View_Model_Base
     {
 
-        public View_Model_Add_Article(Person per)
-        {
-          
-            myDB = new CashDB();
-            myProfile = myDB.People.ToList().Find(x=>x.ID==per.ID);
-            List_product = myDB.Products.ToList();
-        }
+   
 
         #region Pole
         Person myProfile;
@@ -99,12 +93,18 @@ namespace Cash.ViweModel
         }
         #endregion name
 
-      
+
 
         #endregion Pole
 
         #region Code
+        public View_Model_Add_Article(Person per)
+        {
 
+            myDB = new CashDB();
+            myProfile = myDB.People.ToList().Find(x => x.ID == per.ID);
+            List_product = myDB.Products.ToList();
+        }
         #endregion Code
 
 

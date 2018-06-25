@@ -172,7 +172,7 @@
 
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Category" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1" />
-                                    <ListView ItemsSource="{Binding Category_list}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="2">
+                                    <ListView ItemsSource="{Binding Category_list}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="2" SelectionMode="Single">
                                     
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
@@ -292,7 +292,7 @@
                                     <TextBlock Text="FIO" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                                Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="0"/>
 
-                                    <ListView ItemsSource="{Binding People_list}" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Margin="2">
+                                    <ListView ItemsSource="{Binding People_list}" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Margin="2" SelectionMode="Single">
 
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
@@ -359,14 +359,121 @@
             </TabItem>
 
             <TabItem Header="Month Comparison" Padding="0">
+                
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Start">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-                  
-                   
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                           
+                        </Grid.RowDefinitions>
+
+                            <ComboBox ItemsSource="{Binding List_month_viwe_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                      Grid.Column="1" MaxWidth="130" VerticalAlignment="Center"/>
+                            <TextBlock Text="Month:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        
+                            <TextBox Grid.Column="1" MaxWidth="130" 
+                                     Grid.Row="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="Year:" VerticalAlignment="Center"
+                                       Grid.Row="1" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="End" Grid.Column="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+
+                            </Grid.RowDefinitions>
+
+                            <ComboBox ItemsSource="{Binding List_month_viwe_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                Grid.Column="1" MaxWidth="130" VerticalAlignment="Center"/>
+                            <TextBlock Text="Month:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <TextBox Grid.Column="1" MaxWidth="130" 
+                                     Grid.Row="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="Year:" VerticalAlignment="Center"
+                                       Grid.Row="1" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Statistics" Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Costs:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Income:" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                        Grid.Row="1"/>
+
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Grid.Column="1"/>
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                        Grid.Row="1" Grid.Column="1"/>
+
+                            <TextBlock Text="Costs:" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Income:" VerticalAlignment="Center"
+                                       Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Grid.Column="4"/>
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                        Grid.Row="1" Grid.Column="4"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Difference" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Costs:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Income:" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                        Grid.Row="1"/>
+
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Grid.Column="1"/>
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                        Grid.Row="1" Grid.Column="1"/>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
 
             </TabItem>

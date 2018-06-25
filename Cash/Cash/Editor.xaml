@@ -25,7 +25,7 @@
 
                     <ListView   SelectedItem="{Binding Select_item_product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                    ItemsSource="{Binding List_product ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
-                                ScrollViewer.HorizontalScrollBarVisibility="Visible" Grid.Column="0" Grid.ColumnSpan="3">
+                                ScrollViewer.HorizontalScrollBarVisibility="Visible" Grid.Column="0" Grid.ColumnSpan="3" SelectionMode="Single">
                         <ListView.View >
                             <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="Employee Information" ScrollViewer.HorizontalScrollBarVisibility="Visible">
 
@@ -34,7 +34,7 @@
                                 <GridViewColumn  Header="Category" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ListView  ItemsSource="{Binding Categories}">
+                                            <ListView  ItemsSource="{Binding Categories}" SelectionMode="Single">
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate>
                                                         <TextBlock Text="{Binding Name}" />

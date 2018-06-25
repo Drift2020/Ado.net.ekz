@@ -15,7 +15,9 @@ namespace Cash.ViweModel
 {
     class Viwe_Model_Index : View_Model_Base
     {
-     
+        string [] month = {"January", "February", "March",
+            "April", "May", "June", "July", "August", "September",
+            "October", "November", "December" };
 
       
         #region Pole
@@ -357,6 +359,13 @@ namespace Cash.ViweModel
 
         #endregion
 
+        #region Month Comparison
+
+
+
+
+        #endregion Month Comparison
+
         #endregion Pole
 
         #region Code
@@ -393,6 +402,10 @@ namespace Cash.ViweModel
                     people_list.Add(temp);
             }
 
+            for (int i = 0; i < 12; i++)
+                list_month_viwe_start.Add(new Month_Viwe(month[i], i + 1));
+            for (int i = 0; i < 12; i++)
+                list_month_viwe_end.Add(new Month_Viwe(month[i], i + 1));
 
             SetCosts();
             SetIncome();
@@ -422,8 +435,9 @@ namespace Cash.ViweModel
                 goods_list.Add(temp);
             }
             OnPropertyChanged(nameof(Goods_list));
+            VMSelectedTabIndex = 0;
 
-           
+
         }
         bool Levels()
         {
@@ -484,7 +498,7 @@ namespace Cash.ViweModel
             Add_Article my_add = new Add_Article();
 
             View_Model_Add_Article my_model_add = new View_Model_Add_Article(my_profile);
-
+            my_model_add.Button_ok = "Add";
 
             if (my_model_add.Add == null)
                 my_model_add.Add = new Action(my_add.Close);
@@ -521,26 +535,27 @@ namespace Cash.ViweModel
 
             Add_Article my_add = new Add_Article();
 
-            View_Model_Edit_Article my_model_Edit = new View_Model_Edit_Article();
-
+            View_Model_Edit_Article my_model_Edit = new View_Model_Edit_Article(select_item_final.final);
+            my_model_Edit.Button_ok = "Edit";
 
             if (my_model_Edit.Edit == null)
                 my_model_Edit.Edit = new Action(my_add.Close);
 
             my_add.DataContext = my_model_Edit;
 
-            //   my_model_add.Autor = _i_autor;
+           
 
             my_add.ShowDialog();
-            //if (my_model_add.is_add)
-            //{
-            //    my_photo.Add(new PhotoViewModel(my_model_add.Temp.Clone() as Photos));
-            //}
+            if (my_model_Edit.is_ok)
+            Set_new_items();
 
         }
         private bool CanExecute_Edit(object o)
         {
+            if(select_item_final!=null &&  Levels())
+          
             return true;
+            return false;
         }
         #endregion Edit
 
@@ -684,6 +699,8 @@ namespace Cash.ViweModel
 
         #endregion
 
+
+        #region filter
         #region list family
 
         List<Family> my_family = new List<Family>();
@@ -769,6 +786,49 @@ namespace Cash.ViweModel
         }
 
         #endregion
+
+        #endregion filter
+
+        #region Month Comparison
+
+        #region Month start
+
+        List<Month_Viwe> list_month_viwe_start = new List<Month_Viwe>();
+        public List<Month_Viwe> List_month_viwe_start
+        {
+            set
+            {
+                list_month_viwe_start = value;
+                OnPropertyChanged(nameof(List_month_viwe_start));
+            }
+            get
+            {
+                return list_month_viwe_start;
+            }
+        }
+
+        #endregion Month start
+
+        #region Month end
+
+        List<Month_Viwe> list_month_viwe_end = new List<Month_Viwe>();
+        public List<Month_Viwe> List_month_viwe_end
+        {
+            set
+            {
+                list_month_viwe_end = value;
+                OnPropertyChanged(nameof(List_month_viwe_end));
+            }
+            get
+            {
+                return list_month_viwe_end;
+            }
+        }
+
+        #endregion Month end
+
+        #endregion Month Comparison
+
 
         int vmSelectedTabIndex;
         public int VMSelectedTabIndex
