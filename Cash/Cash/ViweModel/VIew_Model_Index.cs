@@ -25,6 +25,7 @@ namespace Cash.ViweModel
         Person my_profile = new Person();
         Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
 
+
         #region Costs
         string costs;
         public string Costs
@@ -361,8 +362,230 @@ namespace Cash.ViweModel
 
         #region Month Comparison
 
+        Regex regex_year = new Regex(@"^[1-9][0-9]{3}$");
+
+        #region Month start
+
+        Month_Viwe select_item_month_viwe_start = null;
+        public Month_Viwe Select_item_month_viwe_start
+        {
+            set
+            {
+                select_item_month_viwe_start = value;
+                OnPropertyChanged(nameof(Select_item_month_viwe_start));
+            }
+            get
+            {
+                return select_item_month_viwe_start;
+            }
+        }
+
+        #endregion Month start
+
+        #region Month end
+
+        Month_Viwe select_item_month_viwe_end = null;
+        public Month_Viwe Select_item_month_viwe_end
+        {
+            set
+            {
+                select_item_month_viwe_end = value;
+                OnPropertyChanged(nameof(Select_item_month_viwe_end));
+            }
+            get
+            {
+                return select_item_month_viwe_end;
+            }
+        }
+
+        #endregion Month end
+
+        #region year start
+
+        string year_start="";
+        public string Year_start
+        {
+            set
+            {
+                bool is_ok = regex_year.IsMatch(value);
+
+                if (is_ok || value == "")
+                    year_start = value;
+                OnPropertyChanged(nameof(Year_start));
+            }
+            get
+            {
+                return year_start;
+            }
+        }
+
+        #endregion year start
+
+        #region year end
 
 
+        string year_end = "";
+        public string Year_end
+        {
+            set
+            {
+                bool is_ok = regex_year.IsMatch(value);
+
+                if (is_ok || value == "")
+                    year_end = value;
+                OnPropertyChanged(nameof(Year_end));
+            }
+            get
+            {
+                return year_end;
+            }
+        }
+
+
+        #endregion year end
+
+        #region costs_start
+
+        string costs_start = "";
+        public string Costs_start
+        {
+            set
+            {
+                costs_start = value;
+                OnPropertyChanged(nameof(Costs_start));
+            }
+            get
+            {
+                return costs_start;
+            }
+        }
+
+        #endregion costs_start
+
+        #region costs_end
+
+        string costs_end = "";
+        public string Costs_end
+        {
+            set
+            {
+                costs_end = value;
+                OnPropertyChanged(nameof(Costs_end));
+            }
+            get
+            {
+                return costs_end;
+            }
+        }
+
+        #endregion costs_end
+
+        #region Income_start
+
+        string income_start = "";
+        public string Income_start
+        {
+            set
+            {
+                income_start = value;
+                OnPropertyChanged(nameof(Income_start));
+            }
+            get
+            {
+                return income_start;
+            }
+        }
+
+        #endregion costs_start
+
+        #region Income_end
+
+        string income_end = "";
+        public string Income_end
+        {
+            set
+            {
+                income_end = value;
+                OnPropertyChanged(nameof(Income_end));
+            }
+            get
+            {
+                return income_end;
+            }
+        }
+
+        #endregion Income_end
+
+        #region Income_is
+
+        string income_is = "";
+        public string Income_is
+        {
+            set
+            {
+                income_is = value;
+                OnPropertyChanged(nameof(Income_is));
+            }
+            get
+            {
+                return income_is;
+            }
+        }
+
+        #endregion Income_is
+
+        #region Costs_is
+
+        string costs_is = "";
+        public string Costs_is
+        {
+            set
+            {
+                costs_is = value;
+                OnPropertyChanged(nameof(Costs_is));
+            }
+            get
+            {
+                return costs_is;
+            }
+        }
+
+        #endregion Costs_is
+
+        #region  Costs_d
+
+        string costs_d = "";
+        public string Costs_d {
+            set
+            {
+                costs_d = value;
+                OnPropertyChanged(nameof(Costs_d));
+            }
+            get
+            {
+                return costs_d;
+            }
+        }
+
+        #endregion Costs_d
+
+        #region  Income_d
+
+        string income_d = "";
+        public string Income_d
+        {
+            set
+            {
+                income_d = value;
+                OnPropertyChanged(nameof(Income_d));
+            }
+            get
+            {
+                return income_d;
+            }
+        }
+
+        #endregion Income_d
 
         #endregion Month Comparison
 
@@ -473,9 +696,14 @@ namespace Cash.ViweModel
             else
                 Income = "";
         }
+
+
+
+        void Month_Comparison()
+        {
+
+        }
         #endregion Code
-
-
 
 
         #region Command

@@ -383,12 +383,14 @@
                            
                         </Grid.RowDefinitions>
 
-                            <ComboBox ItemsSource="{Binding List_month_viwe_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                                      Grid.Column="1" MaxWidth="130" VerticalAlignment="Center"/>
+                            <!--<ComboBox ItemsSource="{Binding List_month_viwe_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                      SelectedItem="{Binding Select_item_month_viwe_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Grid.Column="1" MaxWidth="130" VerticalAlignment="Center"/>-->
                             <TextBlock Text="Month:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         
                             <TextBox Grid.Column="1" MaxWidth="130" 
-                                     Grid.Row="1" VerticalAlignment="Center"/>
+                                     Grid.Row="1" VerticalAlignment="Center"
+                                     Text="{Binding Year_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock Text="Year:" VerticalAlignment="Center"
                                        Grid.Row="1" HorizontalAlignment="Center"/>
                         </Grid>
@@ -406,12 +408,14 @@
 
                             </Grid.RowDefinitions>
 
-                            <ComboBox ItemsSource="{Binding List_month_viwe_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                Grid.Column="1" MaxWidth="130" VerticalAlignment="Center"/>
+                            <!--<ComboBox ItemsSource="{Binding List_month_viwe_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding Select_item_month_viwe_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                Grid.Column="1" MaxWidth="130" VerticalAlignment="Center"/>-->
                             <TextBlock Text="Month:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                             <TextBox Grid.Column="1" MaxWidth="130" 
-                                     Grid.Row="1" VerticalAlignment="Center"/>
+                                     Grid.Row="1" VerticalAlignment="Center"
+                                     Text="{Binding Year_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock Text="Year:" VerticalAlignment="Center"
                                        Grid.Row="1" HorizontalAlignment="Center"/>
                         </Grid>
@@ -436,18 +440,27 @@
                             <TextBlock Text="Income:" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                         Grid.Row="1"/>
 
-                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            <TextBlock Text="{Binding Costs_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Grid.Column="1"/>
-                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            <TextBlock Text="{Binding Income_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" 
                                         Grid.Row="1" Grid.Column="1"/>
+
+                            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Text="{Binding Costs_is,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Text="{Binding Income_is,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
                             <TextBlock Text="Costs:" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <TextBlock Text="Income:" VerticalAlignment="Center"
                                        Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center"/>
 
-                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            <TextBlock Text="{Binding Costs_end , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Grid.Column="4"/>
-                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            <TextBlock Text="{Binding Income_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" 
                                         Grid.Row="1" Grid.Column="4"/>
                         </Grid>
                     </GroupBox>
@@ -468,9 +481,11 @@
                             <TextBlock Text="Income:" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                         Grid.Row="1"/>
 
-                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            <TextBlock Text="{Binding Costs_d,  Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Grid.Column="1"/>
-                            <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            <TextBlock Text="{Binding Income_d, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" 
                                         Grid.Row="1" Grid.Column="1"/>
                         </Grid>
                     </GroupBox>
