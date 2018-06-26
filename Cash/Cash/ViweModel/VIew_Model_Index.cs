@@ -26,6 +26,7 @@ namespace Cash.ViweModel
         Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
 
 
+
         #region Costs
         string costs;
         public string Costs
@@ -591,7 +592,23 @@ namespace Cash.ViweModel
 
         #region Profiles
 
-       
+        #region Visibility
+
+        bool is_visibility;
+        public bool Is_visibility
+        {
+            set
+            {
+                is_visibility = true;
+                OnPropertyChanged(nameof(Is_visibility));
+            }
+            get
+            {
+                return is_visibility;
+            }
+        }
+
+        #endregion Visibility
 
         #endregion Profiles
 
@@ -601,6 +618,13 @@ namespace Cash.ViweModel
         public Viwe_Model_Index(Person _my_profile)
         {
             my_profile = _my_profile;
+
+            if (my_profile.Right.Level == 0)
+                Is_visibility = true;
+            else
+                Is_visibility = false;
+
+
             foreach (var i in myDB.Finals.ToList())
                 if (my_profile.FamilyID == i.Person.FamilyID)
                     Link_final.Add(new List_view_final_my(i));
@@ -630,6 +654,16 @@ namespace Cash.ViweModel
                 if (i.FamilyID == my_profile.FamilyID)
                     people_list.Add(temp);
             }
+
+            Profiles = new List<List_view_person>();
+            foreach (var i in myDB.People)
+            {
+                List_view_person temp = new List_view_person(i);
+                if (i.FamilyID == my_profile.FamilyID)
+                    Profiles.Add(temp);
+            }
+
+
 
             for (int i = 0; i < 12; i++)
                 list_month_viwe_start.Add(new Month_Viwe(month[i], i + 1));
@@ -664,8 +698,15 @@ namespace Cash.ViweModel
                 goods_list.Add(temp);
             }
             OnPropertyChanged(nameof(Goods_list));
-           
 
+            Profiles = new List<List_view_person>();
+            foreach (var i in myDB.People)
+            {
+                List_view_person temp = new List_view_person(i);
+                if (i.FamilyID == my_profile.FamilyID)
+                    Profiles.Add(temp);
+            }
+            OnPropertyChanged(nameof(Profiles));
 
         }
         bool Levels()
@@ -1074,29 +1115,29 @@ namespace Cash.ViweModel
         }
         #endregion Editor
 
-        #region Log out
-        private DelegateCommand _Command_log_out;
-        public ICommand Button_clik_log_out
+        #region profile
+        private DelegateCommand _Command_profile;
+        public ICommand Button_clik_profile
         {
             get
             {
-                if (_Command_log_out == null)
+                if (_Command_profile == null)
                 {
-                    _Command_log_out = new DelegateCommand(Execute_log_out, CanExecute_log_out);
+                    _Command_profile = new DelegateCommand(Execute_profile, CanExecute_profile);
                 }
-                return _Command_log_out;
+                return _Command_profile;
             }
         }
-        private void Execute_log_out(object o)
+        private void Execute_profile(object o)
         {
 
 
         }
-        private bool CanExecute_log_out(object o)
+        private bool CanExecute_profile(object o)
         {
             return true;
         }
-        #endregion  Log out
+        #endregion  profile
 
         #region Check
         private DelegateCommand _Command_Check;
@@ -1176,6 +1217,92 @@ namespace Cash.ViweModel
         }
 
         #endregion closining 
+
+
+        #region profile
+
+
+        #region Add
+        private DelegateCommand _Command_add_profile;
+        public ICommand Button_clik_add_profile
+        {
+            get
+            {
+                if (_Command_add_profile == null)
+                {
+                    _Command_add_profile = new DelegateCommand(Execute_add_profile, CanExecute_add_profile);
+                }
+                return _Command_add_profile;
+            }
+        }
+        private void Execute_add_profile(object o)
+        {
+
+        
+
+        }
+        private bool CanExecute_add_profile(object o)
+        {
+            return true;
+        }
+        #endregion Add
+
+        #region Edit
+        private DelegateCommand _Command_Edit_profile;
+        public ICommand Button_clik_edit_profile
+        {
+            get
+            {
+                if (_Command_Edit_profile == null)
+                {
+                    _Command_Edit_profile = new DelegateCommand(Execute_Edit_profile, CanExecute_Edit_profile);
+                }
+                return _Command_Edit_profile;
+            }
+        }
+        private void Execute_Edit_profile(object o)
+        {
+
+           
+
+        }
+        private bool CanExecute_Edit_profile(object o)
+        {
+            if (select_item_profile != null && Levels())
+
+                return true;
+            return false;
+        }
+        #endregion Edit
+
+        #region delete
+        private DelegateCommand _Command_del_profile;
+        public ICommand Button_clik_del_profile
+        {
+            get
+            {
+                if (_Command_del_profile == null)
+                {
+                    _Command_del_profile = new DelegateCommand(Execute_del_profile, CanExecute_del_profile);
+                }
+                return _Command_del_profile;
+            }
+        }
+        private void Execute_del_profile(object o)
+        {
+           
+
+        }
+        private bool CanExecute_del_profile(object o)
+        {
+            if (select_item_profile != null && Levels())
+                return true;
+            return false;
+        }
+        #endregion delete
+        #endregion profile
+
+
         #endregion Command
 
         #region List
@@ -1211,7 +1338,6 @@ namespace Cash.ViweModel
         }
 
         #endregion
-
 
         #region filter
         #region list family
@@ -1302,6 +1428,8 @@ namespace Cash.ViweModel
 
         #endregion filter
 
+        #region profiles
+
         List<List_view_person> profiles;
         public List<List_view_person> Profiles
         {
@@ -1316,10 +1444,19 @@ namespace Cash.ViweModel
             }
         }
 
-
-        #region profiles
-
-      
+        List_view_person select_item_profile = null;
+        public List_view_person Select_item_profile
+        {
+            set
+            {
+                select_item_profile = value;
+                OnPropertyChanged(nameof(Select_item_profile));
+            }
+            get
+            {
+                return select_item_profile;
+            }
+        }
 
         #endregion profiles
 

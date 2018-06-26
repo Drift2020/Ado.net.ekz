@@ -80,30 +80,76 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <TextBlock Text="Name:" VerticalAlignment="Center" HorizontalAlignment="Center"
+             
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="3">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Name:" VerticalAlignment="Center" HorizontalAlignment="Center"
                         Margin="0,5,0,5"   />
-                    <TextBlock Text="Surname:" VerticalAlignment="Center" HorizontalAlignment="Center"
+                      
+
+
+                        <TextBlock Grid.Column="1" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                         Margin="0,5,0,5" TextWrapping="Wrap"  />
+                       
+
+
+                        <TextBox Grid.Column="2" Text="{Binding New_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" 
                           Margin="0,5,0,5"  />
-                    <TextBlock Text="Patronymic:" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                       
+                        <TextBlock Text="Surname:" VerticalAlignment="Center" HorizontalAlignment="Center"
                           Margin="0,5,0,5"  />
+                      
+
+
+                       
+                        <TextBlock  Grid.Column="1" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                         Margin="0,5,0,5"   TextWrapping="Wrap" />
+                        
+
+                       
+                        <TextBox Grid.Column="2"  Text="{Binding New_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" 
+                          Margin="0,5,0,5"  />
+                      
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                       
+                        <TextBlock Text="Patronymic:" VerticalAlignment="Center" HorizontalAlignment="Center"
+                          Margin="0,5,0,5"  />
+
+
+                       
+                        <TextBlock  Grid.Column="1" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                          Margin="0,5,0,5"   TextWrapping="Wrap"/>
+
+
+                     
+                        <TextBox Grid.Column="2"  Text="{Binding New_patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" 
+                          Margin="0,5,0,5"  />
+                    </Grid>
                 </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
-                         Margin="0,5,0,5"   />
-                    <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
-                         Margin="0,5,0,5"   />
-                    <TextBlock Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
-                          Margin="0,5,0,5"  />
-                </StackPanel>
-                <StackPanel Grid.Column="2">
-                    <TextBox Text="{Binding New_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" 
-                          Margin="0,5,0,5"  />
-                    <TextBox Text="{Binding New_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" 
-                          Margin="0,5,0,5"  />
-                    <TextBox Text="{Binding New_patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" 
-                          Margin="0,5,0,5"  />
-                </StackPanel>
+              
 
 
 

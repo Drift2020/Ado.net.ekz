@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+      
         xmlns:local="clr-namespace:Cash"
         
         mc:Ignorable="d"
@@ -65,7 +64,7 @@
                 <Separator />
                 <MenuItem Command="{Binding Button_clik_editor}" Header="Editor..."/>
                 <Separator />
-                <MenuItem Command="{Binding Button_clik_log_out}" Header="Log out..."/>
+                <MenuItem Command="{Binding Button_clik_profile}" Header="Profile..."/>
 
             </MenuItem>
 
@@ -515,7 +514,8 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Profiles" Padding="0" Visibility="{Binding}">
+            <TabItem Header="Profiles" Padding="0" 
+                     Visibility="{Binding Is_visibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -538,7 +538,7 @@
                             </Grid.RowDefinitions>
 
                             <ListView ItemsSource="{Binding Profiles}" Grid.Row="0"
-                                        SelectedItem="{Binding}"
+                                      SelectedItem="{Binding Select_item_profile , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                       Grid.Column="0" Grid.ColumnSpan="3"
                                       Margin="2" SelectionMode="Single">
 
@@ -549,9 +549,9 @@
                                 </ListView.ItemTemplate>
                             </ListView>
 
-                            <Button Grid.Row="1" Margin="5" Content="Сhange" />
-                            <Button Grid.Row="1" Grid.Column="1"  Margin="5" Content="Remove" />
-                            <Button Grid.Row="1"  Grid.Column="2" Margin="5" Content="Adding" />
+                            <Button Grid.Row="1" Margin="5" Content="Сhange"  Command="{Binding Button_clik_edit_profile}"/>
+                            <Button Grid.Row="1" Grid.Column="1"  Margin="5"  Command="{Binding Button_clik_del_profile}" Content="Remove" />
+                            <Button Grid.Row="1"  Grid.Column="2" Margin="5"  Command="{Binding Button_clik_add_profile}" Content="Adding" />
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="End" Grid.Column="1">
@@ -574,7 +574,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Login: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding }" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
