@@ -120,7 +120,8 @@ namespace Cash.ViweModel
         }
         private void Execute_ok(object o)
         {
-            var temp = myDB.People.ToList().Find(x => x.Name.Contains(login));
+
+            var temp = myDB.People.ToList().Find(x => x.Login.Contains(login));
 
             if (temp==null)
             {
@@ -141,15 +142,7 @@ namespace Cash.ViweModel
                 OpenMessege("Passwords do not match, the minimum length is 4 characters.", "Error");
                 return;
             }
-            foreach (var i in myDB.People)
-            {
-                if (i.Login == login)
-                {
-                    OpenMessege("This login is already in use.", "Error");
-                    return;
-                }
-            }
-
+            
 
 
 
