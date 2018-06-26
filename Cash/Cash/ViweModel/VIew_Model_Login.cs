@@ -124,7 +124,7 @@ namespace Cash.ViweModel
                 Index MainWindows = new Index();
 
                 Viwe_Model_Index viewModelIndex = new Viwe_Model_Index(autor);
-
+                
 
 
                 MainWindows.DataContext = viewModelIndex;

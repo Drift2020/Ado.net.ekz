@@ -510,6 +510,123 @@
                 </Grid>
 
             </TabItem>
+            <TabItem Header="Profiles" Padding="0" Visibility="{Binding}">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+             
+                    <GroupBox Header="People">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="30"/>
+
+                            </Grid.RowDefinitions>
+
+                            <ListView Grid.ColumnSpan="3">
+                                
+                            </ListView>
+
+                            <Button Grid.Row="1" Margin="5" Content="Сhange" />
+                            <Button Grid.Row="1" Grid.Column="1"  Margin="5" Content="Remove" />
+                            <Button Grid.Row="1"  Grid.Column="2" Margin="5" Content="Adding" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="End" Grid.Column="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.RowSpan="2" Grid.ColumnSpan="2">
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Login: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                </Grid>
+                                <Grid  Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Password: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                </Grid>
+                                <Grid  Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Secret word: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                </Grid>
+                                <Grid  Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="ID: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                </Grid>
+                                <Grid  Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Name: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                </Grid>
+                                <Grid  Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Surname: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                </Grid>
+                                <Grid  Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Patronymic: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                </Grid>
+                                <Grid  Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Family: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                  
+
+                </Grid>
+
+            </TabItem>
         </TabControl>
 
 
