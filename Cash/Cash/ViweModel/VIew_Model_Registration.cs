@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -43,7 +44,7 @@ namespace Cash.ViweModel
         #region Pole 
         // СontainerUser my_users;
 
-
+        Regex regex_password = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{1,16}$");
         #region name
         string name;
         public string Name
@@ -92,6 +93,22 @@ namespace Cash.ViweModel
 
         #endregion
 
+
+        #region secret_word
+        string secret_word;
+        public string Secret_word
+        {
+            get
+            {
+                return secret_word;
+            }
+            set
+            {
+                secret_word = value;
+                OnPropertyChanged(nameof(Secret_word));
+            }
+        }
+        #endregion secret_word
         #region login
         string login;
         public string Login
@@ -158,7 +175,10 @@ namespace Cash.ViweModel
         }
         private void Execute_ok(object o)
         {
-            if (password != password2 || password.Length <= 3)
+            bool is_oks = regex_password.IsMatch(password);
+
+           
+            if (password != password2 || !is_oks)
             {
                 OpenMessege("Passwords do not match, the minimum length is 4 characters.", "Error");
                 return;
@@ -212,13 +232,13 @@ namespace Cash.ViweModel
             temp.FamilyID = select_item_family.ID;
             temp.RightsID = select_item_right.ID;
             temp.Right = select_item_right;
-
+            temp.Secret_word = secret_word;
             myDB.People.Add(temp);
             myDB.SaveChanges();
             
             is_ok = true;
 
-         
+            OpenMessege("You are registered.", "Success");
             _OK();
 
 
@@ -233,7 +253,8 @@ namespace Cash.ViweModel
                 (surname != null && surname != "")&&
                 patronymic!=null && patronymic.Length>0 &&
                 select_item_family != null &&
-                select_item_right != null
+                select_item_right != null &&
+                secret_word!=null && secret_word.Length>0
                 )
                 return true;
             return false;
@@ -266,22 +287,25 @@ namespace Cash.ViweModel
             window.DataContext = view;
             window.ShowDialog();
 
-            Family temp = new Family();
-            temp.Name = view.Name;
-
-            if (myDB.Families.ToList().Find(x => x.Name == temp.Name) == null)
+            if (view.Is_ok)
             {
-                Family_.Add(temp);
-                OnPropertyChanged(nameof(Family_));
+                Family temp = new Family();
+                temp.Name = view.Name;
 
-                myDB.Families.Add(temp);
-                myDB.SaveChanges();
+                if (myDB.Families.ToList().Find(x => x.Name == temp.Name) == null)
+                {
+                    Family_.Add(temp);
+                    OnPropertyChanged(nameof(Family_));
 
-                OpenMessege("Family successfully added", "Successful operation");
-            }
-            else
-            {
-                OpenMessege("Family is not added, there is already such a family.", "Operation error");
+                    myDB.Families.Add(temp);
+                    myDB.SaveChanges();
+
+                    OpenMessege("Family successfully added", "Successful operation");
+                }
+                else
+                {
+                    OpenMessege("Family is not added, there is already such a family.", "Operation error");
+                }
             }
         }
         private bool CanExecute_new(object o)

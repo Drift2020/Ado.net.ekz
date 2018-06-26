@@ -140,7 +140,13 @@ namespace Cash.ViweModel
             }
             else if (is_no)
             {
+                Reset_password window = new Reset_password();
+                View_Model_Reset view_model = new View_Model_Reset(myDB);
+                view_model._OK = window.Close;
+                window.DataContext = view_model;
+                window.ShowDialog();
 
+                is_no = false;
             }
             else if (is_none_user)
             {
@@ -167,6 +173,7 @@ namespace Cash.ViweModel
 
 
         #region Command
+        #region
         private DelegateCommand _Command_ok;
         public ICommand Button_clik_ok
         {
@@ -225,11 +232,11 @@ namespace Cash.ViweModel
             return false;
 
         }
+        #endregion
 
 
 
-
-
+        #region
         private DelegateCommand _Command_no;
         public ICommand Button_clik_no
         {
@@ -258,7 +265,39 @@ namespace Cash.ViweModel
 
 
         }
+        #endregion
 
+
+        #region
+        private DelegateCommand _Command_reset;
+        public ICommand Button_clik_reset
+        {
+            get
+            {
+                if (_Command_reset == null)
+                {
+                    _Command_reset = new DelegateCommand(Execute_reset, CanExecute_reset);
+                }
+                return _Command_reset;
+            }
+        }
+        private void Execute_reset(object o)
+        {
+
+
+            is_no = true;
+
+            _NO();
+            Now_Registr(null);
+        }
+        private bool CanExecute_reset(object o)
+        {
+
+            return true;
+
+
+        }
+        #endregion
         #endregion Command
 
         #region List

@@ -41,6 +41,11 @@ namespace Cash.Model
 
         public int FamilyID { get; set; }
 
+        [Column("Secret word")]
+        [Required]
+        [StringLength(50)]
+        public string Secret_word { get; set; }
+
         public virtual Family Family { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

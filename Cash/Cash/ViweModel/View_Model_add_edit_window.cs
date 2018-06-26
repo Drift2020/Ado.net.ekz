@@ -18,6 +18,21 @@ namespace Cash.ViweModel
         #region pole
         public Action OK;
 
+        bool is_ok = false;
+        public bool Is_ok
+        {
+            set
+            {
+                is_ok = value;
+                OnPropertyChanged(nameof(Is_ok));
+
+            }
+            get
+            {
+                return is_ok;
+            }
+        }
+
         #region title
         string title;
         public string Title
@@ -72,7 +87,7 @@ namespace Cash.ViweModel
         }
         private void Execute_ok(object o)
         {
-
+            Is_ok = true;
             OK();
         }
         private bool CanExecute_ok(object o)

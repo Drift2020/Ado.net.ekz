@@ -631,39 +631,7 @@ namespace Cash.ViweModel
                     Link_final.Add(new List_view_final_my(i));
 
 
-            category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
-            foreach (var i in myDB.Categories)
-            {
-                SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
-                temp.Item = i;
-                category_list.Add(temp);
-            }
-
-            goods_list = new ObservableCollection<SelectableItemWrapper<Product>>();
-            foreach (var i in myDB.Products)
-            {
-                SelectableItemWrapper<Product> temp = new SelectableItemWrapper<Product>();
-                temp.Item = i;
-                goods_list.Add(temp);
-            }
-
-            people_list = new ObservableCollection<SelectableItemWrapper<List_view_person>>();
-            foreach (var i in myDB.People)
-            {
-                SelectableItemWrapper<List_view_person> temp = new SelectableItemWrapper<List_view_person>();
-                temp.Item = new List_view_person(i);
-                if (i.FamilyID == my_profile.FamilyID)
-                    people_list.Add(temp);
-            }
-
-
-            Profiles = new ObservableCollection<List_view_person>();
-            foreach (var i in myDB.People)
-            {
-                List_view_person temp = new List_view_person(i);
-                if (i.FamilyID == my_profile.FamilyID)
-                    Profiles.Add(temp);
-            }
+            Set_Filter();
 
 
 
@@ -675,8 +643,50 @@ namespace Cash.ViweModel
             SetCosts();
             SetIncome();
         }
+        void Set_Filter()
+        {
+
+            category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
+            foreach (var i in myDB.Categories)
+            {
+                SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
+                temp.Item = i;
+                category_list.Add(temp);
+            }
+            OnPropertyChanged(nameof(Category_list));
+
+            goods_list = new ObservableCollection<SelectableItemWrapper<Product>>();
+            foreach (var i in myDB.Products)
+            {
+                SelectableItemWrapper<Product> temp = new SelectableItemWrapper<Product>();
+                temp.Item = i;
+                goods_list.Add(temp);
+            }
+            OnPropertyChanged(nameof(Goods_list));
+
+            people_list = new ObservableCollection<SelectableItemWrapper<List_view_person>>();
+            foreach (var i in myDB.People)
+            {
+                SelectableItemWrapper<List_view_person> temp = new SelectableItemWrapper<List_view_person>();
+                temp.Item = new List_view_person(i);
+                if (i.FamilyID == my_profile.FamilyID)
+                    people_list.Add(temp);
+            }
+            OnPropertyChanged(nameof(People_list));
+
+            Profiles = new ObservableCollection<List_view_person>();
+            foreach (var i in myDB.People)
+            {
+                List_view_person temp = new List_view_person(i);
+                if (i.FamilyID == my_profile.FamilyID)
+                    Profiles.Add(temp);
+            }
+            OnPropertyChanged(nameof(Profiles));
+        }
         void Set_new_items()
         {
+            my_profile = myDB.People.ToList().Find(x => x.ID == my_profile.ID);
+
             Link_final.Clear();
             foreach (var i in myDB.Finals.ToList())
                 if (my_profile.FamilyID == i.Person.FamilyID)
@@ -710,6 +720,12 @@ namespace Cash.ViweModel
             }
             OnPropertyChanged(nameof(Profiles));
 
+            if (my_profile.Right.Level == 0)
+                Is_visibility = Visibility.Visible;
+            else
+                Is_visibility = Visibility.Hidden;
+            SetCosts();
+            SetIncome();
         }
         bool Levels()
         {
@@ -960,6 +976,20 @@ namespace Cash.ViweModel
 
 
         }
+        void OpenMessege(string s, string title)
+        {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
+
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+
+
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = s;
+            messege_view_Model.Messeg_Titel = title;
+            messege.ShowDialog();
+        }
         #endregion Code
 
 
@@ -1122,20 +1152,7 @@ namespace Cash.ViweModel
             return true;
         }
         #endregion Editor
-        void OpenMessege(string s, string title)
-        {
-            Messege messege = new Messege();
-            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
-
-            if (messege_view_Model._OK == null)
-                messege_view_Model._OK = new Action(messege.Close);
-
-
-            messege.DataContext = messege_view_Model;
-            messege_view_Model.Messege = s;
-            messege_view_Model.Messeg_Titel = title;
-            messege.ShowDialog();
-        }
+       
         #region profile
         private DelegateCommand _Command_profile;
         public ICommand Button_clik_profile
@@ -1161,8 +1178,10 @@ namespace Cash.ViweModel
             window.ShowDialog();
          
             myDB = new CashDB();
-       
-        
+            Set_new_items();
+            Set_Filter();
+            VMSelectedTabIndex = 0;
+
         }
         private bool CanExecute_profile(object o)
         {
@@ -1269,7 +1288,20 @@ namespace Cash.ViweModel
         private void Execute_add_profile(object o)
         {
 
-        
+            Registration view_registration = new Registration();
+
+            View_Model_Registration View_model_reg = new View_Model_Registration();
+
+            if (View_model_reg._OK == null)
+                View_model_reg._OK = new Action(view_registration.Ok);
+
+            view_registration.DataContext = View_model_reg;
+
+            view_registration.ShowDialog();
+            myDB = new CashDB();
+            Set_new_items();
+            Set_Filter();
+            VMSelectedTabIndex = 0;
 
         }
         private bool CanExecute_add_profile(object o)
@@ -1293,8 +1325,20 @@ namespace Cash.ViweModel
         }
         private void Execute_Edit_profile(object o)
         {
-        
 
+            My_account window = new My_account();
+            View_Model_Profile view_model = new View_Model_Profile(myDB, select_item_profile.person);
+            window.DataContext = view_model;
+
+            view_model._Edit = new Action(window.Close);
+            view_model._Delite = new Action(window.Close);
+
+            window.ShowDialog();
+
+            myDB = new CashDB();
+            Set_new_items();
+            Set_Filter();
+            VMSelectedTabIndex = 0;
 
         }
         private bool CanExecute_Edit_profile(object o)
@@ -1326,12 +1370,14 @@ namespace Cash.ViweModel
         }
         private bool CanExecute_del_profile(object o)
         {
-            if (select_item_profile != null && Levels())
+            if (select_item_profile != null && Levels_profile())
                 return true;
             return false;
         }
         #endregion delete
         #endregion profile
+
+
 
 
         #endregion Command
@@ -1537,6 +1583,7 @@ namespace Cash.ViweModel
         {
             set
             {
+              
                 vmSelectedTabIndex = value;
 
                 ObservableCollection<Category> temp=null;

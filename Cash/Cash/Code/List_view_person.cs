@@ -10,11 +10,27 @@ namespace Cash.Code
 {
     class List_view_person : View_Model_Base
     {
-         Person person = null;
+        public Person person = null;
 
         public List_view_person(Person _person)
         {
             person = _person;         
+        }
+
+
+        public string Secret_word
+        {
+            set
+            {
+                person.Secret_word = value;
+                OnPropertyChanged(nameof(Secret_word));
+
+            }
+            get
+            {
+                return person.Secret_word;
+            }
+
         }
 
         public string Login
@@ -28,6 +44,20 @@ namespace Cash.Code
             get
             {
                 return person.Login;
+            }
+
+        }
+        public string Right
+        {
+            set
+            {
+                person.Right.Name = value;
+                OnPropertyChanged(nameof(Right));
+
+            }
+            get
+            {
+                return person.Right.Name;
             }
 
         }

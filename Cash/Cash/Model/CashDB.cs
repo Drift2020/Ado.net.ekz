@@ -36,6 +36,10 @@ namespace Cash.Model
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Person>()
+                .Property(e => e.Secret_word)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Person>()
                 .HasMany(e => e.Finals)
                 .WithRequired(e => e.Person)
                 .WillCascadeOnDelete(false);

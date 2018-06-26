@@ -176,7 +176,7 @@ namespace Cash.ViweModel
 
 
             edit_window.ShowDialog();
-            myDB = new CashDB();
+           
             List_product = myDB.Products.ToList();
             OnPropertyChanged(nameof(List_product));
 

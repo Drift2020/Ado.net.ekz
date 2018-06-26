@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Cash"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="511" Width="634.959" Closing="Window_Closing"
+        Title="MainWindow" Height="511" Width="668.292" Closing="Window_Closing"
         
        >
   
@@ -71,11 +71,11 @@
 
 
         </Menu>
-        <TabControl SelectedIndex="{Binding VMSelectedTabIndex, Mode=TwoWay}" Name="tabControl1" Grid.Row="1" Grid.ColumnSpan="4">
+        <TabControl  SelectedIndex="{Binding VMSelectedTabIndex, Mode=TwoWay}" Name="tabControl1" Grid.Row="1" Grid.ColumnSpan="4">
 
 
 
-            <TabItem Header="Product" Padding="0">
+            <TabItem  Header="Product" Padding="5,0,5,0">
 
 
                 <Grid >
@@ -104,12 +104,31 @@
                                 <GridViewColumn  Header="Category" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ListView  ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Category_my}"  Padding="0" Margin="0" >
-                                                <ListView.ItemTemplate >
+                                            <ListView  ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                                       ItemsSource="{Binding Category_my}"  Padding="0" Margin="0"
+                                                       BorderBrush="Transparent">
+                                                <ListView.ItemContainerStyle>
+                                                    <Style TargetType="{x:Type ListViewItem}">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                                    <Border
+                                                                        BorderBrush="Transparent"
+                                                                        BorderThickness="0"
+                                                                        Background="{TemplateBinding Background}"> 
+                                                                        <TextBlock  Text="{Binding Name}" Padding="0" Margin="0" VerticalAlignment="Center" />
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ListView.ItemContainerStyle>
+                                                <!--<ListView.ItemTemplate >
                                                     <DataTemplate >
                                                         <TextBlock  Text="{Binding Name}" Padding="0" Margin="0" VerticalAlignment="Center" />
                                                     </DataTemplate>
-                                                </ListView.ItemTemplate>
+                                                </ListView.ItemTemplate>-->
                                             </ListView>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -129,10 +148,8 @@
                                 <GridViewColumn DisplayMemberBinding="{Binding FIO ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FIO" Width="100"/>
 
                                 <GridViewColumn DisplayMemberBinding="{Binding Date ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Date" Width="100"/>
-
-                                <GridViewColumn DisplayMemberBinding="{Binding Money ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Money" Width="100"/>
-
                                 <GridViewColumn DisplayMemberBinding="{Binding Type , UpdateSourceTrigger=PropertyChanged}" Header="Type" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Money ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Money" Width="Auto"/>
 
                                 <GridViewColumn DisplayMemberBinding="{Binding Specification ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Specific" Width="100"/>
 
@@ -144,7 +161,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Filters" Padding="0">
+            <TabItem Header="Filters" Padding="5,0,5,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -177,13 +194,30 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Category" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1" />
                                     <ListView ItemsSource="{Binding Category_list}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="2" SelectionMode="Single">
-
-                                        <ListView.ItemTemplate>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                            <Border
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Background="{TemplateBinding Background}">
+                                                                <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <!--<ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                           IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                             </DataTemplate>
-                                        </ListView.ItemTemplate>
+                                        </ListView.ItemTemplate>-->
                                     </ListView>
 
                                     <TextBlock Text="Search" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
@@ -202,13 +236,30 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Goods" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
                                     <ListView ItemsSource="{Binding Goods_list}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="2">
-
-                                        <ListView.ItemTemplate>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                            <Border
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Background="{TemplateBinding Background}">
+                                                                <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <!--<ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                           IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                             </DataTemplate>
-                                        </ListView.ItemTemplate>
+                                        </ListView.ItemTemplate>-->
                                     </ListView>
 
                                     <TextBlock Text="Search" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
@@ -297,13 +348,31 @@
                                                Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="0"/>
 
                                     <ListView ItemsSource="{Binding People_list}" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Margin="2" SelectionMode="Single">
-
-                                        <ListView.ItemTemplate>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                            <Border
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Background="{TemplateBinding Background}">
+                                                                <CheckBox Content="{Binding Item.FIO}"
+                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        
+                                        <!--<ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <CheckBox Content="{Binding Item.FIO}"
                                                           IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                             </DataTemplate>
-                                        </ListView.ItemTemplate>
+                                        </ListView.ItemTemplate>-->
                                     </ListView>
 
 
@@ -362,10 +431,12 @@
 
             </TabItem>
 
-            <TabItem Header="Month Comparison" Padding="0">
+            <TabItem Header="Month Comparison" Padding="5,0,5,0">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
@@ -374,8 +445,118 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <GroupBox Header="Start">
-                        <Grid>
+
+                    <GroupBox Grid.Column="0" Grid.ColumnSpan="2" Header="Date">
+                        <StackPanel VerticalAlignment="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Month:" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Month:" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="From:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                <ComboBox ItemsSource="{Binding List_month_viwe_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                      SelectedItem="{Binding Select_item_month_viwe_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Grid.Column="1" MaxWidth="130"  VerticalAlignment="Center" Margin="1">
+                                    <ComboBox.ItemTemplate>
+                                        <ItemContainerTemplate>
+                                            <TextBlock Text="{Binding name}"/>
+                                        </ItemContainerTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+
+                                <TextBlock Text="to:" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <ComboBox ItemsSource="{Binding List_month_viwe_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding Select_item_month_viwe_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                Grid.Column="3" MaxWidth="130" VerticalAlignment="Center" Margin="1">
+                                    <ComboBox.ItemTemplate>
+                                        <ItemContainerTemplate>
+                                            <TextBlock Text="{Binding name}"/>
+                                        </ItemContainerTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Year:" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Year:" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                               
+                                
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="From:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBox Grid.Column="1" MaxWidth="130" 
+                                     Grid.Row="1" VerticalAlignment="Center"
+                                     Text="{Binding Year_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Text="to:" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBox Grid.Column="3" MaxWidth="130" 
+                                     Grid.Row="1" VerticalAlignment="Center"
+                                     Text="{Binding Year_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <!--<GroupBox Header="Start">
+
+                        <StackPanel VerticalAlignment="Center">
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <ComboBox ItemsSource="{Binding List_month_viwe_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                      SelectedItem="{Binding Select_item_month_viwe_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Grid.Column="1" MaxWidth="130" VerticalAlignment="Center">
+                                    <ComboBox.ItemTemplate>
+                                        <ItemContainerTemplate>
+                                            <TextBlock Text="{Binding name}"/>
+                                        </ItemContainerTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Text="Month:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            </Grid>
+
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="1" MaxWidth="130" 
+                                     Grid.Row="1" VerticalAlignment="Center"
+                                     Text="{Binding Year_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Text="Year:" VerticalAlignment="Center"
+                                       Grid.Row="1" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </StackPanel>
+                        -->
+                    <!--<Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -403,9 +584,9 @@
                                      Text="{Binding Year_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock Text="Year:" VerticalAlignment="Center"
                                        Grid.Row="1" HorizontalAlignment="Center"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox Header="End" Grid.Column="1">
+                        </Grid>-->
+                    <!--</GroupBox>-->
+                    <!--<GroupBox Header="End" Grid.Column="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -435,8 +616,8 @@
                             <TextBlock Text="Year:" VerticalAlignment="Center"
                                        Grid.Row="1" HorizontalAlignment="Center"/>
                         </Grid>
-                    </GroupBox>
-                    <GroupBox Header="Statistics" Grid.Row="1" Grid.ColumnSpan="2">
+                    </GroupBox>-->
+                    <GroupBox Header="Statistics" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
@@ -457,10 +638,10 @@
                                         Grid.Row="1"/>
 
                             <TextBlock Text="{Binding Costs_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"
                                        Grid.Column="1"/>
                             <TextBlock Text="{Binding Income_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                                       VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"  TextWrapping="Wrap"
                                         Grid.Row="1" Grid.Column="1"/>
 
                             <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -473,14 +654,14 @@
                                        Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center"/>
 
                             <TextBlock Text="{Binding Costs_end , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"
                                        Grid.Column="4"/>
                             <TextBlock Text="{Binding Income_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                       VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"  TextWrapping="Wrap"
                                         Grid.Row="1" Grid.Column="4"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Difference" Grid.Row="2" Grid.ColumnSpan="2" MinWidth="300" HorizontalAlignment="Center">
+                    <GroupBox Header="Difference" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                
@@ -499,10 +680,10 @@
                                         Grid.Row="1"   Height="16" Width="42"/>
 
                             <TextBlock Text="{Binding Costs_d,  Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"
                                        Grid.Column="1"  />
                             <TextBlock Text="{Binding Income_d, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                       VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"  TextWrapping="Wrap"
                                         Grid.Row="1" Grid.Column="1"  />
 
                             <Button VerticalAlignment="Center" Content="Check" MaxWidth="100"
@@ -514,9 +695,9 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Profiles" Padding="0" 
+            <TabItem Header="Profiles"  Padding="5,0,5,0"
                      Visibility="{Binding Is_visibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-
+                
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -557,7 +738,7 @@
                     <GroupBox Header="End" Grid.Column="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="75"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
@@ -570,7 +751,7 @@
                             <StackPanel Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <Grid Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Login: " />
@@ -578,7 +759,7 @@
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Password: " />
@@ -586,15 +767,15 @@
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Secret word: " />
+                                    <TextBlock Text="Secret word: " Grid.ColumnSpan="2" Height="16" Margin="0,0,230.333,0" VerticalAlignment="Top" />
                                     <TextBlock Grid.Column="1" Text="{Binding  Select_item_profile.Secret_word,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="ID: " />
@@ -602,7 +783,7 @@
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Name: " />
@@ -610,7 +791,7 @@
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Surname: " />
@@ -618,7 +799,7 @@
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Patronymic: " />
@@ -626,11 +807,21 @@
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Family: " />
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Family,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
+                                    
+                                </Grid>
+                                <Grid  Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Right: " />
+                                    <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Right,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
+
                                 </Grid>
                             </StackPanel>
                         </Grid>

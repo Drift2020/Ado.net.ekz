@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-         Title="Registration" Height="532.167" Width="295"   WindowStyle="ToolWindow" MinWidth="500" MinHeight="650" MaxWidth="295" MaxHeight="431.5">
+         Title="Registration" Height="532.167" Width="295"   WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15"/>
@@ -24,6 +24,7 @@
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
@@ -35,33 +36,34 @@
 
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center">  Image Gallery Entrance</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">Login</TextBlock>
-        <TextBox Text="{Binding Login,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center">Registration in the home account.</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">Login:</TextBlock>
+        <TextBox Text="{Binding Login,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" />
 
-        <TextBlock Grid.Row="3" Grid.Column="1"   VerticalAlignment="Bottom" HorizontalAlignment="Left">Password</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1"   VerticalAlignment="Bottom" HorizontalAlignment="Left">Password:</TextBlock>
 
-        <PasswordBox  Grid.Row="4" Grid.Column="1"  x:Name="PasswordBox"   local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-
-        <TextBlock Grid.Row="5" Grid.Column="1"    VerticalAlignment="Bottom" HorizontalAlignment="Left">Password again</TextBlock>
-
-        <PasswordBox  Grid.Row="6" Grid.Column="1"  x:Name="PasswordBox2"  local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <PasswordBox  Grid.Row="4" Grid.Column="1"  x:Name="PasswordBox"  VerticalAlignment="Center" local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
+        <TextBlock Grid.Row="5" Grid.Column="1"    VerticalAlignment="Bottom" HorizontalAlignment="Left">Password again:</TextBlock>
 
-        <TextBlock Grid.Row="1" Grid.Column="3"  VerticalAlignment="Bottom" HorizontalAlignment="Left">Name</TextBlock>
-        <TextBox Text="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" ></TextBox>
+        <PasswordBox  Grid.Row="6" Grid.Column="1"  x:Name="PasswordBox2" VerticalAlignment="Center" local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Left">Surname</TextBlock>
-        <TextBox Text="{Binding Surname,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="4" Grid.Column="3"></TextBox>
+        <TextBlock Grid.Row="7" Grid.Column="1"    VerticalAlignment="Bottom" HorizontalAlignment="Left">Secret word:</TextBlock>
+        <TextBox Text="{Binding Secret_word,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="8" Grid.Column="1"  Grid.ColumnSpan="3"></TextBox>
 
-        <TextBlock Grid.Row="5" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,18,0,0" Width="39">Patronymic</TextBlock>
-        <TextBox Text="{Binding Patronymic,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="6" Grid.Column="3" ></TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="3"  VerticalAlignment="Bottom" HorizontalAlignment="Left">Name:</TextBlock>
+        <TextBox Text="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="3" ></TextBox>
 
-        <TextBlock Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3"  VerticalAlignment="Bottom" HorizontalAlignment="Center">User rights</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Left">Surname:</TextBlock>
+        <TextBox Text="{Binding Surname,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="4" Grid.Column="3"></TextBox>
+
+        <TextBlock Grid.Row="5" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Left"  >Patronymic:</TextBlock>
+        <TextBox Text="{Binding Patronymic,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="6" Grid.Column="3" ></TextBox>
+
+        <TextBlock Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3"  VerticalAlignment="Bottom" HorizontalAlignment="Center">User rights</TextBlock>
         <ComboBox ItemsSource="{Binding Right_in_family}" SelectedItem="{Binding Select_item_right,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                  Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" MinWidth="200" >
+                  Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" MinWidth="200" >
             <ComboBox.ItemTemplate>
                 <ItemContainerTemplate>
                     <TextBlock Text="{Binding Name}"/>
@@ -69,7 +71,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <GroupBox  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3">
+        <GroupBox  Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3">
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock  HorizontalAlignment="Center" Text="Family" ></TextBlock>
@@ -91,10 +93,10 @@
 
 
 
-        <Button Command="{Binding Button_clik_new}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Margin="5" MinWidth="100" Content="New family" HorizontalAlignment="Center"/>
+        <Button Command="{Binding Button_clik_new}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="10"  MinWidth="100" Content="New family" HorizontalAlignment="Center"/>
         
       
-        <Button Grid.Row="18" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="3" Margin="5" MinWidth="100" Command="{Binding Button_clik_ok}">Ok</Button>
+        <Button Grid.Row="18" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="3" Margin="2" MinWidth="100" Command="{Binding Button_clik_ok}">Ok</Button>
 
     </Grid>
 </Window>

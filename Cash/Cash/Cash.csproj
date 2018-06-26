@@ -119,6 +119,9 @@
     <Compile Include="My_account.xaml.cs">
       <DependentUpon>My_account.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reset_password.xaml.cs">
+      <DependentUpon>Reset_password.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="ViweModel\View_Model_add_edit_window.cs" />
@@ -129,6 +132,7 @@
     <Compile Include="ViweModel\View_Model_Messege.cs" />
     <Compile Include="ViweModel\View_Model_Profile.cs" />
     <Compile Include="ViweModel\View_Model_Registration.cs" />
+    <Compile Include="ViweModel\View_Model_Reset.cs" />
     <Page Include="Add_Article.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reset_password.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

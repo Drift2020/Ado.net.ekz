@@ -109,6 +109,8 @@ namespace Cash.ViweModel
         }
         #endregion
 
+
+
         #region New login
         string new_login;
         public string New_login
@@ -330,14 +332,14 @@ namespace Cash.ViweModel
 
                 if (select_item_family != null && select_item_right != null)
                 {
-                    if (select_item_right.Level == 3)
-                    {
+                    bool is_oke = true;
+                   
                         foreach (var i in myDB.People)
                         {
-                            if (select_item_right.Level != 3 &&
-                                i.Right.Level == select_item_right.Level &&
+                            if (i.Right.Level < select_item_right.Level &&
                                 i.Family == select_item_family)
                             {
+                                is_oke = false;
                                 Login window = new Login();
                                 Viwe_Model_Login view = new Viwe_Model_Login(Visibility.Hidden, select_item_right.Level, select_item_family);
 
@@ -349,17 +351,23 @@ namespace Cash.ViweModel
                                 window.DataContext = view;
                                 window.ShowDialog();
 
-                                if (view.is_ok == false)
+                                if (view.is_ok == true)
                                 {
+                                    
+                                    my_profile.Family = select_item_family;
+                                    Family_str = select_item_family.Name;
 
-                                    break;
+                                    my_profile.FamilyID = select_item_family.ID;
+                                    my_profile.RightsID = select_item_right.ID;
+                                    my_profile.Right = select_item_right;
                                 }
 
                             }
                         }
-                    }
-                    else
+
+                    if (is_oke)
                     {
+
                         my_profile.Family = select_item_family;
                         Family_str = select_item_family.Name;
 
@@ -372,6 +380,12 @@ namespace Cash.ViweModel
                         select_item_family == null && select_item_right != null)
                 { 
                     OpenMessege("You did not select all the parameters in the family.", "Error");
+                }
+
+
+                if(new_secret_word!=null && new_secret_word.Length>0)
+                {
+                    my_profile.Secret_word = new_secret_word;
                 }
 
 
