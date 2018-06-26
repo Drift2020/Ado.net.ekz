@@ -1,9 +1,13 @@
-﻿using Cash.Model;
+﻿using Cash.Command;
+using Cash.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Cash.ViweModel
 {
@@ -12,16 +16,23 @@ namespace Cash.ViweModel
         public View_Model_Profile(CashDB tempDB, Person temp)
         {
             myDB = tempDB;
-            my_profile = temp;
+            my_profile_ = temp;
 
+
+            Family_ = myDB.Families.ToList();
+
+            my_profile = myDB.People.ToList().Find(x => x.ID == my_profile_.ID);
+
+            Family_str = my_profile.Family.Name;
         }
 
 
         #region pole
         CashDB myDB;
-        Person my_profile = new Person();
+        Person my_profile_ = new Person();
+        Person my_profile;
         #region name
-       
+
         public string Name
         {
             get
@@ -123,7 +134,8 @@ namespace Cash.ViweModel
             }
             set
             {
-                password = value;
+               
+                    password = value;
                 OnPropertyChanged(nameof(Password));
             }
         }
@@ -138,7 +150,8 @@ namespace Cash.ViweModel
             }
             set
             {
-                password2 = value;
+              
+                    password2 = value;
                 OnPropertyChanged(nameof(Password2));
             }
         }
@@ -220,109 +233,163 @@ namespace Cash.ViweModel
             }
         }
         #endregion new_secret_word
-
+        Regex regex_password = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{1,16}$");
         #endregion pole
 
 
         #region Command_button
 
-        #region OK
-        private DelegateCommand _Command_ok;
-        public ICommand Button_clik_ok
+        void OpenMessege(string s, string title)
+        {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
+
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+
+
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = s;
+            messege_view_Model.Messeg_Titel = title;
+            messege.ShowDialog();
+        }
+       
+
+        #region edit
+        private DelegateCommand _Command_edit;
+        public ICommand Button_clik_edit
         {
             get
             {
-                if (_Command_ok == null)
+                if (_Command_edit == null)
                 {
-                    _Command_ok = new DelegateCommand(Execute_ok, CanExecute_ok);
+                    _Command_edit = new DelegateCommand(Execute_edit, CanExecute_edit);
                 }
-                return _Command_ok;
+                return _Command_edit;
             }
         }
-        private void Execute_ok(object o)
+        private void Execute_edit(object o)
         {
-            if (password != password2 || password.Length <= 3)
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
+
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+            if (messege_view_Model._NO == null)
+                messege_view_Model._NO = new Action(messege.Close);
+
+
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = "Are you sure you want to change the settings?";
+            messege_view_Model.Messeg_Titel = "Сhange";
+            messege.ShowDialog();
+
+            if (messege_view_Model.is_ok)
             {
-                OpenMessege("Passwords do not match, the minimum length is 4 characters.", "Error");
-                return;
-            }
-            foreach (var i in myDB.People)
-            {
-                if (i.Login == login)
+                if (new_name!= null&&new_name.Length>0)
+                    Name = new_name;
+                if (new_surname !=null&&new_surname.Length > 0)
+                    Surname = new_surname;
+                if (new_patronymic!=null&&new_patronymic.Length > 0)
+                    Patronymic = new_patronymic;
+
+
+              
+                if (password!=null&& password2!=null&&
+                    password != password2 || password != null && password.Length < 1)
                 {
-                    OpenMessege("This login is already in use.", "Error");
-                    return;
+                    OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
+                   
                 }
-            }
-
-
-            foreach (var i in myDB.People)
-            {
-                if (select_item_right.Level != 3 &&
-                    i.Right.Level == select_item_right.Level &&
-                    i.Family == select_item_family)
+                else if (password != null && password2 != null )
                 {
-                    Login window = new Login();
-                    Viwe_Model_Login view = new Viwe_Model_Login(Visibility.Hidden, select_item_right.Level, select_item_family);
+                        bool is_ok = regex_password.IsMatch(password);
 
-                    if (view._OK == null)
-                        view._OK = new Action(window.Ok);
-
-                    view._Close = new Action(window.Close);
-
-                    window.DataContext = view;
-                    window.ShowDialog();
-
-                    if (view.is_ok == false)
+                    if(is_ok)
+                        my_profile.Password = password;
+                    else
                     {
-
-                        return;
+                        OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
                     }
-
                 }
+
+                if (New_login != null && New_login.Length > 0)
+                {
+                    bool iso = true;
+                    foreach (var i in myDB.People)
+                    {
+                        if (i.Login == New_login)
+                        {
+                            OpenMessege("This login is already in use.", "Error");
+                            iso = false;
+                        }
+                    }
+                    if(iso)
+                    my_profile.Login = Login = New_login;
+                }
+
+                if (select_item_family != null && select_item_right != null)
+                {
+                    if (select_item_right.Level == 3)
+                    {
+                        foreach (var i in myDB.People)
+                        {
+                            if (select_item_right.Level != 3 &&
+                                i.Right.Level == select_item_right.Level &&
+                                i.Family == select_item_family)
+                            {
+                                Login window = new Login();
+                                Viwe_Model_Login view = new Viwe_Model_Login(Visibility.Hidden, select_item_right.Level, select_item_family);
+
+                                if (view._OK == null)
+                                    view._OK = new Action(window.Ok);
+
+                                view._Close = new Action(window.Close);
+
+                                window.DataContext = view;
+                                window.ShowDialog();
+
+                                if (view.is_ok == false)
+                                {
+
+                                    break;
+                                }
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        my_profile.Family = select_item_family;
+                        Family_str = select_item_family.Name;
+
+                        my_profile.FamilyID = select_item_family.ID;
+                        my_profile.RightsID = select_item_right.ID;
+                        my_profile.Right = select_item_right;
+                    }
+                }
+                else if (select_item_family != null && select_item_right == null ||
+                        select_item_family == null && select_item_right != null)
+                { 
+                    OpenMessege("You did not select all the parameters in the family.", "Error");
+                }
+
+
+                var temp = myDB.People.ToList().Find(x => x.ID == my_profile.ID);
+                temp = my_profile;
+                myDB.SaveChanges();
+
             }
-
-
-
-            Person temp = new Person();
-            temp.Name = name;
-            temp.Surname = surname;
-            temp.Patronymic = patronymic;
-
-            temp.Login = login;
-            temp.Password = password;
-            temp.Family = select_item_family;
-            temp.FamilyID = select_item_family.ID;
-            temp.RightsID = select_item_right.ID;
-            temp.Right = select_item_right;
-
-            myDB.People.Add(temp);
-            myDB.SaveChanges();
-
-            is_ok = true;
-
-
-            _OK();
-
-
         }
-        private bool CanExecute_ok(object o)
+        private bool CanExecute_edit(object o)
         {
 
-            if ((login != null && login != "") &&
-                (password != null && password != "") &&
-                (password2 != null && password2 != "") &&
-                (name != null && name != "") &&
-                (surname != null && surname != "") &&
-                patronymic != null && patronymic.Length > 0 &&
-                select_item_family != null &&
-                select_item_right != null
-                )
+         
                 return true;
             return false;
 
         }
-        #endregion
+        #endregion edit
 
 
         #endregion Command_button
@@ -334,8 +401,8 @@ namespace Cash.ViweModel
         public bool is_no;
 
 
-        public Action _OK { get; set; }
-        public Action _NO { get; set; }
+        public Action _Edit { get; set; }
+        public Action _Delite { get; set; }
         #endregion
 
 
@@ -356,9 +423,6 @@ namespace Cash.ViweModel
                     return family;
                 else
                     return (new List<Family>());
-
-
-
             }
         }
 
@@ -372,7 +436,6 @@ namespace Cash.ViweModel
             }
             get
             {
-
                 return select_item_family;
             }
         }

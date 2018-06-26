@@ -1122,7 +1122,20 @@ namespace Cash.ViweModel
             return true;
         }
         #endregion Editor
+        void OpenMessege(string s, string title)
+        {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
 
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+
+
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = s;
+            messege_view_Model.Messeg_Titel = title;
+            messege.ShowDialog();
+        }
         #region profile
         private DelegateCommand _Command_profile;
         public ICommand Button_clik_profile
@@ -1138,8 +1151,18 @@ namespace Cash.ViweModel
         }
         private void Execute_profile(object o)
         {
+            My_account window = new My_account();
+            View_Model_Profile view_model = new View_Model_Profile(myDB, my_profile);
+            window.DataContext = view_model;
 
+            view_model._Edit = new Action(window.Close);
+            view_model._Delite = new Action(window.Close);
 
+            window.ShowDialog();
+         
+            myDB = new CashDB();
+       
+        
         }
         private bool CanExecute_profile(object o)
         {

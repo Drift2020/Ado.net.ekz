@@ -173,8 +173,9 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     
-                    <TextBlock Text="{Binding}"  Margin="0,5,0,5" />
-                    <ComboBox ItemsSource="{Binding Right_in_family}" SelectedItem="{Binding Select_item_right,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                    <TextBlock Text="Level"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,5" />
+                    <ComboBox ItemsSource="{Binding Right_in_family,UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Select_item_right,UpdateSourceTrigger=PropertyChanged}"
                   Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" MinWidth="200" >
                         <ComboBox.ItemTemplate>
                             <ItemContainerTemplate>
@@ -189,7 +190,8 @@
         <GroupBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
             <WrapPanel VerticalAlignment="Center">
                 <TextBlock Text="New secret word:" VerticalAlignment="Center" Margin="5,0,5,0"/>
-                <TextBox MinWidth="200" VerticalAlignment="Center"  Margin="20,0,0,0"/>
+                <TextBox Text="{Binding New_secret_word,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                         MinWidth="200" VerticalAlignment="Center"  Margin="20,0,0,0"/>
             </WrapPanel>
         </GroupBox>
         <GroupBox Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
@@ -201,7 +203,8 @@
 
                 <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="Deleting account"/>
                 <Button VerticalAlignment="Center" HorizontalAlignment="Center" 
-                        Content="Editing account" Grid.Column="1"/>
+                        Content="Editing account" Grid.Column="1"
+                        Command="{Binding Button_clik_edit}"/>
             </Grid>
         </GroupBox>
     </Grid>
