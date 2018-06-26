@@ -3,11 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:local="clr-namespace:Cash"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="511" Width="634.959"
+        Title="MainWindow" Height="511" Width="634.959" Closing="Window_Closing"
+        
        >
+  
     <Window.Resources>
 
         <DataTemplate x:Key="groupboxTemplate">
@@ -41,6 +45,7 @@
         </DataTemplate>
 
     </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -532,8 +537,16 @@
 
                             </Grid.RowDefinitions>
 
-                            <ListView Grid.ColumnSpan="3">
-                                
+                            <ListView ItemsSource="{Binding Profiles}" Grid.Row="0"
+                                        SelectedItem="{Binding}"
+                                      Grid.Column="0" Grid.ColumnSpan="3"
+                                      Margin="2" SelectionMode="Single">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding FIO}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
                             </ListView>
 
                             <Button Grid.Row="1" Margin="5" Content="Сhange" />

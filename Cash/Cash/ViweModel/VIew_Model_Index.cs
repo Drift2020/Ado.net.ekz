@@ -589,6 +589,12 @@ namespace Cash.ViweModel
 
         #endregion Month Comparison
 
+        #region Profiles
+
+       
+
+        #endregion Profiles
+
         #endregion Pole
 
         #region Code
@@ -1092,7 +1098,7 @@ namespace Cash.ViweModel
         }
         #endregion  Log out
 
-        #region Add
+        #region Check
         private DelegateCommand _Command_Check;
         public ICommand Button_clik_Check
         {
@@ -1122,7 +1128,54 @@ namespace Cash.ViweModel
             return true;
             return false;
         }
-        #endregion Add
+        #endregion Check
+
+        #region closining
+
+        //Messege messege = new Messege();
+        //View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
+
+        //    if (messege_view_Model._OK == null)
+        //        messege_view_Model._OK = new Action(messege.Close);
+        //    if (messege_view_Model._NO == null)
+        //        messege_view_Model._NO = new Action(messege.Close);
+
+
+        //messege.DataContext = messege_view_Model;
+        //    messege_view_Model.Messege = "Are you sure you want to exit the program?";
+        //    messege_view_Model.Messeg_Titel = "Exit";
+        //    messege.ShowDialog();
+
+        //    if (messege_view_Model.is_no)
+        //    {
+        //        e.Cancel = true;
+        //    }
+        private DelegateCommand _Command_close;
+        public ICommand Button_clik_close
+        {
+            get
+            {
+                if (_Command_close == null)
+                {
+                    _Command_close = new DelegateCommand(Execute_close, CanExecute_close);
+                }
+                return _Command_close;
+            }
+        }
+        private void Execute_close(object o)
+        {
+
+            
+
+        }
+        private bool CanExecute_close(object o)
+        {
+           
+                return true;
+            
+        }
+
+        #endregion closining 
         #endregion Command
 
         #region List
@@ -1248,6 +1301,27 @@ namespace Cash.ViweModel
         #endregion
 
         #endregion filter
+
+        List<List_view_person> profiles;
+        public List<List_view_person> Profiles
+        {
+            set
+            {
+                profiles = value;
+                OnPropertyChanged(nameof(Profiles));
+            }
+            get
+            {
+                return profiles;
+            }
+        }
+
+
+        #region profiles
+
+      
+
+        #endregion profiles
 
         #region Month Comparison
 
