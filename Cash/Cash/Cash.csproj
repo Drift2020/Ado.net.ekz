@@ -126,6 +126,7 @@
     <Compile Include="ViweModel\View_Model_Add_Article.cs" />
     <Compile Include="ViweModel\View_Model_Editor.cs" />
     <Compile Include="ViweModel\View_Model_Edit_Article.cs" />
+    <Compile Include="ViweModel\View_Model_Edit_Profile.cs" />
     <Compile Include="ViweModel\View_Model_Messege.cs" />
     <Compile Include="ViweModel\View_Model_Profile.cs" />
     <Compile Include="ViweModel\View_Model_Registration.cs" />

@@ -537,14 +537,14 @@
 
                             </Grid.RowDefinitions>
 
-                            <ListView ItemsSource="{Binding Profiles}" Grid.Row="0"
+                            <ListView ItemsSource="{Binding Profiles,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0"
                                       SelectedItem="{Binding Select_item_profile , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                       Grid.Column="0" Grid.ColumnSpan="3"
                                       Margin="2" SelectionMode="Single">
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding FIO}"/>
+                                        <TextBlock Text="{Binding FIO,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -574,7 +574,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Login: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding }" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -582,7 +582,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Password: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -590,7 +590,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Secret word: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding  Select_item_profile.Secret_word,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -598,7 +598,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="ID: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.ID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -606,7 +606,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Name: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -614,7 +614,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Surname: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -622,7 +622,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Patronymic: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
                                     <Grid.ColumnDefinitions>
@@ -630,7 +630,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Family: " />
-                                    <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Family,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                             </StackPanel>
                         </Grid>

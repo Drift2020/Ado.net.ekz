@@ -60,13 +60,13 @@
 
                 <TextBlock Text="New password:" VerticalAlignment="Center" HorizontalAlignment="Center"
                            />
-                <TextBox Text="{Binding New_login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                <TextBox Text="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                            VerticalAlignment="Center"
                            Grid.Column="1" Grid.Row="0"/>
 
                 <TextBlock Text="Repeat password:" VerticalAlignment="Center" HorizontalAlignment="Center"
                              Grid.Column="0" Grid.Row="1"/>
-                <TextBox Text="{Binding New_login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                <TextBox Text="{Binding Password2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                            VerticalAlignment="Center"
                            Grid.Column="1" Grid.Row="1"/>
             </Grid>
@@ -92,12 +92,12 @@
 
                         <TextBlock Text="Name:" VerticalAlignment="Center" HorizontalAlignment="Center"
                         Margin="0,5,0,5"   />
-                      
 
 
-                        <TextBlock Grid.Column="1" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+
+                        <TextBlock Grid.Column="1" Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center"
                          Margin="0,5,0,5" TextWrapping="Wrap"  />
-                       
+
 
 
                         <TextBox Grid.Column="2" Text="{Binding New_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" 
@@ -114,15 +114,15 @@
                        
                         <TextBlock Text="Surname:" VerticalAlignment="Center" HorizontalAlignment="Center"
                           Margin="0,5,0,5"  />
-                      
 
 
-                       
-                        <TextBlock  Grid.Column="1" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+
+
+                        <TextBlock  Grid.Column="1" Text="{Binding Surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center"
                          Margin="0,5,0,5"   TextWrapping="Wrap" />
-                        
 
-                       
+
+
                         <TextBox Grid.Column="2"  Text="{Binding New_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" 
                           Margin="0,5,0,5"  />
                       
@@ -139,8 +139,9 @@
                           Margin="0,5,0,5"  />
 
 
-                       
-                        <TextBlock  Grid.Column="1" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center"
+
+                        <TextBlock  Grid.Column="1" Text="{Binding Patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    VerticalAlignment="Center" HorizontalAlignment="Center"
                           Margin="0,5,0,5"   TextWrapping="Wrap"/>
 
 
@@ -155,15 +156,32 @@
 
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2">
+        <GroupBox Header="Family" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2">
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="{Binding}"  Margin="0,0,0,5" />
+                    <TextBlock Text="{Binding Family_str,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                               VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                    <TextBlock Text="New family"  Margin="0,5,0,5"  HorizontalAlignment="Center"/>
+                    <ComboBox ItemsSource="{Binding Family_,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                              SelectedItem="{Binding Select_item_family,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                             
+                              Margin="0,5,0,5"  HorizontalAlignment="Center" MinWidth="200">
+                        <ComboBox.ItemTemplate>
+                            <ItemContainerTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </ItemContainerTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    
                     <TextBlock Text="{Binding}"  Margin="0,5,0,5" />
-                    <TextBlock Text="{Binding}"  Margin="0,5,0,5" />
-                    <ComboBox  Margin="0,5,0,5" />
-                    <TextBlock Text="{Binding}"  Margin="0,5,0,5" />
-                    <ComboBox />
+                    <ComboBox ItemsSource="{Binding Right_in_family}" SelectedItem="{Binding Select_item_right,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" MinWidth="200" >
+                        <ComboBox.ItemTemplate>
+                            <ItemContainerTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </ItemContainerTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
                 </StackPanel>
             </Grid>

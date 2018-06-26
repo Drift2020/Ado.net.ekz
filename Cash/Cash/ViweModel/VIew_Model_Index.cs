@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -594,12 +595,12 @@ namespace Cash.ViweModel
 
         #region Visibility
 
-        bool is_visibility;
-        public bool Is_visibility
+        Visibility is_visibility = Visibility.Hidden;
+        public Visibility Is_visibility
         {
             set
             {
-                is_visibility = true;
+                is_visibility = value;
                 OnPropertyChanged(nameof(Is_visibility));
             }
             get
@@ -620,9 +621,9 @@ namespace Cash.ViweModel
             my_profile = _my_profile;
 
             if (my_profile.Right.Level == 0)
-                Is_visibility = true;
+                Is_visibility = Visibility.Visible;
             else
-                Is_visibility = false;
+                Is_visibility = Visibility.Hidden;
 
 
             foreach (var i in myDB.Finals.ToList())
@@ -655,7 +656,8 @@ namespace Cash.ViweModel
                     people_list.Add(temp);
             }
 
-            Profiles = new List<List_view_person>();
+
+            Profiles = new ObservableCollection<List_view_person>();
             foreach (var i in myDB.People)
             {
                 List_view_person temp = new List_view_person(i);
@@ -699,12 +701,12 @@ namespace Cash.ViweModel
             }
             OnPropertyChanged(nameof(Goods_list));
 
-            Profiles = new List<List_view_person>();
+            Profiles = new ObservableCollection<List_view_person>();
             foreach (var i in myDB.People)
             {
                 List_view_person temp = new List_view_person(i);
                 if (i.FamilyID == my_profile.FamilyID)
-                    Profiles.Add(temp);
+                    profiles.Add(temp);
             }
             OnPropertyChanged(nameof(Profiles));
 
@@ -720,6 +722,16 @@ namespace Cash.ViweModel
             return false;
         }
 
+        bool Levels_profile()
+        {
+            if (select_item_profile != null)
+            {
+                var i = myDB.People.ToList().Find(x => x.ID == select_item_profile.ID);
+                if (my_profile.Right.Level < i.Right.Level || my_profile.ID == i.ID)
+                    return true;
+            }
+            return false;
+        }
         void SetCosts()
         {
            
@@ -731,7 +743,6 @@ namespace Cash.ViweModel
              else
                 Costs = "";
         }
-
         void SetIncome()
         {
 
@@ -743,9 +754,6 @@ namespace Cash.ViweModel
             else
                 Income = "";
         }
-
-
-
         void Month_Comparison()
         {
             decimal c_s, c_e, i_s, i_e, end_c,end_i;
@@ -1262,13 +1270,13 @@ namespace Cash.ViweModel
         }
         private void Execute_Edit_profile(object o)
         {
+        
 
-           
 
         }
         private bool CanExecute_Edit_profile(object o)
         {
-            if (select_item_profile != null && Levels())
+            if (select_item_profile != null && Levels_profile())
 
                 return true;
             return false;
@@ -1430,8 +1438,8 @@ namespace Cash.ViweModel
 
         #region profiles
 
-        List<List_view_person> profiles;
-        public List<List_view_person> Profiles
+        ObservableCollection<List_view_person> profiles;
+        public ObservableCollection<List_view_person> Profiles
         {
             set
             {
@@ -1514,8 +1522,12 @@ namespace Cash.ViweModel
                
 
                 IEnumerable<List_view_final_my> List_final2 = null;
-
-               // Set_new_items();
+                Link_final.Clear();
+                foreach (var i in myDB.Finals.ToList())
+                    if (my_profile.FamilyID == i.Person.FamilyID)
+                        Link_final.Add(new List_view_final_my(i));
+                OnPropertyChanged(nameof(Link_final));
+                //   Set_new_items();
 
                 if (product)
                 {
