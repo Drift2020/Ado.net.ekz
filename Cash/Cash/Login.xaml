@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-        Title="Login" Height="244.49" Width="212.449"
+        Title="Login" Height="254.059" Width="212.449"
         WindowStyle="ToolWindow" 
         ResizeMode="NoResize">
     <Grid>

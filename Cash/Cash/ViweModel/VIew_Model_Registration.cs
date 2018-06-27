@@ -180,7 +180,7 @@ namespace Cash.ViweModel
            
             if (password != password2 || !is_oks)
             {
-                OpenMessege("Passwords do not match, the minimum length is 4 characters.", "Error");
+                OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
                 return;
             }
             foreach(var i in myDB.People)
@@ -199,6 +199,9 @@ namespace Cash.ViweModel
                     i.Right.Level == select_item_right.Level &&
                     i.Family==select_item_family)
                 {
+                    OpenMessege("Confirm the account with more rights.", "Registration");
+
+
                     Login window = new Login();
                     Viwe_Model_Login view = new Viwe_Model_Login(Visibility.Hidden, select_item_right.Level, select_item_family);
 
@@ -281,8 +284,9 @@ namespace Cash.ViweModel
         {
             Add_Edit_window window = new Add_Edit_window();
             View_Model_add_edit_window view= new View_Model_add_edit_window();
+            view.Title = "New family";
 
-           
+
             view.OK = window.Close;
             window.DataContext = view;
             window.ShowDialog();
