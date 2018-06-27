@@ -3,26 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Cash"
               Startup="OnStartup">
-    <!--<Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                --><!--<ResourceDictionary Source="BubbleCreme.xaml"/>-->
-                <!--<ResourceDictionary Source="Resurse/Brushes.xaml"/>
-                <ResourceDictionary Source="Resurse/Core.xaml"/>
-                <ResourceDictionary Source="Resurse/Icons.xaml"/>--><!--
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>-->
-    <!--<Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                 --><!--Light Theme--><!-- 
-                <ResourceDictionary Source="Tem/Light/Metro.MSControls.Core.Implicit.xaml" />
-                <ResourceDictionary Source="Tem/Light/Metro.MSControls.SDK.Implicit.xaml" />
-                <ResourceDictionary Source="Tem/Light/Metro.MSControls.Toolkit.Implicit.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>-->
+
 
     <Application.Resources>
         <ResourceDictionary>

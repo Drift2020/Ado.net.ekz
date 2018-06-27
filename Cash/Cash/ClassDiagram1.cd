@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cash.App">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteAsyncConnection" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAACCIAAAAQAAAASAEACABAAAgIAAABIBAAEMA=</HashCode>
+      <FileName>SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.AsyncTableQuery&lt;T&gt;" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAAAAAAAAAAAAAAgAAACAAAAAkAAAAAAAFAAAAAEQE=</HashCode>
+      <FileName>SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.CreateTablesResult" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteConnectionPool" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="SQLite.SQLiteConnectionPool.Entry" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SQLiteAsync.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAQAABAAAAABAEAAAAAAABAAAAAAAAAAAAIABAAAAA=</HashCode>
+      <FileName>SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteConnectionWithLock" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteException" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.NotNullConstraintViolationException" Collapsed="true">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteConnection" Collapsed="true">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEABACnAiAbrBBAEQAQQCAWIgRoBQYAIgBCAAEU=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SQLite.SQLiteConnectionString" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.TableAttribute" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.ColumnAttribute" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.PrimaryKeyAttribute" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.AutoIncrementAttribute" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.IndexedAttribute" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.IgnoreAttribute" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.UniqueAttribute" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.MaxLengthAttribute" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.CollationAttribute" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.NotNullAttribute" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.TableMapping" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAMAAiCgCAUAQgAAAQAAACAAAAgAAAAAACQgAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.Orm" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAECAAAAAAAAAAABgAAAAAAAAAAAwAAAAAAAACAAE=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteCommand" Collapsed="true">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="SQLite.SQLiteCommand.Binding" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SQLite.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAQAYEAAABAEBBAQAAgAABAAAEEAAACAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.PreparedSqlLiteInsertCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAEAAAACAAQAUAAAAAAEACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SQLite.BaseTableQuery" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.TableQuery&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EOAAAAAIAICAAVsAIAAARAQABAGIAWA0AgHAQAAAUJA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SQLite.SQLite3" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIJAgUgAAkgALQsCCBlAAQAUYQAAgQAAMAAACICDBAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Code.BindingErrorTraceListener" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Code\BindingErrorTraceListener.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Code.List_view_final_my" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgASQAAAAwAAiDAAAAAgAIAAAAAAAAABAQAAAAAAAAA=</HashCode>
+      <FileName>Code\List_view_final.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Code.List_view_person" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAACAAAAAAggAAAAAAAAQABAAAAAACAACQAACABAA=</HashCode>
+      <FileName>Code\List_view_person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Code.Month_Viwe" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Code\Month_Viwe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Code.SelectableItemWrapper&lt;T&gt;" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAEAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Code\SelectableItemWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.PasswordBoxAssistant" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EBABAAAAAAAAAAEAAAAAAACoABAgAAAAAAAAAICAAAg=</HashCode>
+      <FileName>Code\PasswordBoxAssistant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Add_Edit_window" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Add_Edit_window.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_Add_Article" Collapsed="true">
+    <Position X="7.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBkABAEQAAAtIAAIAQAAAAAAgBBEABEQAgAQECIBA=</HashCode>
+      <FileName>ViweModel\View_Model_Add_Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_add_edit_window" Collapsed="true">
+    <Position X="5.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAEAQAAAAAAUAAAAEAEAAAAARAAAEEAA=</HashCode>
+      <FileName>ViweModel\View_Model_add_edit_window.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_Base" Collapsed="true">
+    <Position X="0.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViweModel\View_Model_Base.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_Edit_Article" Collapsed="true">
+    <Position X="12" Y="8.25" Width="1.5" />
+    <InheritanceLine Type="Cash.ViweModel.View_Model_Base" ManuallyRouted="true">
+      <Path>
+        <Point X="1.5" Y="8.812" />
+        <Point X="1.5" Y="7.957" />
+        <Point X="3.45" Y="7.957" />
+        <Point X="3.45" Y="6.586" />
+        <Point X="10.417" Y="6.586" Type="JumpStart" />
+        <Point X="10.583" Y="6.586" Type="JumpEnd" />
+        <Point X="11.064" Y="6.586" Type="JumpStart" />
+        <Point X="11.231" Y="6.586" Type="JumpEnd" />
+        <Point X="12.75" Y="6.586" />
+        <Point X="12.75" Y="8.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAABEAAAEQEQAtAAEIAQAAQAAAABBEADEQAgAQECMBA=</HashCode>
+      <FileName>ViweModel\View_Model_Edit_Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_Editor" Collapsed="true">
+    <Position X="14.25" Y="8.25" Width="1.5" />
+    <InheritanceLine Type="Cash.ViweModel.View_Model_Base" ManuallyRouted="true">
+      <Path>
+        <Point X="1.5" Y="8.812" />
+        <Point X="1.5" Y="8.082" />
+        <Point X="2.467" Y="8.082" Type="JumpStart" />
+        <Point X="2.633" Y="8.082" Type="JumpEnd" />
+        <Point X="3.45" Y="8.082" />
+        <Point X="3.45" Y="6.523" />
+        <Point X="11.064" Y="6.523" Type="JumpStart" />
+        <Point X="11.231" Y="6.523" Type="JumpEnd" />
+        <Point X="12.814" Y="6.523" Type="JumpStart" />
+        <Point X="12.981" Y="6.523" Type="JumpEnd" />
+        <Point X="15" Y="6.523" />
+        <Point X="15" Y="8.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAQEBBAkQAIACkAAAAkAgAgBAAQBRKBABCwiAxASIiA=</HashCode>
+      <FileName>ViweModel\View_Model_Editor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.Viwe_Model_Index" Collapsed="true">
+    <Position X="16.5" Y="8.25" Width="1.5" />
+    <InheritanceLine Type="Cash.ViweModel.View_Model_Base" ManuallyRouted="true">
+      <Path>
+        <Point X="1.5" Y="8.812" />
+        <Point X="1.5" Y="8.133" />
+        <Point X="2.467" Y="8.133" Type="JumpStart" />
+        <Point X="2.633" Y="8.133" Type="JumpEnd" />
+        <Point X="3.45" Y="8.133" />
+        <Point X="3.45" Y="6.46" />
+        <Point X="11.064" Y="6.46" Type="JumpStart" />
+        <Point X="11.231" Y="6.46" Type="JumpEnd" />
+        <Point X="12.814" Y="6.46" Type="JumpStart" />
+        <Point X="12.981" Y="6.46" Type="JumpEnd" />
+        <Point X="17.25" Y="6.46" />
+        <Point X="17.25" Y="8.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>BIEJ4oMBC0fQg86DgoMaEk1DE5zjRinPtoVjvVGNYHM=</HashCode>
+      <FileName>ViweModel\View_Model_Index.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.Viwe_Model_Login" Collapsed="true">
+    <Position X="18.75" Y="8.25" Width="1.5" />
+    <InheritanceLine Type="Cash.ViweModel.View_Model_Base" ManuallyRouted="true">
+      <Path>
+        <Point X="1.5" Y="8.812" />
+        <Point X="1.5" Y="7.994" />
+        <Point X="3.45" Y="7.994" />
+        <Point X="3.45" Y="7.086" />
+        <Point X="10.417" Y="7.086" Type="JumpStart" />
+        <Point X="10.583" Y="7.086" Type="JumpEnd" />
+        <Point X="11.064" Y="7.086" Type="JumpStart" />
+        <Point X="11.231" Y="7.086" Type="JumpEnd" />
+        <Point X="12.667" Y="7.086" Type="JumpStart" />
+        <Point X="12.981" Y="7.086" Type="JumpEnd" />
+        <Point X="14.917" Y="7.086" Type="JumpStart" />
+        <Point X="15.083" Y="7.086" Type="JumpEnd" />
+        <Point X="17.167" Y="7.086" Type="JumpStart" />
+        <Point X="17.333" Y="7.086" Type="JumpEnd" />
+        <Point X="19.5" Y="7.086" />
+        <Point X="19.5" Y="8.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQJCAABAAAAEAARAQAAEBEBAAgOBkIaAAwQIgAEFAA=</HashCode>
+      <FileName>ViweModel\View_Model_Login.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_Messege" Collapsed="true">
+    <Position X="5.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACBKACAQACAAECARAAAAIBEQgQBSAsIAAAABMQAEERE=</HashCode>
+      <FileName>ViweModel\View_Model_Messege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_Profile" Collapsed="true">
+    <Position X="3.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAEASAQAEESAikAIAAAoSRBBAACBAACABQQIwBoMSA=</HashCode>
+      <FileName>ViweModel\View_Model_Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_Registration" Collapsed="true">
+    <Position X="7.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAECSAAAAAAEiAQCAIEAAUBBAAGBEICIAQQAgAMMCA=</HashCode>
+      <FileName>ViweModel\View_Model_Registration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.ViweModel.View_Model_Reset" Collapsed="true">
+    <Position X="9.75" Y="8.25" Width="1.5" />
+    <InheritanceLine Type="Cash.ViweModel.View_Model_Base" ManuallyRouted="true">
+      <Path>
+        <Point X="1.5" Y="8.812" />
+        <Point X="1.5" Y="8.02" />
+        <Point X="3.45" Y="8.02" />
+        <Point X="3.45" Y="6.486" />
+        <Point X="10.5" Y="6.486" />
+        <Point X="10.5" Y="8.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEgAQAAIAAAEAAAAABEACAAQQAgAMEAA=</HashCode>
+      <FileName>ViweModel\View_Model_Reset.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Model.Right" Collapsed="true">
+    <Position X="2.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAgAAAAAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Right.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Model.Product" Collapsed="true">
+    <Position X="0.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAgAAAAAAAAAQAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Model.Person" Collapsed="true">
+    <Position X="4.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAEACggAAAAAAAAQABAAAAAACAACQAAAABAA=</HashCode>
+      <FileName>Model\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Model.Final" Collapsed="true">
+    <Position X="2.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UIASAAAAAAAAggAAAAAAAAAAAAAAAAABAQAAAAAAAAA=</HashCode>
+      <FileName>Model\Final.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Model.Family" Collapsed="true">
+    <Position X="0.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Family.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Model.Category" Collapsed="true">
+    <Position X="2.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Model\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Model.CashDB" Collapsed="true">
+    <Position X="0.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAMAAAAAAAAAAAAAAEAAAEAAAAACAAAAAAAQ=</HashCode>
+      <FileName>Model\CashDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cash.Command.DelegateCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Enum Name="SQLite.SQLiteOpenFlags" Collapsed="true">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAACAAAAAAAAAAAAAACAIAACkAIEAAIAAAAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SQLite.CreateFlags" Collapsed="true">
+    <Position X="6" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgQAAAIAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cash.ViweModel.Add_mod" Collapsed="true">
+    <Position X="0.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ViweModel\View_Model_Add_Article.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
