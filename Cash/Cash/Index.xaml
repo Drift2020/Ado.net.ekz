@@ -104,11 +104,12 @@
                                 <GridViewColumn  Header="Category" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ListView  ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                            <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Padding="5" Header="More" BorderThickness="1" BorderBrush="Black">
+                                                <ListView  ScrollViewer.VerticalScrollBarVisibility="Auto" 
                                                        ItemsSource="{Binding Category_my}"  Padding="0" Margin="0"
                                                        BorderBrush="Transparent"
                                                        >
-                                                <!--<ListView.ItemContainerStyle>
+                                                    <!--<ListView.ItemContainerStyle>
                                                 BorderBrush="Transparent"
                                                     <Style TargetType="{x:Type ListViewItem}">
                                                         <Setter Property="Background" Value="Transparent" />
@@ -126,12 +127,13 @@
                                                         </Setter>
                                                     </Style>
                                                 </ListView.ItemContainerStyle>-->
-                                                <ListView.ItemTemplate >
-                                                    <DataTemplate >
-                                                        <TextBlock  Text="{Binding Name}" Padding="0" Margin="0" VerticalAlignment="Center" />
-                                                    </DataTemplate>
-                                                </ListView.ItemTemplate>
-                                            </ListView>
+                                                    <ListView.ItemTemplate >
+                                                        <DataTemplate >
+                                                            <TextBlock  Text="{Binding Name}" Padding="0" Margin="0" VerticalAlignment="Center" />
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </Expander>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
