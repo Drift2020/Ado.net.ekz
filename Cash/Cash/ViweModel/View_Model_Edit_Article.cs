@@ -22,6 +22,14 @@ namespace Cash.ViweModel
         Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
 
         Final my_z=new Final();
+        public string Title
+        {
+            get
+            {
+                return "Edit a post";
+            }
+        }
+
 
         #region button_ok
         string button_ok;

@@ -1,13 +1,13 @@
-﻿<Window x:Class="Cash.Index"
+﻿<Controls:MetroWindow  x:Class="Cash.Index"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Cash"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="511" Width="668.292" Closing="Window_Closing"
+        Title="Home Budget" Height="511" Width="668.292" Closing="Window_Closing"
         
        >
   
@@ -52,7 +52,7 @@
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="22"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -85,9 +85,9 @@
                     </Grid.RowDefinitions>
 
                     <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Income:"/>
-                        <TextBlock Text="{Binding Income,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Text="Costs:" Margin="5,0,5,0"/>
+                        <TextBlock Text="{Binding Income,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Income:" Margin="5,0,5,0"/>
                         <TextBlock Text="{Binding Costs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     </WrapPanel>
 
@@ -106,8 +106,10 @@
                                         <DataTemplate>
                                             <ListView  ScrollViewer.VerticalScrollBarVisibility="Auto" 
                                                        ItemsSource="{Binding Category_my}"  Padding="0" Margin="0"
-                                                       BorderBrush="Transparent">
-                                                <ListView.ItemContainerStyle>
+                                                       BorderBrush="Transparent"
+                                                       >
+                                                <!--<ListView.ItemContainerStyle>
+                                                BorderBrush="Transparent"
                                                     <Style TargetType="{x:Type ListViewItem}">
                                                         <Setter Property="Background" Value="Transparent" />
                                                         <Setter Property="Template">
@@ -123,12 +125,12 @@
                                                             </Setter.Value>
                                                         </Setter>
                                                     </Style>
-                                                </ListView.ItemContainerStyle>
-                                                <!--<ListView.ItemTemplate >
+                                                </ListView.ItemContainerStyle>-->
+                                                <ListView.ItemTemplate >
                                                     <DataTemplate >
                                                         <TextBlock  Text="{Binding Name}" Padding="0" Margin="0" VerticalAlignment="Center" />
                                                     </DataTemplate>
-                                                </ListView.ItemTemplate>-->
+                                                </ListView.ItemTemplate>
                                             </ListView>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -309,10 +311,10 @@
                                 </Grid.ColumnDefinitions>
                                 <CheckBox  Grid.Column="0" 
                                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Content="Income"  IsChecked="{Binding Type_Income, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                          Content="Costs"  IsChecked="{Binding Type_Income, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                 <CheckBox  Grid.Column="1"
                                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Content="Costs"  IsChecked="{Binding Type_Costs, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                          Content="Income"  IsChecked="{Binding Type_Costs, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </GroupBox>
 
@@ -446,7 +448,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Grid.Column="0" Grid.ColumnSpan="2" Header="Date">
+                    <GroupBox Grid.Column="0" Grid.ColumnSpan="2" Header="Date" Margin="2">
                         <StackPanel VerticalAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -617,7 +619,7 @@
                                        Grid.Row="1" HorizontalAlignment="Center"/>
                         </Grid>
                     </GroupBox>-->
-                    <GroupBox Header="Statistics" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
+                    <GroupBox Header="Statistics" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Margin="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
@@ -633,8 +635,8 @@
 
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="Costs:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Income:" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            <TextBlock Text="Income:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Costs:" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                         Grid.Row="1"/>
 
                             <TextBlock Text="{Binding Costs_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
@@ -649,8 +651,8 @@
                             <TextBlock Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Text="{Binding Income_is,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <TextBlock Text="Costs:" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Income:" VerticalAlignment="Center"
+                            <TextBlock Text="Income:" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Costs:" VerticalAlignment="Center"
                                        Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center"/>
 
                             <TextBlock Text="{Binding Costs_end , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -661,7 +663,7 @@
                                         Grid.Row="1" Grid.Column="4"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Difference" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  >
+                    <GroupBox Header="Difference" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                
@@ -675,8 +677,8 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="Costs:" VerticalAlignment="Center" HorizontalAlignment="Center"   Height="16" Width="32"/>
-                            <TextBlock Text="Income:" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            <TextBlock Text="Income:" VerticalAlignment="Center" HorizontalAlignment="Center"   Height="16" Width="32"/>
+                            <TextBlock Text="Costs:" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                         Grid.Row="1"   Height="16" Width="42"/>
 
                             <TextBlock Text="{Binding Costs_d,  Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -703,8 +705,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-             
-                    <GroupBox Header="People">
+
+                    <GroupBox Header="People" Margin="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -714,7 +716,7 @@
 
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="40"/>
 
                             </Grid.RowDefinitions>
 
@@ -735,7 +737,7 @@
                             <Button Grid.Row="1"  Grid.Column="2" Margin="5"  Command="{Binding Button_clik_add_profile}" Content="Adding" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="End" Grid.Column="1">
+                    <GroupBox Header="End" Grid.Column="1" Margin="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="75"/>
@@ -836,4 +838,4 @@
 
 
     </Grid>
-</Window>
+</Controls:MetroWindow>

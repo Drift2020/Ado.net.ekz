@@ -1,4 +1,5 @@
 ﻿using Cash.ViweModel;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Cash
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Index : Window
+    public partial class Index : MetroWindow
     {
         public Index()
         {
@@ -42,7 +43,7 @@ namespace Cash
             Application.Current.Resources.MergedDictionaries.Add(ic);
 
         }
-
+    
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
 

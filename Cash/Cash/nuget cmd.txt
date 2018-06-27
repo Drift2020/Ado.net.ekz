@@ -1,0 +1,1 @@
+﻿nuget pack "adcontrol - wp8 - silverlight.csproj" -includereferencedprojects -prop configuration=release

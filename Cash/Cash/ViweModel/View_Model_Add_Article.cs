@@ -22,6 +22,16 @@ namespace Cash.ViweModel
         CashDB myDB;
         Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
 
+        public string Title
+        {
+            get
+            {
+                return "Adding a record";
+            }
+        }
+
+
+
         #region button_ok
         string button_ok;
         public string Button_ok

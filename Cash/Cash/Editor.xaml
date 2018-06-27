@@ -23,6 +23,7 @@
                        
                     </Grid.RowDefinitions>
 
+                    
                     <ListView   SelectedItem="{Binding Select_item_product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                    ItemsSource="{Binding List_product ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
                                 ScrollViewer.HorizontalScrollBarVisibility="Visible" Grid.Column="0" Grid.ColumnSpan="3" SelectionMode="Single">
@@ -72,11 +73,11 @@
 
                     <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Button Command="{Binding Button_clik_add_product}" Grid.Column="0" Grid.Row="2" Content="Add" 
-                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100" Margin="7"/>
+                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100" Margin="5"/>
                         <Button Command="{Binding Button_clik_edit_product}" Grid.Column="1" Grid.Row="2" Content="Edit"
-                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100" Margin="7"/>
+                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100" Margin="5"/>
                         <Button Command="{Binding Button_clik_delete_product}" Grid.Column="2" Grid.Row="2" Content="Delete"
-                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100" Margin="7"/>
+                            VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100" Margin="5"/>
                         <TextBlock Text="Name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBox Text="{Binding Name_product,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
