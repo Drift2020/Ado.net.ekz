@@ -52,8 +52,8 @@
                             <GridViewColumn  Header="Category" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ListView  BorderBrush="Transparent"   ItemsSource="{Binding Categories ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                            <ListView.ItemContainerStyle>
+                                        <ListView  BorderBrush="Transparent"    ItemsSource="{Binding Categories ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <!--<ListView.ItemContainerStyle>
                                                 <Style TargetType="{x:Type ListViewItem}">
                                                     <Setter Property="Background" Value="Transparent" />
                                                     <Setter Property="Template">
@@ -69,14 +69,14 @@
                                                         </Setter.Value>
                                                     </Setter>
                                                 </Style>
-                                            </ListView.ItemContainerStyle>
+                                            </ListView.ItemContainerStyle>-->
 
 
-                                            <!--<ListView.ItemTemplate>
+                                            <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <TextBlock Text="{Binding Name ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                                 </DataTemplate>
-                                            </ListView.ItemTemplate>-->
+                                            </ListView.ItemTemplate>
                                         </ListView>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

@@ -174,7 +174,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition Height="0.5*"/>
-                            <RowDefinition Height="0.2*"/>
+                            <RowDefinition Height="0.3*"/>
                         </Grid.RowDefinitions>
 
                         <GroupBox Margin="2" Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplate}">

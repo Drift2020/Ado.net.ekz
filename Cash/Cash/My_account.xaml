@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-        Title="O" Height="459.554" Width="560" ResizeMode="NoResize"  WindowStyle="ToolWindow" >
+        Title="Profile Options" Height="459.554" Width="560" ResizeMode="NoResize"  WindowStyle="ToolWindow" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

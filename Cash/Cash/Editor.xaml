@@ -19,14 +19,14 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>
                       
-                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="160"/>
                        
                     </Grid.RowDefinitions>
 
                     
                     <ListView   SelectedItem="{Binding Select_item_product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                    ItemsSource="{Binding List_product ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
-                                ScrollViewer.HorizontalScrollBarVisibility="Visible" Grid.Column="0" Grid.ColumnSpan="3" SelectionMode="Single">
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto" Grid.Column="0" Grid.ColumnSpan="3" SelectionMode="Single">
                         <ListView.View >
                             <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="Employee Information" ScrollViewer.HorizontalScrollBarVisibility="Visible">
 
@@ -36,7 +36,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ListView    BorderBrush="Transparent" ItemsSource="{Binding Categories}" SelectionMode="Single">
-                                                <ListView.ItemContainerStyle>
+                                                <!--<ListView.ItemContainerStyle>
                                                     <Style TargetType="{x:Type ListViewItem}">
                                                         <Setter Property="Background" Value="Transparent" />
                                                         <Setter Property="Template">
@@ -52,12 +52,12 @@
                                                             </Setter.Value>
                                                         </Setter>
                                                     </Style>
-                                                </ListView.ItemContainerStyle>
-                                                <!--<ListView.ItemTemplate>
+                                                </ListView.ItemContainerStyle>-->
+                                                <ListView.ItemTemplate>
                                                     <DataTemplate>
                                                         <TextBlock Text="{Binding Name}" />
                                                     </DataTemplate>
-                                                </ListView.ItemTemplate>-->
+                                                </ListView.ItemTemplate>
                                             </ListView>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -123,7 +123,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
 
                     <ListView ItemsSource="{Binding List_category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 

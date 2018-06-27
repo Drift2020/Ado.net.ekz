@@ -36,7 +36,7 @@
 
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Margin="48.333,19,33.667,19" Width="178">Registration in the home account.</TextBlock>
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">Registration in the home account.</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" >Login:</TextBlock>
         <TextBox Text="{Binding Login,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" />
 
