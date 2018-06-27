@@ -52,8 +52,10 @@ namespace Cash.ViweModel
         {
             set
             {
+                int r = value.IndexOf(",") + 1;
+                if (value.Length - r == 4)
+                    value = value.Substring(0, value.Length-2);
 
-                value = value.Substring(0, value.Length-2);
                 bool is_ok = regex_price.IsMatch(value);
 
                 if (is_ok || value == "")

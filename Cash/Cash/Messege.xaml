@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cash"
         mc:Ignorable="d"
-         Title="{Binding Messeg_Titel}" Height="201.804" Width="322" ResizeMode="NoResize" WindowStyle="ToolWindow" >
+         Title="{Binding Messeg_Titel}" Height="210.693" Width="322" ResizeMode="NoResize" WindowStyle="ToolWindow" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
