@@ -69,6 +69,10 @@ namespace Cash
             {
                 e.Cancel = true;
             }
+            if (!messege_view_Model.is_ok)
+            {
+                e.Cancel = true;
+            }
 
         }
         

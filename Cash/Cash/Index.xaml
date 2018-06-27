@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Cash"
         
         mc:Ignorable="d"
-        Title="Home Budget" Height="511" Width="668.292" Closing="Window_Closing"
+        Title="Home Budget" Height="551" Width="672.958" Closing="Window_Closing"
         
        >
   
@@ -152,7 +152,236 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="0">
+
+                    <WrapPanel Grid.ColumnSpan="2">
+                        <GroupBox Margin="2" Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplate}" MinHeight="250" MinWidth="300">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition/>
+
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="40"/>
+
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Category" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1" />
+                                    <ListView ItemsSource="{Binding Category_list}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="2" SelectionMode="Single">
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                            <Border
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Background="{TemplateBinding Background}">
+                                                                <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+
+                                    </ListView>
+
+                                    <TextBlock Text="Search" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                                    <TextBox Text="{Binding Search_category,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"  VerticalAlignment="Center" MinWidth="120" HorizontalAlignment="Center" Grid.ColumnSpan="2" />
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition/>
+
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="40"/>
+
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Goods" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
+                                    <ListView ItemsSource="{Binding Goods_list}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="2">
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                            <Border
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Background="{TemplateBinding Background}">
+                                                                <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                  
+                                    </ListView>
+
+                                    <TextBlock Text="Search" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                                    <TextBox Text="{Binding Search_goods,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                             Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                                             MinWidth="120" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox MinWidth="350" Margin="2" Grid.Row="0"  Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplatePerson}">
+
+
+                            <Grid>
+
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition/>
+
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="40"/>
+
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="FIO" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="0"/>
+
+                                    <ListView ItemsSource="{Binding People_list}" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Margin="2" SelectionMode="Single">
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                            <Border
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Background="{TemplateBinding Background}">
+                                                                <CheckBox Content="{Binding Item.FIO}"
+                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+
+
+                                    </ListView>
+
+
+                                    <TextBlock Grid.Column="0" Text="Search name" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="0" Text="{Binding Search_name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                             Grid.Row="3" VerticalAlignment="Center"
+                                             MinWidth="90" HorizontalAlignment="Center"/>
+
+                                    <TextBlock Grid.Column="1" Text="Search surname" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="1" Text="{Binding Search_surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                              Grid.Row="3" VerticalAlignment="Center"
+                                             MinWidth="90" HorizontalAlignment="Center"/>
+
+                                    <TextBlock Grid.Column="2" Text="Search patronymic" HorizontalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox Grid.Column="2" Text="{Binding Search_patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                             Grid.Row="3" VerticalAlignment="Center"
+                                             MinWidth="90" HorizontalAlignment="Center"/>
+                                </Grid>
+
+
+
+                            </Grid>
+
+                        </GroupBox>
+                        <GroupBox MinHeight="100" MinWidth="250" Margin="2"  Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplatePrice}" Grid.Row="1">
+
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+
+
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="End:"/>
+                                <TextBox Text="{Binding Price_start,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                         Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
+                                             MinWidth="120" HorizontalAlignment="Center"/>
+
+                                <TextBox Text="{Binding Price_end,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
+                                             MinWidth="120" HorizontalAlignment="Center"/>
+
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox MinWidth="200" Margin="2"  Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplateType}" Grid.Row="2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox  Grid.Column="0" 
+                                          VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Content="Costs"  IsChecked="{Binding Type_Income, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                <CheckBox  Grid.Column="1"
+                                          VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Content="Income"  IsChecked="{Binding Type_Costs, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </GroupBox>
+                       
+
+                        <GroupBox MinWidth="300"  Margin="2" Grid.Row="1"  Header="{Binding}" HeaderTemplate="{StaticResource groupboxTemplateDate}">
+
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Start:"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="End:"/>
+                                <DatePicker VerticalAlignment="Center"   SelectedDateFormat="Short"
+                                Grid.Column="1" Grid.Row="0" Height="auto" Text="{Binding Date_start, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <DatePicker VerticalAlignment="Center" SelectedDateFormat="Short"
+                                Grid.Column="1" Grid.Row="1" Height="auto"
+                                             Text="{Binding Date_end, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                            </Grid>
+                        </GroupBox>
+                    </WrapPanel>
+                    <!--<Grid Grid.Column="0">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition Height="0.5*"/>
@@ -233,12 +462,8 @@
                                                 </Setter>
                                             </Style>
                                         </ListView.ItemContainerStyle>
-                                        <!--<ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>-->
+                                        
+                    
                                     </ListView>
 
                                     <TextBlock Text="Search" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
@@ -294,9 +519,9 @@
                             </Grid>
                         </GroupBox>
 
-                    </Grid>
+                    </Grid>-->
 
-                    <Grid Grid.Column="1">
+                    <!--<Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition Height="0.5*"/>
@@ -399,7 +624,7 @@
 
                             </Grid>
                         </GroupBox>
-                    </Grid>
+                    </Grid>-->
                 </Grid>
 
             </TabItem>
