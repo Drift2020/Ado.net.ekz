@@ -152,8 +152,16 @@
                                 <GridViewColumn DisplayMemberBinding="{Binding Date ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Date" Width="100"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Type , UpdateSourceTrigger=PropertyChanged}" Header="Type" Width="100"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Money ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Money" Width="Auto"/>
-
-                                <GridViewColumn DisplayMemberBinding="{Binding Specification ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Specific" Width="100"/>
+                                <!--DisplayMemberBinding="{Binding Specification ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
+                                <GridViewColumn  Header="Description" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Padding="5" Header="More" BorderThickness="1" BorderBrush="Black">
+                                                <TextBlock Text="{Binding Specification ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+                                            </Expander>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
                             </GridView>
                         </ListView.View>
