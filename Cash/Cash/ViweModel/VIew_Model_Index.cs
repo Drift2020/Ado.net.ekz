@@ -1223,24 +1223,7 @@ namespace Cash.ViweModel
 
         #region closining
 
-        //Messege messege = new Messege();
-        //View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
-
-        //    if (messege_view_Model._OK == null)
-        //        messege_view_Model._OK = new Action(messege.Close);
-        //    if (messege_view_Model._NO == null)
-        //        messege_view_Model._NO = new Action(messege.Close);
-
-
-        //messege.DataContext = messege_view_Model;
-        //    messege_view_Model.Messege = "Are you sure you want to exit the program?";
-        //    messege_view_Model.Messeg_Titel = "Exit";
-        //    messege.ShowDialog();
-
-        //    if (messege_view_Model.is_no)
-        //    {
-        //        e.Cancel = true;
-        //    }
+       
         private DelegateCommand _Command_close;
         public ICommand Button_clik_close
         {

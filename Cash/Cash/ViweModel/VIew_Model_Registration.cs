@@ -17,10 +17,7 @@ namespace Cash.ViweModel
         public View_Model_Registration()
         {
             myDB = new CashDB();
-            // my_users = new СontainerUser();
-            //   my_users.SetSerializer(new XMLSerializer());
-            //  my_users.Load("user");
-
+         
             Family_ = myDB.Families.ToList();
             
           

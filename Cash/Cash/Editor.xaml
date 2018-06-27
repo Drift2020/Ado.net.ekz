@@ -36,23 +36,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ListView    BorderBrush="Transparent" ItemsSource="{Binding Categories}" SelectionMode="Single">
-                                                <!--<ListView.ItemContainerStyle>
-                                                    <Style TargetType="{x:Type ListViewItem}">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                                    <Border
-                         BorderBrush="Transparent"
-                         BorderThickness="0"
-                         Background="{TemplateBinding Background}">
-                                                                        <TextBlock Text="{Binding Name}" />
-                                                                    </Border>
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Style>
-                                                </ListView.ItemContainerStyle>-->
+                                                
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate>
                                                         <TextBlock Text="{Binding Name}" />
@@ -103,12 +87,7 @@
                                 </Setter>
                             </Style>
                         </ListView.ItemContainerStyle>
-                        <!--<ListView.ItemTemplate>
-                            <DataTemplate>
-                                <CheckBox Content="{Binding Item.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                          IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>-->
+                       
                     </ListView>
 
                 </Grid>

@@ -135,7 +135,7 @@ namespace Cash.ViweModel
                 myDB = new CashDB();
                 my_users = new Person();
 
-                // viewModelIndex.Save();
+              
 
             }
             else if (is_no)
@@ -163,7 +163,7 @@ namespace Cash.ViweModel
                 myDB = new CashDB();
                 is_none_user = false;
             }
-            // my_users.Load("user");
+            
 
             _Visibility_on();
 

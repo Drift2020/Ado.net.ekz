@@ -130,21 +130,7 @@ namespace Cash.Code
                 return person.Family.Name;
             }
         }
-        //public string Secret_word
-        //{
-
-        //    set
-        //    {
-        //        person.Secret_word = value;
-        //        OnPropertyChanged(nameof(Secret_word));
-
-        //    }
-        //    get
-        //    {
-        //        return person.Secret_word;
-        //    }
-        //}
-
+     
 
         public string FIO
         {

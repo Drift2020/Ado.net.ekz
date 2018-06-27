@@ -551,13 +551,7 @@ namespace Cash.ViweModel
             }
         }
 
-        //category_list = new ObservableCollection<SelectableItemWrapper<Category>>();
-        //foreach (var i in myDB.Categories)
-        //{
-        //        SelectableItemWrapper<Category> temp = new SelectableItemWrapper<Category>();
-        //temp.Item = i;
-        //        category_list.Add(temp);
-        //}
+       
 
         #endregion Product
         #endregion
