@@ -952,9 +952,17 @@ namespace Cash.ViweModel
             end_c  = (c_s - c_e);
             end_i = (i_s-i_e);
 
+            string proz_d_c;
+            if (end_c + end_i != 0)
+                proz_d_c = (100 * end_c / (end_c + end_i)).ToString();
+            else
+                proz_d_c = "0";
 
-            string proz_d_c = (100 * end_c / (end_c + end_i)).ToString();
-            string proz_d_i = (100 * end_i / (end_c + end_i)).ToString();
+            string proz_d_i;
+            if (end_c + end_i != 0)
+                proz_d_i = (100 * end_i / (end_c + end_i)).ToString();
+            else
+                proz_d_i = "0";
 
             if (proz_d_i.IndexOf(",") == -1)
                 Income_d = end_i.ToString() + " / " + proz_d_c;
