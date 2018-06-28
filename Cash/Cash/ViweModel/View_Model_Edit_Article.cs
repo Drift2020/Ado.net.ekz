@@ -14,11 +14,11 @@ namespace Cash.ViweModel
     {
         #region Pole
         public Action Edit;
-     
+        Person myProfile;
 
       
       
-        CashDB myDB = new CashDB();
+        CashDB myDB ;
         Regex regex_price = new Regex(@"^\s*(\+|-)?((\d+(\,\d\d)?)|(\,\d\d))\s*$");
 
         Final my_z=new Final();
@@ -116,15 +116,16 @@ namespace Cash.ViweModel
 
         #region Code
 
-        public View_Model_Edit_Article(Final temp)
+        public View_Model_Edit_Article(CashDB _myDB, Final temp,Person temp_person)
         {
+            myDB = _myDB;
             List_product = myDB.Products.ToList();
             my_z = temp;
             Date = temp.Date.ToString();
             Price = temp.Money.ToString();
             Type = temp.Type;
             Specification = temp.Specific;
-
+            myProfile = temp_person;
             Select_item_product = List_product.Find(x=>x.ID==my_z.Product.ID);
            
         }
@@ -199,7 +200,7 @@ namespace Cash.ViweModel
 
 
             Editor edit_window = new Editor();
-            View_Model_Editor model = new View_Model_Editor();
+            View_Model_Editor model = new View_Model_Editor(myProfile);
             edit_window.DataContext = model;
 
 

@@ -1050,7 +1050,7 @@ namespace Cash.ViweModel
 
             Add_Article my_add = new Add_Article();
 
-            View_Model_Edit_Article my_model_Edit = new View_Model_Edit_Article(select_item_final.final);
+            View_Model_Edit_Article my_model_Edit = new View_Model_Edit_Article(myDB,select_item_final.final,my_profile);
             my_model_Edit.Button_ok = "Edit";
 
             if (my_model_Edit.Edit == null)
@@ -1138,7 +1138,7 @@ namespace Cash.ViweModel
         {
 
             Editor edit_window = new Editor();
-            View_Model_Editor model = new View_Model_Editor();
+            View_Model_Editor model = new View_Model_Editor(my_profile);
             edit_window.DataContext = model;
 
 

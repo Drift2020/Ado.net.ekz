@@ -19,7 +19,7 @@ namespace Cash.ViweModel
         #region Pole
 
         CashDB myDB = new CashDB();
-       
+        Person myProfile;
         #region name category
         string name_category;
         public string Name_category {
@@ -54,8 +54,9 @@ namespace Cash.ViweModel
 
         #region Code
 
-        public View_Model_Editor()
+        public View_Model_Editor(Person myP)
         {
+            myProfile = myP;
             list_category = myDB.Categories.ToList();
             list_product = myDB.Products.ToList();
 
@@ -166,7 +167,7 @@ namespace Cash.ViweModel
             messege_view_Model.Messeg_Titel = "Change product";
             messege.ShowDialog();
 
-            if (messege_view_Model.is_ok)
+            if (messege_view_Model.is_ok && myProfile.Right.Level<2)
             {
 
                 Select_item_product.Name = name_product;
@@ -187,6 +188,11 @@ namespace Cash.ViweModel
                 List_product = myDB.Products.ToList();
                 SetNull();
             }
+            else if(myProfile.Right.Level == 2)
+            {
+                OpenMessege("You do not have permission to edit the products.", "Error");
+            }
+
         }
         private bool CanExecute_edit_product(object o)
         {
@@ -232,7 +238,7 @@ namespace Cash.ViweModel
             messege_view_Model.Messeg_Titel = "Deleting product";
             messege.ShowDialog();
 
-            if (messege_view_Model.is_ok)
+            if (messege_view_Model.is_ok && myProfile.Right.Level < 2)
             {
                 Name_product = null;
                 list_product.Remove(select_item_product);
@@ -258,6 +264,10 @@ namespace Cash.ViweModel
 
                 list_product = myDB.Products.ToList();
                 OnPropertyChanged(nameof(List_product));
+            }
+            else if (myProfile.Right.Level == 2)
+            {
+                OpenMessege("You do not have the rights to delete the item.", "Error");
             }
 
 
@@ -352,7 +362,7 @@ namespace Cash.ViweModel
             messege_view_Model.Messeg_Titel = "Change category";
             messege.ShowDialog();
 
-            if (messege_view_Model.is_ok)
+            if (messege_view_Model.is_ok && myProfile.Right.Level < 2)
             {
 
                 Select_item_category.Name = name_category;
@@ -361,6 +371,10 @@ namespace Cash.ViweModel
                 OnPropertyChanged(nameof(List_category));
                 OnPropertyChanged(nameof(List_product));
 
+            }
+            else if(myProfile.Right.Level == 2)
+            {
+                OpenMessege("You do not have permission to edit the category.", "Error");
             }
         }
         private bool CanExecute_edit_category(object o)
@@ -410,7 +424,7 @@ namespace Cash.ViweModel
             messege_view_Model.Messeg_Titel = "Deleting category";
             messege.ShowDialog();
 
-            if (messege_view_Model.is_ok)
+            if (messege_view_Model.is_ok && myProfile.Right.Level<2)
             {
                 Name_category = null;
                 list_category.Remove(select_item_category);
@@ -421,6 +435,10 @@ namespace Cash.ViweModel
 
                 list_category = myDB.Categories.ToList();
                 OnPropertyChanged(nameof(List_category));
+            }
+            else if(myProfile.Right.Level==2)
+            {
+                OpenMessege("You do not have permission to delete the category.", "Error");
             }
 
         }

@@ -181,7 +181,7 @@ namespace Cash.ViweModel
 
 
             Editor edit_window = new Editor();
-            View_Model_Editor model = new View_Model_Editor();
+            View_Model_Editor model = new View_Model_Editor(myProfile);
             edit_window.DataContext = model;
 
 
