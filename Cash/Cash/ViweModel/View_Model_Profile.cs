@@ -237,6 +237,7 @@ namespace Cash.ViweModel
         #endregion new_secret_word
         Regex regex_password = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{1,16}$");
         Regex regex_login = new Regex(@"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$");
+        Regex regex_str = new Regex(@"^[a-zA-Z]+$");
         #endregion pole
 
 
@@ -289,12 +290,50 @@ namespace Cash.ViweModel
 
             if (messege_view_Model.is_ok)
             {
-                if (new_name!= null&&new_name.Length>0)
-                    Name = new_name;
-                if (new_surname !=null&&new_surname.Length > 0)
-                    Surname = new_surname;
-                if (new_patronymic!=null&&new_patronymic.Length > 0)
+                bool is_str;
+                if (new_name != null && new_name.Length > 0)
+                {
+                    is_str = regex_str.IsMatch(new_name);
+                    if (!is_str)
+                    {
+                        OpenMessege("The name can only be Latin letters.", "Error");
+                       
+                    }
+                    else
+                        Name = new_name;
+                }
+                if (new_surname != null && new_surname.Length > 0)
+                {
+                    is_str = regex_str.IsMatch(new_surname);
+                    if (!is_str)
+                    {
+                        OpenMessege("The surname can only be Latin letters.", "Error");
+                        
+                    }
+                    else
+                        Surname = new_surname;
+                }
+
+
+                if (new_patronymic != null && new_patronymic.Length > 0)
+                {
+
+                    is_str = regex_str.IsMatch(new_patronymic);
+                    if (!is_str)
+                    {
+                        OpenMessege("In the patronymic there can be only Latin letters.", "Error");
+                       
+                    }
+                    else
                     Patronymic = new_patronymic;
+                }
+
+              
+                    
+                
+                   
+               
+                   
 
 
               
@@ -316,27 +355,32 @@ namespace Cash.ViweModel
                     }
                 }
 
-                bool is_oks_log = regex_login.IsMatch(New_login);
-
-                if(is_oks_log)
-                if (New_login != null && New_login.Length > 0)
+                if (New_login != null)
                 {
-                    bool iso = true;
-                    foreach (var i in myDB.People)
+                    bool is_oks_log = regex_login.IsMatch(New_login);
+
+                    if (is_oks_log)
                     {
-                        if (i.Login == New_login)
+                        if (New_login != null && New_login.Length > 0)
                         {
-                            OpenMessege("This login is already in use.", "Error");
-                            iso = false;
+                            bool iso = true;
+                            foreach (var i in myDB.People)
+                            {
+                                if (i.Login == New_login)
+                                {
+                                    OpenMessege("This login is already in use.", "Error");
+                                    iso = false;
+                                }
+                            }
+                            if (iso)
+                                my_profile.Login = Login = New_login;
                         }
                     }
-                    if(iso)
-                    my_profile.Login = Login = New_login;
-                }
                     else
                     {
                         OpenMessege("The user must have from 2 to 20 characters, which can be letters and numbers, the first character is necessarily a letter.", "Error");
                     }
+                }
 
                 if (select_item_family != null && select_item_right != null)
                 {

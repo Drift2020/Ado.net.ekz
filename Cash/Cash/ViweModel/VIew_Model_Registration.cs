@@ -43,6 +43,7 @@ namespace Cash.ViweModel
 
         Regex regex_password = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{1,16}$");
         Regex regex_login = new Regex(@"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$");
+        Regex regex_str = new Regex(@"^[a-zA-Z]+$");
         #region name
         string name;
         public string Name
@@ -183,16 +184,16 @@ namespace Cash.ViweModel
                 return;
             }
 
-            if(is_oks_log)
-            foreach(var i in myDB.People)
-            {
-                if(i.Login==login)
+            if (is_oks_log)
+                foreach (var i in myDB.People)
                 {
-                    OpenMessege("This login is already in use.", "Error");
-                    return;
+                    if (i.Login == login)
+                    {
+                        OpenMessege("This login is already in use.", "Error");
+                        return;
+                    }
+
                 }
-               
-            }
             else
             {
                 OpenMessege("The user must have from 2 to 20 characters, which can be letters and numbers, the first character is necessarily a letter.", "Error");
@@ -202,9 +203,9 @@ namespace Cash.ViweModel
 
             foreach (var i in myDB.People)
             {
-                if(select_item_right.Level!=3 &&
+                if (select_item_right.Level != 3 &&
                     i.Right.Level == select_item_right.Level &&
-                    i.Family==select_item_family)
+                    i.Family == select_item_family)
                 {
                     OpenMessege("Confirm the account with more rights.", "Registration");
 
@@ -215,12 +216,12 @@ namespace Cash.ViweModel
                     if (view._OK == null)
                         view._OK = new Action(window.Ok);
 
-                    view._Close= new Action(window.Close);
+                    view._Close = new Action(window.Close);
 
                     window.DataContext = view;
                     window.ShowDialog();
 
-                    if(view.is_ok==false)
+                    if (view.is_ok == false)
                     {
 
                         return;
@@ -229,6 +230,31 @@ namespace Cash.ViweModel
                 }
             }
 
+
+            bool is_str;
+          
+                is_str = regex_str.IsMatch(name);
+                if (!is_str)
+                {
+                    OpenMessege("In the name, surname, patronymic can only be Latin letters.", "Error");
+                    return;
+                }
+           
+
+            is_str = regex_str.IsMatch(surname);
+            if (!is_str)
+            {
+                OpenMessege("In the name, surname, patronymic can only be Latin letters.", "Error");
+                return;
+            }
+
+
+            is_str = regex_str.IsMatch(patronymic);
+            if (!is_str)
+            {
+                OpenMessege("In the name, surname, patronymic can only be Latin letters.", "Error");
+                return;
+            }
 
 
             Person temp = new Person();

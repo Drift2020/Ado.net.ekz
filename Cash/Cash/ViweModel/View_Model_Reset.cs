@@ -139,7 +139,7 @@ namespace Cash.ViweModel
 
             if (password != password2 || !is_oks)
             {
-                OpenMessege("Passwords do not match, the minimum length is 4 characters.", "Error");
+                OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
                 return;
             }
             
