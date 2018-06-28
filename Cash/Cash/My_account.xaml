@@ -203,7 +203,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="Deleting account" MinHeight="50" MinWidth="100"/>
+                <Button VerticalAlignment="Center"  Command="{Binding Button_clik_del}"  HorizontalAlignment="Center" Content="Deleting account" MinHeight="50" MinWidth="100"/>
                 <Button VerticalAlignment="Center" HorizontalAlignment="Center" 
                         Content="Editing account" Grid.Column="1" MinWidth="100" MinHeight="50"
                         Command="{Binding Button_clik_edit}"/>

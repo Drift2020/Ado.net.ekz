@@ -404,8 +404,35 @@ namespace Cash.ViweModel
 
         }
         #endregion edit
+        #region del
+        private DelegateCommand _Command_del;
+        public ICommand Button_clik_del
+        {
+            get
+            {
+                if (_Command_del == null)
+                {
+                    _Command_del = new DelegateCommand(Execute_del, CanExecute_del);
+                }
+                return _Command_del;
+            }
+        }
+        private void Execute_del(object o)
+        {
+            
+
+            
+        }
+        private bool CanExecute_del(object o)
+        {
 
 
+          
+            return false;
+
+        }
+        #endregion edit
+        
         #endregion Command_button
 
 

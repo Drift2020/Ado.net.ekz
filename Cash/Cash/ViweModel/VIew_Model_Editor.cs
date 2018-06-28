@@ -19,7 +19,7 @@ namespace Cash.ViweModel
         #region Pole
 
         CashDB myDB = new CashDB();
-
+       
         #region name category
         string name_category;
         public string Name_category {

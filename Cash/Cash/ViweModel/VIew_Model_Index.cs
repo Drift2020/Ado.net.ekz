@@ -1353,8 +1353,8 @@ namespace Cash.ViweModel
         }
         private bool CanExecute_del_profile(object o)
         {
-            if (select_item_profile != null && Levels_profile())
-                return true;
+           // if (select_item_profile != null && Levels_profile())
+            //    return true;
             return false;
         }
         #endregion delete
