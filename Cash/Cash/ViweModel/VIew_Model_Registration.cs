@@ -42,6 +42,7 @@ namespace Cash.ViweModel
         // СontainerUser my_users;
 
         Regex regex_password = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{1,16}$");
+        Regex regex_login = new Regex(@"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$");
         #region name
         string name;
         public string Name
@@ -173,13 +174,16 @@ namespace Cash.ViweModel
         private void Execute_ok(object o)
         {
             bool is_oks = regex_password.IsMatch(password);
+            bool is_oks_log = regex_login.IsMatch(login);
 
-           
+
             if (password != password2 || !is_oks)
             {
                 OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
                 return;
             }
+
+            if(is_oks_log)
             foreach(var i in myDB.People)
             {
                 if(i.Login==login)
@@ -187,6 +191,12 @@ namespace Cash.ViweModel
                     OpenMessege("This login is already in use.", "Error");
                     return;
                 }
+               
+            }
+            else
+            {
+                OpenMessege("The user must have from 2 to 20 characters, which can be letters and numbers, the first character is necessarily a letter.", "Error");
+                return;
             }
 
 

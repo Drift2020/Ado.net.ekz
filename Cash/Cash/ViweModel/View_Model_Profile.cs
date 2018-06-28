@@ -236,6 +236,7 @@ namespace Cash.ViweModel
         }
         #endregion new_secret_word
         Regex regex_password = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{1,16}$");
+        Regex regex_login = new Regex(@"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$");
         #endregion pole
 
 
@@ -315,6 +316,9 @@ namespace Cash.ViweModel
                     }
                 }
 
+                bool is_oks_log = regex_login.IsMatch(New_login);
+
+                if(is_oks_log)
                 if (New_login != null && New_login.Length > 0)
                 {
                     bool iso = true;
@@ -329,6 +333,10 @@ namespace Cash.ViweModel
                     if(iso)
                     my_profile.Login = Login = New_login;
                 }
+                    else
+                    {
+                        OpenMessege("The user must have from 2 to 20 characters, which can be letters and numbers, the first character is necessarily a letter.", "Error");
+                    }
 
                 if (select_item_family != null && select_item_right != null)
                 {
@@ -398,7 +406,13 @@ namespace Cash.ViweModel
         private bool CanExecute_edit(object o)
         {
 
-         
+         if((new_secret_word != null && new_secret_word.Length > 0) ||
+                (select_item_family != null && select_item_right != null) ||
+                (New_login != null && New_login.Length > 0) ||
+                (password != null && password2 != null) ||
+                (new_name != null && new_name.Length > 0) ||
+                 (new_surname != null && new_surname.Length > 0) ||
+                 (new_patronymic != null && new_patronymic.Length > 0)) 
                 return true;
             return false;
 

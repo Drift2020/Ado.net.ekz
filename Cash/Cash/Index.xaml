@@ -857,7 +857,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Login: " />
+                                    <TextBlock Text="Login: "  TextWrapping="Wrap"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
@@ -865,7 +865,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Password: " />
+                                    <TextBlock  TextWrapping="Wrap" Text="Password: " />
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
@@ -873,7 +873,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Secret word: " Grid.ColumnSpan="2" Height="16" Margin="0,0,230.333,0" VerticalAlignment="Top" />
+                                    <TextBlock Text="Secret word: " Grid.ColumnSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" />
                                     <TextBlock Grid.Column="1" Text="{Binding  Select_item_profile.Secret_word,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
@@ -881,7 +881,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="ID: " />
+                                    <TextBlock Text="ID: "  TextWrapping="Wrap"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.ID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
@@ -889,7 +889,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Name: " />
+                                    <TextBlock Text="Name: "  TextWrapping="Wrap" />
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
@@ -897,7 +897,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Surname: " />
+                                    <TextBlock Text="Surname: "   TextWrapping="Wrap"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Surname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
@@ -905,7 +905,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Patronymic: " />
+                                    <TextBlock Text="Patronymic: "  TextWrapping="Wrap"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Patronymic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                 </Grid>
                                 <Grid  Margin="5">
@@ -913,7 +913,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Family: " />
+                                    <TextBlock Text="Family: "   TextWrapping="Wrap"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Family,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                                     
                                 </Grid>
@@ -922,7 +922,7 @@
                                         <ColumnDefinition Width="75"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Right: " />
+                                    <TextBlock Text="Right: "  TextWrapping="Wrap"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Select_item_profile.Right,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
 
                                 </Grid>
