@@ -115,6 +115,20 @@ namespace Cash.ViweModel
             myProfile = myDB.People.ToList().Find(x => x.ID == per.ID);
             List_product = myDB.Products.ToList();
         }
+         void OpenMessege(string s, string title)
+        {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
+
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+
+
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = s;
+            messege_view_Model.Messeg_Titel = title;
+            messege.ShowDialog();
+        }
         #endregion Code
 
 
@@ -153,7 +167,7 @@ namespace Cash.ViweModel
                 Add();
             }catch (Exception e)
             {
-
+                OpenMessege(e.Message, "Error");
             }
 
 
@@ -197,7 +211,7 @@ namespace Cash.ViweModel
             }
             catch (Exception e)
             {
-
+                OpenMessege(e.Message, "Error");
             }
 
         }

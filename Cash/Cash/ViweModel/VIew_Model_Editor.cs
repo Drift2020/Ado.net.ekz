@@ -126,7 +126,7 @@ namespace Cash.ViweModel
                 SetNull();
             }catch (Exception e)
             {
-
+                OpenMessege(e.Message, "Error");
             }
         }
         private bool CanExecute_add_product(object o)
@@ -200,7 +200,7 @@ namespace Cash.ViweModel
                 {
                     OpenMessege("You do not have permission to edit the products.", "Error");
                 }
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
 
         }
         private bool CanExecute_edit_product(object o)
@@ -283,7 +283,7 @@ namespace Cash.ViweModel
                 }
             }catch (Exception e)
             {
-
+                OpenMessege(e.Message, "Error");
             }
 
             }
@@ -324,7 +324,7 @@ namespace Cash.ViweModel
 
                 list_category.Clear();
                 List_category = myDB.Categories.ToList();
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
 
 
 
@@ -394,7 +394,7 @@ namespace Cash.ViweModel
                 {
                     OpenMessege("You do not have permission to edit the category.", "Error");
                 }
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_edit_category(object o)
         {
@@ -464,7 +464,7 @@ namespace Cash.ViweModel
                 }
             }catch (Exception e)
             {
-
+                OpenMessege(e.Message, "Error");
             }
 
         }

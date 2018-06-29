@@ -279,7 +279,7 @@ namespace Cash.ViweModel
                 OpenMessege("You are registered.", "Success");
                 _OK();
 
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_ok(object o)
         {
@@ -348,7 +348,7 @@ namespace Cash.ViweModel
                         OpenMessege("Family is not added, there is already such a family.", "Operation error");
                     }
                 }
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_new(object o)
         {

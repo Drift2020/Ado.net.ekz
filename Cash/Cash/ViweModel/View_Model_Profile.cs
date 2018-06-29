@@ -448,7 +448,7 @@ namespace Cash.ViweModel
                     myDB.SaveChanges();
 
                 }
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_edit(object o)
         {

@@ -1072,7 +1072,7 @@ namespace Cash.ViweModel
                 my_add.ShowDialog();
                 if (my_model_Edit.is_ok)
                     Set_new_items();
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_Edit(object o)
         {
@@ -1098,8 +1098,8 @@ namespace Cash.ViweModel
         }
         private void Execute_del(object o)
         {
-            //try
-            //{
+            try
+            {
                 Messege messege = new Messege();
                 View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
@@ -1126,10 +1126,11 @@ namespace Cash.ViweModel
                     Set_new_items();
 
                 }
-            //}catch (Exception e)
-            //{
-
-            //}
+            }
+            catch (Exception e)
+            {
+                OpenMessege(e.Message, "Error");
+            }
         }
         private bool CanExecute_del(object o)
         {
@@ -1165,7 +1166,7 @@ namespace Cash.ViweModel
                 edit_window.ShowDialog();
               //  myDB = new CashDB();
                 Set_new_items();
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_editor(object o)
         {
@@ -1203,7 +1204,7 @@ namespace Cash.ViweModel
                 Set_new_items();
                 Set_Filter();
                 VMSelectedTabIndex = 0;
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_profile(object o)
         {
@@ -1229,7 +1230,7 @@ namespace Cash.ViweModel
             try
             {
                 Month_Comparison();
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_Check(object o)
         {
@@ -1309,7 +1310,7 @@ namespace Cash.ViweModel
                 Set_new_items();
                 Set_Filter();
                 VMSelectedTabIndex = 0;
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_add_profile(object o)
         {
@@ -1348,7 +1349,7 @@ namespace Cash.ViweModel
                 Set_Filter();
                 VMSelectedTabIndex = 0;
             }
-            catch (Exception e) { }
+            catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_Edit_profile(object o)
         {

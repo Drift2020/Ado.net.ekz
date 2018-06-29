@@ -156,7 +156,7 @@ namespace Cash.ViweModel
 
                 OpenMessege("The recovery was successful.", "Success");
                 _OK();
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
 
         }
         private bool CanExecute_ok(object o)

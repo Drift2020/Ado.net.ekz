@@ -225,7 +225,7 @@ namespace Cash.ViweModel
                 OpenMessege("Password or login is not correct.", "Error");
                 return;
 
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_ok(object o)
         {
@@ -262,7 +262,7 @@ namespace Cash.ViweModel
                 _NO();
                 Now_Registr(null);
             }
-            catch (Exception e) { }
+            catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_no(object o)
         {
@@ -296,7 +296,7 @@ namespace Cash.ViweModel
 
                 _NO();
                 Now_Registr(null);
-            }catch (Exception e) { }
+            }catch (Exception e) { OpenMessege(e.Message, "Error"); }
         }
         private bool CanExecute_reset(object o)
         {

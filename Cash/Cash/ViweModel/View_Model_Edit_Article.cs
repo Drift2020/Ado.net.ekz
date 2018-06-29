@@ -115,7 +115,20 @@ namespace Cash.ViweModel
 
 
         #region Code
+        void OpenMessege(string s, string title)
+        {
+            Messege messege = new Messege();
+            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
 
+            if (messege_view_Model._OK == null)
+                messege_view_Model._OK = new Action(messege.Close);
+
+
+            messege.DataContext = messege_view_Model;
+            messege_view_Model.Messege = s;
+            messege_view_Model.Messeg_Titel = title;
+            messege.ShowDialog();
+        }
         public View_Model_Edit_Article(CashDB _myDB, Final temp,Person temp_person)
         {
             myDB = _myDB;
@@ -180,7 +193,7 @@ namespace Cash.ViweModel
             }
             catch (Exception e)
             {
-
+                OpenMessege(e.Message, "Error");
             }
         }
         private bool CanExecute_edit(object o)
@@ -219,7 +232,7 @@ namespace Cash.ViweModel
             }
             catch(Exception e)
             {
-
+                OpenMessege(e.Message, "Error");
             }
 
         }
