@@ -1055,23 +1055,24 @@ namespace Cash.ViweModel
         }
         private void Execute_Edit(object o)
         {
+            try
+            {
+                Add_Article my_add = new Add_Article();
 
-            Add_Article my_add = new Add_Article();
+                View_Model_Edit_Article my_model_Edit = new View_Model_Edit_Article(myDB, select_item_final.final, my_profile);
+                my_model_Edit.Button_ok = "Edit";
 
-            View_Model_Edit_Article my_model_Edit = new View_Model_Edit_Article(myDB,select_item_final.final,my_profile);
-            my_model_Edit.Button_ok = "Edit";
+                if (my_model_Edit.Edit == null)
+                    my_model_Edit.Edit = new Action(my_add.Close);
 
-            if (my_model_Edit.Edit == null)
-                my_model_Edit.Edit = new Action(my_add.Close);
+                my_add.DataContext = my_model_Edit;
 
-            my_add.DataContext = my_model_Edit;
 
-           
 
-            my_add.ShowDialog();
-            if (my_model_Edit.is_ok)
-            Set_new_items();
-
+                my_add.ShowDialog();
+                if (my_model_Edit.is_ok)
+                    Set_new_items();
+            }catch (Exception e) { }
         }
         private bool CanExecute_Edit(object o)
         {
@@ -1097,28 +1098,33 @@ namespace Cash.ViweModel
         }
         private void Execute_del(object o)
         {
-            Messege messege = new Messege();
-            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
-
-            if (messege_view_Model._OK == null)
-                messege_view_Model._OK = new Action(messege.Close);
-            if (messege_view_Model._NO == null)
-                messege_view_Model._NO = new Action(messege.Close);
-            messege.DataContext = messege_view_Model;
-            messege_view_Model.Messege = "Are you sure you want to delete this entry?";
-            messege_view_Model.Messeg_Titel = "deleting entry";
-            messege.ShowDialog();
-
-            if (messege_view_Model.is_ok)
+            try
             {
-                link_final.Remove(select_item_final);
-                myDB.Finals.Remove(select_item_final.final);
-                myDB.SaveChanges();
+                Messege messege = new Messege();
+                View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
-                Set_new_items();
+                if (messege_view_Model._OK == null)
+                    messege_view_Model._OK = new Action(messege.Close);
+                if (messege_view_Model._NO == null)
+                    messege_view_Model._NO = new Action(messege.Close);
+                messege.DataContext = messege_view_Model;
+                messege_view_Model.Messege = "Are you sure you want to delete this entry?";
+                messege_view_Model.Messeg_Titel = "deleting entry";
+                messege.ShowDialog();
+
+                if (messege_view_Model.is_ok)
+                {
+                    link_final.Remove(select_item_final);
+                    myDB.Finals.Remove(select_item_final.final);
+                    myDB.SaveChanges();
+
+                    Set_new_items();
+
+                }
+            }catch (Exception e)
+            {
 
             }
-
         }
         private bool CanExecute_del(object o)
         {
@@ -1144,16 +1150,17 @@ namespace Cash.ViweModel
         }
         private void Execute_editor(object o)
         {
+            try
+            {
+                Editor edit_window = new Editor();
+                View_Model_Editor model = new View_Model_Editor(my_profile);
+                edit_window.DataContext = model;
 
-            Editor edit_window = new Editor();
-            View_Model_Editor model = new View_Model_Editor(my_profile);
-            edit_window.DataContext = model;
 
-
-            edit_window.ShowDialog();
-            myDB = new CashDB();
-            Set_new_items();
-
+                edit_window.ShowDialog();
+                myDB = new CashDB();
+                Set_new_items();
+            }catch (Exception e) { }
         }
         private bool CanExecute_editor(object o)
         {
@@ -1176,20 +1183,22 @@ namespace Cash.ViweModel
         }
         private void Execute_profile(object o)
         {
-            My_account window = new My_account();
-            View_Model_Profile view_model = new View_Model_Profile(myDB, my_profile);
-            window.DataContext = view_model;
+            try
+            {
+                My_account window = new My_account();
+                View_Model_Profile view_model = new View_Model_Profile(myDB, my_profile);
+                window.DataContext = view_model;
 
-            view_model._Edit = new Action(window.Close);
-            view_model._Delite = new Action(window.Close);
+                view_model._Edit = new Action(window.Close);
+                view_model._Delite = new Action(window.Close);
 
-            window.ShowDialog();
-         
-            myDB = new CashDB();
-            Set_new_items();
-            Set_Filter();
-            VMSelectedTabIndex = 0;
+                window.ShowDialog();
 
+                myDB = new CashDB();
+                Set_new_items();
+                Set_Filter();
+                VMSelectedTabIndex = 0;
+            }catch (Exception e) { }
         }
         private bool CanExecute_profile(object o)
         {
@@ -1212,9 +1221,10 @@ namespace Cash.ViweModel
         }
         private void Execute_Check(object o)
         {
-
-            Month_Comparison();
-
+            try
+            {
+                Month_Comparison();
+            }catch (Exception e) { }
         }
         private bool CanExecute_Check(object o)
         {
@@ -1278,22 +1288,23 @@ namespace Cash.ViweModel
         }
         private void Execute_add_profile(object o)
         {
+            try
+            {
+                Registration view_registration = new Registration();
 
-            Registration view_registration = new Registration();
+                View_Model_Registration View_model_reg = new View_Model_Registration();
 
-            View_Model_Registration View_model_reg = new View_Model_Registration();
+                if (View_model_reg._OK == null)
+                    View_model_reg._OK = new Action(view_registration.Ok);
 
-            if (View_model_reg._OK == null)
-                View_model_reg._OK = new Action(view_registration.Ok);
+                view_registration.DataContext = View_model_reg;
 
-            view_registration.DataContext = View_model_reg;
-
-            view_registration.ShowDialog();
-            myDB = new CashDB();
-            Set_new_items();
-            Set_Filter();
-            VMSelectedTabIndex = 0;
-
+                view_registration.ShowDialog();
+                myDB = new CashDB();
+                Set_new_items();
+                Set_Filter();
+                VMSelectedTabIndex = 0;
+            }catch (Exception e) { }
         }
         private bool CanExecute_add_profile(object o)
         {
@@ -1316,21 +1327,23 @@ namespace Cash.ViweModel
         }
         private void Execute_Edit_profile(object o)
         {
+            try
+            {
+                My_account window = new My_account();
+                View_Model_Profile view_model = new View_Model_Profile(myDB, select_item_profile.person);
+                window.DataContext = view_model;
 
-            My_account window = new My_account();
-            View_Model_Profile view_model = new View_Model_Profile(myDB, select_item_profile.person);
-            window.DataContext = view_model;
+                view_model._Edit = new Action(window.Close);
+                view_model._Delite = new Action(window.Close);
 
-            view_model._Edit = new Action(window.Close);
-            view_model._Delite = new Action(window.Close);
+                window.ShowDialog();
 
-            window.ShowDialog();
-
-            myDB = new CashDB();
-            Set_new_items();
-            Set_Filter();
-            VMSelectedTabIndex = 0;
-
+                myDB = new CashDB();
+                Set_new_items();
+                Set_Filter();
+                VMSelectedTabIndex = 0;
+            }
+            catch (Exception e) { }
         }
         private bool CanExecute_Edit_profile(object o)
         {

@@ -274,118 +274,120 @@ namespace Cash.ViweModel
         }
         private void Execute_edit(object o)
         {
-            Messege messege = new Messege();
-            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
-
-            if (messege_view_Model._OK == null)
-                messege_view_Model._OK = new Action(messege.Close);
-            if (messege_view_Model._NO == null)
-                messege_view_Model._NO = new Action(messege.Close);
-
-
-            messege.DataContext = messege_view_Model;
-            messege_view_Model.Messege = "Are you sure you want to change the settings?";
-            messege_view_Model.Messeg_Titel = "Сhange";
-            messege.ShowDialog();
-
-            if (messege_view_Model.is_ok)
+            try
             {
-                bool is_str;
-                if (new_name != null && new_name.Length > 0)
+                Messege messege = new Messege();
+                View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
+
+                if (messege_view_Model._OK == null)
+                    messege_view_Model._OK = new Action(messege.Close);
+                if (messege_view_Model._NO == null)
+                    messege_view_Model._NO = new Action(messege.Close);
+
+
+                messege.DataContext = messege_view_Model;
+                messege_view_Model.Messege = "Are you sure you want to change the settings?";
+                messege_view_Model.Messeg_Titel = "Сhange";
+                messege.ShowDialog();
+
+                if (messege_view_Model.is_ok)
                 {
-                    is_str = regex_str.IsMatch(new_name);
-                    if (!is_str)
+                    bool is_str;
+                    if (new_name != null && new_name.Length > 0)
                     {
-                        OpenMessege("The name can only be Latin letters.", "Error");
-                       
+                        is_str = regex_str.IsMatch(new_name);
+                        if (!is_str)
+                        {
+                            OpenMessege("The name can only be Latin letters.", "Error");
+
+                        }
+                        else
+                            Name = new_name;
                     }
-                    else
-                        Name = new_name;
-                }
-                if (new_surname != null && new_surname.Length > 0)
-                {
-                    is_str = regex_str.IsMatch(new_surname);
-                    if (!is_str)
+                    if (new_surname != null && new_surname.Length > 0)
                     {
-                        OpenMessege("The surname can only be Latin letters.", "Error");
-                        
+                        is_str = regex_str.IsMatch(new_surname);
+                        if (!is_str)
+                        {
+                            OpenMessege("The surname can only be Latin letters.", "Error");
+
+                        }
+                        else
+                            Surname = new_surname;
                     }
-                    else
-                        Surname = new_surname;
-                }
 
 
-                if (new_patronymic != null && new_patronymic.Length > 0)
-                {
-
-                    is_str = regex_str.IsMatch(new_patronymic);
-                    if (!is_str)
+                    if (new_patronymic != null && new_patronymic.Length > 0)
                     {
-                        OpenMessege("In the patronymic there can be only Latin letters.", "Error");
-                       
+
+                        is_str = regex_str.IsMatch(new_patronymic);
+                        if (!is_str)
+                        {
+                            OpenMessege("In the patronymic there can be only Latin letters.", "Error");
+
+                        }
+                        else
+                            Patronymic = new_patronymic;
                     }
-                    else
-                    Patronymic = new_patronymic;
-                }
-
-              
-                    
-                
-                   
-               
-                   
 
 
-              
-                if (password!=null&& password2!=null&&
-                    password != password2 || password != null && password.Length < 1)
-                {
-                    OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
-                   
-                }
-                else if (password != null && password2 != null )
-                {
-                        bool is_ok = regex_password.IsMatch(password);
 
-                    if(is_ok)
-                        my_profile.Password = password;
-                    else
+
+
+
+
+
+
+
+                    if (password != null && password2 != null &&
+                        password != password2 || password != null && password.Length < 1)
                     {
                         OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
+
                     }
-                }
-
-                if (New_login != null)
-                {
-                    bool is_oks_log = regex_login.IsMatch(New_login);
-
-                    if (is_oks_log)
+                    else if (password != null && password2 != null)
                     {
-                        if (New_login != null && New_login.Length > 0)
+                        bool is_ok = regex_password.IsMatch(password);
+
+                        if (is_ok)
+                            my_profile.Password = password;
+                        else
                         {
-                            bool iso = true;
-                            foreach (var i in myDB.People)
-                            {
-                                if (i.Login == New_login)
-                                {
-                                    OpenMessege("This login is already in use.", "Error");
-                                    iso = false;
-                                }
-                            }
-                            if (iso)
-                                my_profile.Login = Login = New_login;
+                            OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
                         }
                     }
-                    else
-                    {
-                        OpenMessege("The user must have from 2 to 20 characters, which can be letters and numbers, the first character is necessarily a letter.", "Error");
-                    }
-                }
 
-                if (select_item_family != null && select_item_right != null)
-                {
-                    bool is_oke = true;
-                   
+                    if (New_login != null)
+                    {
+                        bool is_oks_log = regex_login.IsMatch(New_login);
+
+                        if (is_oks_log)
+                        {
+                            if (New_login != null && New_login.Length > 0)
+                            {
+                                bool iso = true;
+                                foreach (var i in myDB.People)
+                                {
+                                    if (i.Login == New_login)
+                                    {
+                                        OpenMessege("This login is already in use.", "Error");
+                                        iso = false;
+                                    }
+                                }
+                                if (iso)
+                                    my_profile.Login = Login = New_login;
+                            }
+                        }
+                        else
+                        {
+                            OpenMessege("The user must have from 2 to 20 characters, which can be letters and numbers, the first character is necessarily a letter.", "Error");
+                        }
+                    }
+
+                    if (select_item_family != null && select_item_right != null)
+                    {
+                        bool is_oke = true;
+
                         foreach (var i in myDB.People)
                         {
                             if (i.Right.Level < select_item_right.Level &&
@@ -405,7 +407,7 @@ namespace Cash.ViweModel
 
                                 if (view.is_ok == true)
                                 {
-                                    
+
                                     my_profile.Family = select_item_family;
                                     Family_str = select_item_family.Name;
 
@@ -417,35 +419,36 @@ namespace Cash.ViweModel
                             }
                         }
 
-                    if (is_oke)
-                    {
+                        if (is_oke)
+                        {
 
-                        my_profile.Family = select_item_family;
-                        Family_str = select_item_family.Name;
+                            my_profile.Family = select_item_family;
+                            Family_str = select_item_family.Name;
 
-                        my_profile.FamilyID = select_item_family.ID;
-                        my_profile.RightsID = select_item_right.ID;
-                        my_profile.Right = select_item_right;
+                            my_profile.FamilyID = select_item_family.ID;
+                            my_profile.RightsID = select_item_right.ID;
+                            my_profile.Right = select_item_right;
+                        }
                     }
+                    else if (select_item_family != null && select_item_right == null ||
+                            select_item_family == null && select_item_right != null)
+                    {
+                        OpenMessege("You did not select all the parameters in the family.", "Error");
+                    }
+
+
+                    if (new_secret_word != null && new_secret_word.Length > 0)
+                    {
+                        my_profile.Secret_word = new_secret_word;
+                    }
+
+
+                    var temp = myDB.People.ToList().Find(x => x.ID == my_profile.ID);
+                    temp = my_profile;
+                    myDB.SaveChanges();
+
                 }
-                else if (select_item_family != null && select_item_right == null ||
-                        select_item_family == null && select_item_right != null)
-                { 
-                    OpenMessege("You did not select all the parameters in the family.", "Error");
-                }
-
-
-                if(new_secret_word!=null && new_secret_word.Length>0)
-                {
-                    my_profile.Secret_word = new_secret_word;
-                }
-
-
-                var temp = myDB.People.ToList().Find(x => x.ID == my_profile.ID);
-                temp = my_profile;
-                myDB.SaveChanges();
-
-            }
+            }catch (Exception e) { }
         }
         private bool CanExecute_edit(object o)
         {

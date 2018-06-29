@@ -174,110 +174,112 @@ namespace Cash.ViweModel
         }
         private void Execute_ok(object o)
         {
-            bool is_oks = regex_password.IsMatch(password);
-            bool is_oks_log = regex_login.IsMatch(login);
-
-
-            if (password != password2 || !is_oks)
+            try
             {
-                OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
-                return;
-            }
+                bool is_oks = regex_password.IsMatch(password);
+                bool is_oks_log = regex_login.IsMatch(login);
 
-            if (is_oks_log)
+
+                if (password != password2 || !is_oks)
+                {
+                    OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
+                    return;
+                }
+
+                if (is_oks_log)
+                    foreach (var i in myDB.People)
+                    {
+                        if (i.Login == login)
+                        {
+                            OpenMessege("This login is already in use.", "Error");
+                            return;
+                        }
+
+                    }
+                else
+                {
+                    OpenMessege("The user must have from 2 to 20 characters, which can be letters and numbers, the first character is necessarily a letter.", "Error");
+                    return;
+                }
+
+
                 foreach (var i in myDB.People)
                 {
-                    if (i.Login == login)
+                    if (select_item_right.Level != 3 &&
+                        i.Right.Level == select_item_right.Level &&
+                        i.Family == select_item_family)
                     {
-                        OpenMessege("This login is already in use.", "Error");
-                        return;
+                        OpenMessege("Confirm the account with more rights.", "Registration");
+
+
+                        Login window = new Login();
+                        Viwe_Model_Login view = new Viwe_Model_Login(Visibility.Hidden, select_item_right.Level, select_item_family);
+
+                        if (view._OK == null)
+                            view._OK = new Action(window.Ok);
+
+                        view._Close = new Action(window.Close);
+
+                        window.DataContext = view;
+                        window.ShowDialog();
+
+                        if (view.is_ok == false)
+                        {
+
+                            return;
+                        }
+
                     }
-
                 }
-            else
-            {
-                OpenMessege("The user must have from 2 to 20 characters, which can be letters and numbers, the first character is necessarily a letter.", "Error");
-                return;
-            }
 
 
-            foreach (var i in myDB.People)
-            {
-                if (select_item_right.Level != 3 &&
-                    i.Right.Level == select_item_right.Level &&
-                    i.Family == select_item_family)
-                {
-                    OpenMessege("Confirm the account with more rights.", "Registration");
+                bool is_str;
 
-
-                    Login window = new Login();
-                    Viwe_Model_Login view = new Viwe_Model_Login(Visibility.Hidden, select_item_right.Level, select_item_family);
-
-                    if (view._OK == null)
-                        view._OK = new Action(window.Ok);
-
-                    view._Close = new Action(window.Close);
-
-                    window.DataContext = view;
-                    window.ShowDialog();
-
-                    if (view.is_ok == false)
-                    {
-
-                        return;
-                    }
-
-                }
-            }
-
-
-            bool is_str;
-          
                 is_str = regex_str.IsMatch(name);
                 if (!is_str)
                 {
                     OpenMessege("In the name, surname, patronymic can only be Latin letters.", "Error");
                     return;
                 }
-           
-
-            is_str = regex_str.IsMatch(surname);
-            if (!is_str)
-            {
-                OpenMessege("In the name, surname, patronymic can only be Latin letters.", "Error");
-                return;
-            }
 
 
-            is_str = regex_str.IsMatch(patronymic);
-            if (!is_str)
-            {
-                OpenMessege("In the name, surname, patronymic can only be Latin letters.", "Error");
-                return;
-            }
+                is_str = regex_str.IsMatch(surname);
+                if (!is_str)
+                {
+                    OpenMessege("In the name, surname, patronymic can only be Latin letters.", "Error");
+                    return;
+                }
 
 
-            Person temp = new Person();
-            temp.Name = name;
-            temp.Surname = surname;
-            temp.Patronymic = patronymic;
-
-            temp.Login = login;
-            temp.Password = password;
-            temp.Family = select_item_family;
-            temp.FamilyID = select_item_family.ID;
-            temp.RightsID = select_item_right.ID;
-            temp.Right = select_item_right;
-            temp.Secret_word = secret_word;
-            myDB.People.Add(temp);
-            myDB.SaveChanges();
-            
-            is_ok = true;
-
-            OpenMessege("You are registered.", "Success");
-            _OK();
+                is_str = regex_str.IsMatch(patronymic);
+                if (!is_str)
+                {
+                    OpenMessege("In the name, surname, patronymic can only be Latin letters.", "Error");
+                    return;
+                }
 
 
+                Person temp = new Person();
+                temp.Name = name;
+                temp.Surname = surname;
+                temp.Patronymic = patronymic;
+
+                temp.Login = login;
+                temp.Password = password;
+                temp.Family = select_item_family;
+                temp.FamilyID = select_item_family.ID;
+                temp.RightsID = select_item_right.ID;
+                temp.Right = select_item_right;
+                temp.Secret_word = secret_word;
+                myDB.People.Add(temp);
+                myDB.SaveChanges();
+
+                is_ok = true;
+
+                OpenMessege("You are registered.", "Success");
+                _OK();
+
+            }catch (Exception e) { }
         }
         private bool CanExecute_ok(object o)
         {
@@ -315,35 +317,38 @@ namespace Cash.ViweModel
         }
         private void Execute_new(object o)
         {
-            Add_Edit_window window = new Add_Edit_window();
-            View_Model_add_edit_window view= new View_Model_add_edit_window();
-            view.Title = "New family";
-
-
-            view.OK = window.Close;
-            window.DataContext = view;
-            window.ShowDialog();
-
-            if (view.Is_ok)
+            try
             {
-                Family temp = new Family();
-                temp.Name = view.Name;
+                Add_Edit_window window = new Add_Edit_window();
+                View_Model_add_edit_window view = new View_Model_add_edit_window();
+                view.Title = "New family";
 
-                if (myDB.Families.ToList().Find(x => x.Name == temp.Name) == null)
+
+                view.OK = window.Close;
+                window.DataContext = view;
+                window.ShowDialog();
+
+                if (view.Is_ok)
                 {
-                    Family_.Add(temp);
-                    OnPropertyChanged(nameof(Family_));
+                    Family temp = new Family();
+                    temp.Name = view.Name;
 
-                    myDB.Families.Add(temp);
-                    myDB.SaveChanges();
+                    if (myDB.Families.ToList().Find(x => x.Name == temp.Name) == null)
+                    {
+                        Family_.Add(temp);
+                        OnPropertyChanged(nameof(Family_));
 
-                    OpenMessege("Family successfully added", "Successful operation");
+                        myDB.Families.Add(temp);
+                        myDB.SaveChanges();
+
+                        OpenMessege("Family successfully added", "Successful operation");
+                    }
+                    else
+                    {
+                        OpenMessege("Family is not added, there is already such a family.", "Operation error");
+                    }
                 }
-                else
-                {
-                    OpenMessege("Family is not added, there is already such a family.", "Operation error");
-                }
-            }
+            }catch (Exception e) { }
         }
         private bool CanExecute_new(object o)
         {

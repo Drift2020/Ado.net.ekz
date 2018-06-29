@@ -150,29 +150,36 @@ namespace Cash.ViweModel
         }
         private void Execute_edit(object o)
         {
-            Messege messege = new Messege();
-            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
-
-            if (messege_view_Model._OK == null)
-                messege_view_Model._OK = new Action(messege.Close);
-            if (messege_view_Model._NO == null)
-                messege_view_Model._NO = new Action(messege.Close);
-            messege.DataContext = messege_view_Model;
-            messege_view_Model.Messege = "Are you sure you want to change this entry?";
-            messege_view_Model.Messeg_Titel = "Edit entry";
-            messege.ShowDialog();
-
-            if (messege_view_Model.is_ok)
+            try
             {
+                Messege messege = new Messege();
+                View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
-                my_z.Specific = specification;
-                my_z.Date = Convert.ToDateTime( date);
-                my_z.Money = Convert.ToDecimal(price);
-                my_z.Type = type;
-                my_z.Product = select_item_product;
-                my_z.ProductID = select_item_product.ID;
-                is_ok = true;
-                Edit();
+                if (messege_view_Model._OK == null)
+                    messege_view_Model._OK = new Action(messege.Close);
+                if (messege_view_Model._NO == null)
+                    messege_view_Model._NO = new Action(messege.Close);
+                messege.DataContext = messege_view_Model;
+                messege_view_Model.Messege = "Are you sure you want to change this entry?";
+                messege_view_Model.Messeg_Titel = "Edit entry";
+                messege.ShowDialog();
+
+                if (messege_view_Model.is_ok)
+                {
+
+                    my_z.Specific = specification;
+                    my_z.Date = Convert.ToDateTime(date);
+                    my_z.Money = Convert.ToDecimal(price);
+                    my_z.Type = type;
+                    my_z.Product = select_item_product;
+                    my_z.ProductID = select_item_product.ID;
+                    is_ok = true;
+                    Edit();
+
+                }
+            }
+            catch (Exception e)
+            {
 
             }
         }
@@ -197,18 +204,23 @@ namespace Cash.ViweModel
         }
         private void Execute_editor(object o)
         {
+            try
+            {
+
+                Editor edit_window = new Editor();
+                View_Model_Editor model = new View_Model_Editor(myProfile);
+                edit_window.DataContext = model;
 
 
-            Editor edit_window = new Editor();
-            View_Model_Editor model = new View_Model_Editor(myProfile);
-            edit_window.DataContext = model;
+                edit_window.ShowDialog();
+                myDB = new CashDB();
+                List_product = myDB.Products.ToList();
+                OnPropertyChanged(nameof(List_product));
+            }
+            catch(Exception e)
+            {
 
-
-            edit_window.ShowDialog();
-            myDB = new CashDB();
-            List_product = myDB.Products.ToList();
-            OnPropertyChanged(nameof(List_product));
-
+            }
 
         }
         private bool CanExecute_editor(object o)

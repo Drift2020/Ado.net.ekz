@@ -136,21 +136,25 @@ namespace Cash.ViweModel
         {
 
 
+            try
+            {
+                Final temp = new Final();
+                temp.Date = Convert.ToDateTime(date);
+                temp.Money = Convert.ToInt32(price);
+                temp.Product = select_item_product;
+                temp.ProductID = select_item_product.ID;
+                temp.Specific = specification;
+                temp.Person = myProfile;
+                temp.PersonID = myProfile.ID;
+                temp.Type = type;
+                myDB.Finals.Add(temp);
+                myDB.SaveChanges();
 
-            Final temp = new Final();
-            temp.Date = Convert.ToDateTime(date);
-            temp.Money = Convert.ToInt32(price);
-            temp.Product = select_item_product;
-            temp.ProductID = select_item_product.ID;
-            temp.Specific = specification;
-            temp.Person = myProfile;
-            temp.PersonID = myProfile.ID;
-            temp.Type = type;
-            myDB.Finals.Add(temp);
-            myDB.SaveChanges();
+                Add();
+            }catch (Exception e)
+            {
 
-            Add();
-
+            }
 
 
         }
@@ -179,17 +183,22 @@ namespace Cash.ViweModel
         private void Execute_editor(object o)
         {
 
+            try
+            {
+                Editor edit_window = new Editor();
+                View_Model_Editor model = new View_Model_Editor(myProfile);
+                edit_window.DataContext = model;
 
-            Editor edit_window = new Editor();
-            View_Model_Editor model = new View_Model_Editor(myProfile);
-            edit_window.DataContext = model;
 
+                edit_window.ShowDialog();
 
-            edit_window.ShowDialog();
-           
-            List_product = myDB.Products.ToList();
-            OnPropertyChanged(nameof(List_product));
+                List_product = myDB.Products.ToList();
+                OnPropertyChanged(nameof(List_product));
+            }
+            catch (Exception e)
+            {
 
+            }
 
         }
         private bool CanExecute_editor(object o)

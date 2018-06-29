@@ -105,23 +105,28 @@ namespace Cash.ViweModel
         }
         private void Execute_add_product(object o)
         {
+            try
+            {
+                Product temp = new Product();
+                temp.Name = Name_product;
 
-            Product temp = new Product();
-            temp.Name = Name_product;
 
+                var List_final = from i in Category_list
+                                 where i.IsSelected == true
+                                 select i;
+                foreach (var i in List_final)
+                    temp.Categories.Add(i.Item);
 
-            var List_final = from i in Category_list
-                             where i.IsSelected==true
-                             select i;
-            foreach (var i in List_final)
-                temp.Categories.Add(i.Item);
+                myDB.Products.Add(temp);
+                myDB.SaveChanges();
 
-            myDB.Products.Add(temp);
-            myDB.SaveChanges();
+                list_product.Clear();
+                List_product = myDB.Products.ToList();
+                SetNull();
+            }catch (Exception e)
+            {
 
-            list_product.Clear();
-            List_product = myDB.Products.ToList();
-            SetNull();
+            }
         }
         private bool CanExecute_add_product(object o)
         {
@@ -155,43 +160,46 @@ namespace Cash.ViweModel
         }
         private void Execute_edit_product(object o)
         {
-            Messege messege = new Messege();
-            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
-
-            if (messege_view_Model._OK == null)
-                messege_view_Model._OK = new Action(messege.Close);
-            if (messege_view_Model._NO == null)
-                messege_view_Model._NO = new Action(messege.Close);
-            messege.DataContext = messege_view_Model;
-            messege_view_Model.Messege = "Do you really want to change this product?";
-            messege_view_Model.Messeg_Titel = "Change product";
-            messege.ShowDialog();
-
-            if (messege_view_Model.is_ok && myProfile.Right.Level<2)
+            try
             {
+                Messege messege = new Messege();
+                View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
-                Select_item_product.Name = name_product;
+                if (messege_view_Model._OK == null)
+                    messege_view_Model._OK = new Action(messege.Close);
+                if (messege_view_Model._NO == null)
+                    messege_view_Model._NO = new Action(messege.Close);
+                messege.DataContext = messege_view_Model;
+                messege_view_Model.Messege = "Do you really want to change this product?";
+                messege_view_Model.Messeg_Titel = "Change product";
+                messege.ShowDialog();
 
-                Select_item_product.Categories.Clear();
+                if (messege_view_Model.is_ok && myProfile.Right.Level < 2)
+                {
 
-                var List_final = from i in Category_list
-                                 where i.IsSelected == true
-                                 select i;
-                foreach (var i in List_final)
-                    Select_item_product.Categories.Add(i.Item);
+                    Select_item_product.Name = name_product;
 
-                Select_item_product = null;
+                    Select_item_product.Categories.Clear();
 
-                myDB.SaveChanges();
+                    var List_final = from i in Category_list
+                                     where i.IsSelected == true
+                                     select i;
+                    foreach (var i in List_final)
+                        Select_item_product.Categories.Add(i.Item);
 
-                list_product.Clear();
-                List_product = myDB.Products.ToList();
-                SetNull();
-            }
-            else if(myProfile.Right.Level == 2)
-            {
-                OpenMessege("You do not have permission to edit the products.", "Error");
-            }
+                    Select_item_product = null;
+
+                    myDB.SaveChanges();
+
+                    list_product.Clear();
+                    List_product = myDB.Products.ToList();
+                    SetNull();
+                }
+                else if (myProfile.Right.Level == 2)
+                {
+                    OpenMessege("You do not have permission to edit the products.", "Error");
+                }
+            }catch (Exception e) { }
 
         }
         private bool CanExecute_edit_product(object o)
@@ -226,50 +234,56 @@ namespace Cash.ViweModel
         }
         private void Execute_delete_product(object o)
         {
-            Messege messege = new Messege();
-            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
-
-            if (messege_view_Model._OK == null)
-                messege_view_Model._OK = new Action(messege.Close);
-            if (messege_view_Model._NO == null)
-                messege_view_Model._NO = new Action(messege.Close);
-            messege.DataContext = messege_view_Model;
-            messege_view_Model.Messege = "Are you sure you want to delete this product?";
-            messege_view_Model.Messeg_Titel = "Deleting product";
-            messege.ShowDialog();
-
-            if (messege_view_Model.is_ok && myProfile.Right.Level < 2)
+            try
             {
-                Name_product = null;
-                list_product.Remove(select_item_product);
-                myDB.Products.Remove(select_item_product);
-                Select_item_product = null;
-                try
-                {
-                    myDB.SaveChanges();
-                }
-                catch(Exception e)
-                {
-                     messege = new Messege();
-                     messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
 
-                    if (messege_view_Model._OK == null)
-                        messege_view_Model._OK = new Action(messege.Close);
-                  
-                    messege.DataContext = messege_view_Model;
-                    messege_view_Model.Messege = "With this product there is a connection of records with users.\nRemoval is not possible.";
-                    messege_view_Model.Messeg_Titel = "Error";
-                    messege.ShowDialog();
-                }
+                Messege messege = new Messege();
+                View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
-                list_product = myDB.Products.ToList();
-                OnPropertyChanged(nameof(List_product));
-            }
-            else if (myProfile.Right.Level == 2)
+                if (messege_view_Model._OK == null)
+                    messege_view_Model._OK = new Action(messege.Close);
+                if (messege_view_Model._NO == null)
+                    messege_view_Model._NO = new Action(messege.Close);
+                messege.DataContext = messege_view_Model;
+                messege_view_Model.Messege = "Are you sure you want to delete this product?";
+                messege_view_Model.Messeg_Titel = "Deleting product";
+                messege.ShowDialog();
+
+                if (messege_view_Model.is_ok && myProfile.Right.Level < 2)
+                {
+                    Name_product = null;
+                    list_product.Remove(select_item_product);
+                    myDB.Products.Remove(select_item_product);
+                    Select_item_product = null;
+                    try
+                    {
+                        myDB.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        messege = new Messege();
+                        messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden, System.Windows.Visibility.Hidden);
+
+                        if (messege_view_Model._OK == null)
+                            messege_view_Model._OK = new Action(messege.Close);
+
+                        messege.DataContext = messege_view_Model;
+                        messege_view_Model.Messege = "With this product there is a connection of records with users.\nRemoval is not possible.";
+                        messege_view_Model.Messeg_Titel = "Error";
+                        messege.ShowDialog();
+                    }
+
+                    list_product = myDB.Products.ToList();
+                    OnPropertyChanged(nameof(List_product));
+                }
+                else if (myProfile.Right.Level == 2)
+                {
+                    OpenMessege("You do not have the rights to delete the item.", "Error");
+                }
+            }catch (Exception e)
             {
-                OpenMessege("You do not have the rights to delete the item.", "Error");
-            }
 
+            }
 
             }
         private bool CanExecute_delete_product(object o)
@@ -297,21 +311,23 @@ namespace Cash.ViweModel
         }
         private void Execute_add_category(object o)
         {
-           
-              
 
-             
-                    Category temp = new Category();
-                    temp.Name = name_category;
-                    myDB.Categories.Add(temp);
-                    myDB.SaveChanges();
 
-                    list_category.Clear();
-                    List_category = myDB.Categories.ToList();
-             
-               
-             
-            
+
+            try
+            {
+                Category temp = new Category();
+                temp.Name = name_category;
+                myDB.Categories.Add(temp);
+                myDB.SaveChanges();
+
+                list_category.Clear();
+                List_category = myDB.Categories.ToList();
+            }catch (Exception e) { }
+
+
+
+
 
         }
         private bool CanExecute_add_category(object o)
@@ -349,33 +365,35 @@ namespace Cash.ViweModel
         }
         private void Execute_edit_category(object o)
         {
-
-            Messege messege = new Messege();
-            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
-
-            if (messege_view_Model._OK == null)
-                messege_view_Model._OK = new Action(messege.Close);
-            if (messege_view_Model._NO == null)
-                messege_view_Model._NO = new Action(messege.Close);
-            messege.DataContext = messege_view_Model;
-            messege_view_Model.Messege = "Do you really want to change this category?";
-            messege_view_Model.Messeg_Titel = "Change category";
-            messege.ShowDialog();
-
-            if (messege_view_Model.is_ok && myProfile.Right.Level < 2)
+            try
             {
+                Messege messege = new Messege();
+                View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
-                Select_item_category.Name = name_category;
-                myDB.SaveChanges();
-                list_category = myDB.Categories.ToList();
-                OnPropertyChanged(nameof(List_category));
-                OnPropertyChanged(nameof(List_product));
+                if (messege_view_Model._OK == null)
+                    messege_view_Model._OK = new Action(messege.Close);
+                if (messege_view_Model._NO == null)
+                    messege_view_Model._NO = new Action(messege.Close);
+                messege.DataContext = messege_view_Model;
+                messege_view_Model.Messege = "Do you really want to change this category?";
+                messege_view_Model.Messeg_Titel = "Change category";
+                messege.ShowDialog();
 
-            }
-            else if(myProfile.Right.Level == 2)
-            {
-                OpenMessege("You do not have permission to edit the category.", "Error");
-            }
+                if (messege_view_Model.is_ok && myProfile.Right.Level < 2)
+                {
+
+                    Select_item_category.Name = name_category;
+                    myDB.SaveChanges();
+                    list_category = myDB.Categories.ToList();
+                    OnPropertyChanged(nameof(List_category));
+                    OnPropertyChanged(nameof(List_product));
+
+                }
+                else if (myProfile.Right.Level == 2)
+                {
+                    OpenMessege("You do not have permission to edit the category.", "Error");
+                }
+            }catch (Exception e) { }
         }
         private bool CanExecute_edit_category(object o)
         {
@@ -412,33 +430,40 @@ namespace Cash.ViweModel
         }
         private void Execute_delete_category(object o)
         {
-            Messege messege = new Messege();
-            View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
-
-            if (messege_view_Model._OK == null)
-                messege_view_Model._OK = new Action(messege.Close);
-            if (messege_view_Model._NO == null)
-                messege_view_Model._NO = new Action(messege.Close);
-            messege.DataContext = messege_view_Model;
-            messege_view_Model.Messege = "Are you sure you want to delete this category?";
-            messege_view_Model.Messeg_Titel = "Deleting category";
-            messege.ShowDialog();
-
-            if (messege_view_Model.is_ok && myProfile.Right.Level<2)
+            try
             {
-                Name_category = null;
-                list_category.Remove(select_item_category);
-                myDB.Categories.Remove(select_item_category);
-                Select_item_category = null;
-              
-                myDB.SaveChanges();
 
-                list_category = myDB.Categories.ToList();
-                OnPropertyChanged(nameof(List_category));
-            }
-            else if(myProfile.Right.Level==2)
+                Messege messege = new Messege();
+                View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
+
+                if (messege_view_Model._OK == null)
+                    messege_view_Model._OK = new Action(messege.Close);
+                if (messege_view_Model._NO == null)
+                    messege_view_Model._NO = new Action(messege.Close);
+                messege.DataContext = messege_view_Model;
+                messege_view_Model.Messege = "Are you sure you want to delete this category?";
+                messege_view_Model.Messeg_Titel = "Deleting category";
+                messege.ShowDialog();
+
+                if (messege_view_Model.is_ok && myProfile.Right.Level < 2)
+                {
+                    Name_category = null;
+                    list_category.Remove(select_item_category);
+                    myDB.Categories.Remove(select_item_category);
+                    Select_item_category = null;
+
+                    myDB.SaveChanges();
+
+                    list_category = myDB.Categories.ToList();
+                    OnPropertyChanged(nameof(List_category));
+                }
+                else if (myProfile.Right.Level == 2)
+                {
+                    OpenMessege("You do not have permission to delete the category.", "Error");
+                }
+            }catch (Exception e)
             {
-                OpenMessege("You do not have permission to delete the category.", "Error");
+
             }
 
         }

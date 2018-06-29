@@ -120,42 +120,43 @@ namespace Cash.ViweModel
         }
         private void Execute_ok(object o)
         {
-
-            var temp = myDB.People.ToList().Find(x => x.Login.Contains(login));
-
-            if (temp==null)
+            try
             {
-                OpenMessege("There is no such login or it is not true.", "Error");
-                return;
-            }
-            if(temp.Secret_word.Contains(secret_word))
-            {
-                OpenMessege("The secret password is not suitable, contact your family administrator.", "Error");
-                return;
-            }
+                var temp = myDB.People.ToList().Find(x => x.Login.Contains(login));
 
-            bool is_oks = regex_password.IsMatch(password);
+                if (temp == null)
+                {
+                    OpenMessege("There is no such login or it is not true.", "Error");
+                    return;
+                }
+                if (temp.Secret_word.Contains(secret_word))
+                {
+                    OpenMessege("The secret password is not suitable, contact your family administrator.", "Error");
+                    return;
+                }
 
-
-            if (password != password2 || !is_oks)
-            {
-                OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
-                return;
-            }
-            
+                bool is_oks = regex_password.IsMatch(password);
 
 
+                if (password != password2 || !is_oks)
+                {
+                    OpenMessege("The password must be at least one digit, one letter (English), a large letter and any character that is not a digit and not a letter, the maximum password length is 16 characters.", "Error");
+                    return;
+                }
 
-            temp.Password = password;
 
 
-            myDB.SaveChanges();
 
-            is_ok = true;
+                temp.Password = password;
 
-            OpenMessege("The recovery was successful.", "Success");
-            _OK();
 
+                myDB.SaveChanges();
+
+                is_ok = true;
+
+                OpenMessege("The recovery was successful.", "Success");
+                _OK();
+            }catch (Exception e) { }
 
         }
         private bool CanExecute_ok(object o)
