@@ -1020,7 +1020,7 @@ namespace Cash.ViweModel
 
             Add_Article my_add = new Add_Article();
 
-            View_Model_Add_Article my_model_add = new View_Model_Add_Article(my_profile);
+            View_Model_Add_Article my_model_add = new View_Model_Add_Article(my_profile,myDB);
             my_model_add.Button_ok = "Add";
 
             if (my_model_add.Add == null)
@@ -1098,8 +1098,8 @@ namespace Cash.ViweModel
         }
         private void Execute_del(object o)
         {
-            try
-            {
+            //try
+            //{
                 Messege messege = new Messege();
                 View_Model_Messege messege_view_Model = new View_Model_Messege(System.Windows.Visibility.Visible, System.Windows.Visibility.Visible, System.Windows.Visibility.Hidden);
 
@@ -1115,16 +1115,21 @@ namespace Cash.ViweModel
                 if (messege_view_Model.is_ok)
                 {
                     link_final.Remove(select_item_final);
-                    myDB.Finals.Remove(select_item_final.final);
+
+
+                    var t = myDB.Finals.ToList().Find(x => x.ID == select_item_final.final.ID);
+                    myDB.Finals.Remove(t);
+
+
                     myDB.SaveChanges();
 
                     Set_new_items();
 
                 }
-            }catch (Exception e)
-            {
+            //}catch (Exception e)
+            //{
 
-            }
+            //}
         }
         private bool CanExecute_del(object o)
         {
@@ -1153,12 +1158,12 @@ namespace Cash.ViweModel
             try
             {
                 Editor edit_window = new Editor();
-                View_Model_Editor model = new View_Model_Editor(my_profile);
+                View_Model_Editor model = new View_Model_Editor(my_profile, myDB);
                 edit_window.DataContext = model;
 
 
                 edit_window.ShowDialog();
-                myDB = new CashDB();
+              //  myDB = new CashDB();
                 Set_new_items();
             }catch (Exception e) { }
         }
@@ -1194,7 +1199,7 @@ namespace Cash.ViweModel
 
                 window.ShowDialog();
 
-                myDB = new CashDB();
+              //  myDB = new CashDB();
                 Set_new_items();
                 Set_Filter();
                 VMSelectedTabIndex = 0;
@@ -1292,7 +1297,7 @@ namespace Cash.ViweModel
             {
                 Registration view_registration = new Registration();
 
-                View_Model_Registration View_model_reg = new View_Model_Registration();
+                View_Model_Registration View_model_reg = new View_Model_Registration(myDB);
 
                 if (View_model_reg._OK == null)
                     View_model_reg._OK = new Action(view_registration.Ok);
@@ -1300,7 +1305,7 @@ namespace Cash.ViweModel
                 view_registration.DataContext = View_model_reg;
 
                 view_registration.ShowDialog();
-                myDB = new CashDB();
+               // myDB = new CashDB();
                 Set_new_items();
                 Set_Filter();
                 VMSelectedTabIndex = 0;
@@ -1338,7 +1343,7 @@ namespace Cash.ViweModel
 
                 window.ShowDialog();
 
-                myDB = new CashDB();
+               // myDB = new CashDB();
                 Set_new_items();
                 Set_Filter();
                 VMSelectedTabIndex = 0;

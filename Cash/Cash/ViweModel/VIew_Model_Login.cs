@@ -132,7 +132,7 @@ namespace Cash.ViweModel
                 MainWindows.ShowDialog();
                 is_ok = false;
 
-                myDB = new CashDB();
+               // myDB = new CashDB();
                 my_users = new Person();
 
               
@@ -152,7 +152,7 @@ namespace Cash.ViweModel
             {
                 Registration view_registration = new Registration();
 
-                View_Model_Registration View_model_reg = new View_Model_Registration();
+                View_Model_Registration View_model_reg = new View_Model_Registration(myDB);
 
                 if (View_model_reg._OK == null)
                    View_model_reg._OK = new Action(view_registration.Ok);
@@ -160,7 +160,7 @@ namespace Cash.ViweModel
                 view_registration.DataContext = View_model_reg;
 
                 view_registration.ShowDialog();
-                myDB = new CashDB();
+              //  myDB = new CashDB();
                 is_none_user = false;
             }
             
@@ -190,7 +190,7 @@ namespace Cash.ViweModel
         {
             try
             {
-                myDB = new CashDB();
+               // myDB = new CashDB();
                 if (visibility_reg == Visibility.Visible)
                     foreach (var i in myDB.People)
                     {

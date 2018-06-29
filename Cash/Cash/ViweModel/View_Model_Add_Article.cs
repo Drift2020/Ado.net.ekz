@@ -108,10 +108,10 @@ namespace Cash.ViweModel
         #endregion Pole
 
         #region Code
-        public View_Model_Add_Article(Person per)
+        public View_Model_Add_Article(Person per,CashDB _myDB)
         {
 
-            myDB = new CashDB();
+            myDB = _myDB;
             myProfile = myDB.People.ToList().Find(x => x.ID == per.ID);
             List_product = myDB.Products.ToList();
         }
@@ -186,7 +186,7 @@ namespace Cash.ViweModel
             try
             {
                 Editor edit_window = new Editor();
-                View_Model_Editor model = new View_Model_Editor(myProfile);
+                View_Model_Editor model = new View_Model_Editor(myProfile, myDB);
                 edit_window.DataContext = model;
 
 

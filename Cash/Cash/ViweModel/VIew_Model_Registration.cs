@@ -14,9 +14,9 @@ namespace Cash.ViweModel
     class View_Model_Registration : View_Model_Base
     {
         CashDB myDB;
-        public View_Model_Registration()
+        public View_Model_Registration(CashDB _myDB)
         {
-            myDB = new CashDB();
+            myDB = _myDB;
          
             Family_ = myDB.Families.ToList();
             

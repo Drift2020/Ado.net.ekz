@@ -18,7 +18,7 @@ namespace Cash.ViweModel
 
         #region Pole
 
-        CashDB myDB = new CashDB();
+        CashDB myDB;
         Person myProfile;
         #region name category
         string name_category;
@@ -54,8 +54,9 @@ namespace Cash.ViweModel
 
         #region Code
 
-        public View_Model_Editor(Person myP)
+        public View_Model_Editor(Person myP,CashDB _myDB)
         {
+            myDB = _myDB;
             myProfile = myP;
             list_category = myDB.Categories.ToList();
             list_product = myDB.Products.ToList();

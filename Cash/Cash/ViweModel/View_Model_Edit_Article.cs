@@ -208,12 +208,12 @@ namespace Cash.ViweModel
             {
 
                 Editor edit_window = new Editor();
-                View_Model_Editor model = new View_Model_Editor(myProfile);
+                View_Model_Editor model = new View_Model_Editor(myProfile, myDB);
                 edit_window.DataContext = model;
 
 
                 edit_window.ShowDialog();
-                myDB = new CashDB();
+               // myDB = new CashDB();
                 List_product = myDB.Products.ToList();
                 OnPropertyChanged(nameof(List_product));
             }
