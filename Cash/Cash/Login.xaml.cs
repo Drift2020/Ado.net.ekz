@@ -24,22 +24,22 @@ namespace Cash
             InitializeComponent();
            // DefaultStyle();
         }
-        public void DefaultStyle()
-        {
-            this.Background = new SolidColorBrush(Colors.DarkGray);
-            var core = new Uri("Resurse\\Core.xaml", UriKind.Relative);
-            var brush = new Uri("Resurse\\Brushes.xaml", UriKind.Relative);
-            var ico = new Uri("Resurse\\Icons.xaml", UriKind.Relative);
+        //public void DefaultStyle()
+        //{
+        //    this.Background = new SolidColorBrush(Colors.DarkGray);
+        //    var core = new Uri("Resurse\\Core.xaml", UriKind.Relative);
+        //    var brush = new Uri("Resurse\\Brushes.xaml", UriKind.Relative);
+        //    var ico = new Uri("Resurse\\Icons.xaml", UriKind.Relative);
 
-            ResourceDictionary resourceDictionary = Application.LoadComponent(core) as ResourceDictionary;
-            ResourceDictionary bru = Application.LoadComponent(brush) as ResourceDictionary;
-            ResourceDictionary ic = Application.LoadComponent(ico) as ResourceDictionary;
-            Application.Current.Resources.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            Application.Current.Resources.MergedDictionaries.Add(bru);
-            Application.Current.Resources.MergedDictionaries.Add(ic);
+        //    ResourceDictionary resourceDictionary = Application.LoadComponent(core) as ResourceDictionary;
+        //    ResourceDictionary bru = Application.LoadComponent(brush) as ResourceDictionary;
+        //    ResourceDictionary ic = Application.LoadComponent(ico) as ResourceDictionary;
+        //    Application.Current.Resources.Clear();
+        //    Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+        //    Application.Current.Resources.MergedDictionaries.Add(bru);
+        //    Application.Current.Resources.MergedDictionaries.Add(ic);
 
-        }
+        //}
 
         public void None_user()
         {
